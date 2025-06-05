@@ -1,0 +1,194 @@
+html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🏆 Propuesta Token de Oro</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #d4af37;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 0.3rem;
+      margin-top: 2rem;
+    }
+
+    .section {
+      margin-top: 2rem;
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #faf3dc;
+      color: #222;
+    }
+
+    .bonus {
+      background: #f2f2f2;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      border-left: 4px solid #d4af37;
+      font-weight: bold;
+    }
+
+    .icon {
+      margin-right: 0.5rem;
+    }
+
+    .conf-table th, .conf-table td {
+      text-align: center;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏆 Propuesta Token de Oro</h1>
+
+  <div class="section">
+    <h2>⚽ Acciones Ofensivas</h2>
+    <table>
+      <tr><th>Acción</th><th>Puntos</th><th>Descripción</th></tr>
+      <tr><td>Gol</td><td>14</td><td>Acción más determinante del juego.</td></tr>
+      <tr><td>Asistencia</td><td>8</td><td>Pase final que termina en gol.</td></tr>
+      <tr><td>Regate exitoso</td><td>7</td><td>Superar a un rival con conducción individual.</td></tr>
+      <tr><td>Pase clave / ocasión creada</td><td>4</td><td>Genera ocasión clara sin que sea gol.</td></tr>
+      <tr><td>Tiro al arco (sin gol)</td><td>3</td><td>Disparo que genera peligro.</td></tr>
+    </table>
+
+    <div class="bonus">🎯 Bonificaciones por tipo de gol</div>
+    <table>
+      <tr><th>Tipo de Gol</th><th>Puntos Extra</th></tr>
+      <tr><td>Tiro libre directo</td><td>+4</td></tr>
+      <tr><td>Cabeza</td><td>+3</td></tr>
+      <tr><td>Acrobático</td><td>+5</td></tr>
+      <tr><td>Desde fuera del área</td><td>+4</td></tr>
+      <tr><td>Penal</td><td>+2</td></tr>
+      <tr><td>Gol olímpico</td><td>+6</td></tr>
+      <tr><td>Dentro del área</td><td>+2</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🛡️ Acciones Defensivas</h2>
+    <table>
+      <tr><th>Acción</th><th>Puntos</th><th>Descripción</th></tr>
+      <tr><td>Atajada directa</td><td>10</td><td>Evita gol con intervención directa.</td></tr>
+      <tr><td>Recuperación de balón</td><td>7</td><td>Gana la posesión de forma efectiva.</td></tr>
+      <tr><td>Entrada exitosa / barrida</td><td>+2</td><td>Bonificación sobre recuperación.</td></tr>
+      <tr><td>Despeje crítico</td><td>8</td><td>En área propia o situación numérica desfavorable.</td></tr>
+    </table>
+
+    <div class="bonus">🧤 Bonificaciones por tipo de atajada</div>
+    <table>
+      <tr><th>Tipo de Atajada</th><th>Puntos Extra</th></tr>
+      <tr><td>A quemarropa</td><td>+4</td></tr>
+      <tr><td>Desde fuera del área</td><td>+3</td></tr>
+      <tr><td>Penal</td><td>+6</td></tr>
+      <tr><td>Aérea</td><td>+3</td></tr>
+      <tr><td>En tiro de esquina</td><td>+3</td></tr>
+      <tr><td>Acrobática</td><td>+5</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📊 Desempeño General</h2>
+    <table>
+      <tr><th>Acción</th><th>Puntos</th><th>Descripción</th></tr>
+      <tr><td>Pases completados en campo rival</td><td>1 cada 10 (máx. 10)</td><td>Precisión ofensiva.</td></tr>
+      <tr><td>Partidos jugados</td><td>6</td><td>Constancia y confianza del DT.</td></tr>
+      <tr><td>Balones aéreos ganados</td><td>3</td><td>Dominio del juego aéreo.</td></tr>
+      <tr><td>Distancia recorrida (&gt;8 km)</td><td>1 cada 2 km</td><td>Esfuerzo físico.</td></tr>
+      <tr><td>Liderazgo como capitán</td><td>+4</td><td>Mín. 60 min y portando gafete.</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🤝 Fair Play</h2>
+    <table>
+      <tr><th>Acción</th><th>Puntos</th><th>Descripción</th></tr>
+      <tr><td>Faltas cometidas</td><td>-2</td><td>Penaliza infracciones.</td></tr>
+      <tr><td>Amarilla</td><td>-4</td><td>Conducta antideportiva.</td></tr>
+      <tr><td>Roja directa</td><td>-8</td><td>Infracción grave.</td></tr>
+      <tr><td>Partido sin faltas</td><td>+3</td><td>Premio al juego limpio.</td></tr>
+      <tr><td>Perder tiempo</td><td>-1/seg (máx -10)</td><td>Tras 5 segundos sin sacar.</td></tr>
+      <tr><td>Fingir falta</td><td>-5</td><td>Simulación.</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🏆 Logros Colectivos - Clubes</h2>
+    <table class="conf-table">
+      <tr><th>Confederación</th><th>Ligas</th><th>Copas</th><th>Internacionales</th></tr>
+      <tr><td>🇪🇺 UEFA</td><td>60 / 50</td><td>50 / 40</td><td>Champions (100), Europa (60), Conference (50)</td></tr>
+      <tr><td>🇸🇦 CONMEBOL</td><td>45</td><td>35</td><td>Libertadores (60), Sudamericana (50)</td></tr>
+      <tr><td>🇲🇽 CONCACAF</td><td>40</td><td>30</td><td>Champions Cup (45), Leagues Cup (40)</td></tr>
+      <tr><td>🇯🇵 AFC</td><td>35</td><td>25</td><td>AFC CL (40), AFC Cup (30)</td></tr>
+      <tr><td>🇿🇦 CAF</td><td>35</td><td>25</td><td>CAF CL (40), Conf. Cup (30)</td></tr>
+      <tr><td>🇳🇿 OFC</td><td>30</td><td>20</td><td>OFC CL (30)</td></tr>
+    </table>
+
+    <div class="footer-note">Subcampeón: 70% | Tercer lugar: 50% del puntaje del campeón.</div>
+  </div>
+
+  <div class="section">
+    <h2>🌍 Logros Colectivos - Selecciones</h2>
+    <table>
+      <tr><th>Competencia</th><th>Puntos</th></tr>
+      <tr><td>🏆 Copa Mundial FIFA</td><td>120</td></tr>
+      <tr><td>📈 Clasificación Mundial completada</td><td>60</td></tr>
+      <tr><td>🌐 Copa Confederaciones</td><td>80</td></tr>
+    </table>
+
+    <h3>UEFA</h3>
+    <table><tr><td>Eurocopa</td><td>100</td></tr><tr><td>Liga de Naciones</td><td>65</td></tr></table>
+
+    <h3>CONMEBOL</h3>
+    <table><tr><td>Copa América</td><td>80</td></tr></table>
+
+    <h3>CONCACAF</h3>
+    <table><tr><td>Copa Oro</td><td>50</td></tr><tr><td>Liga de Naciones</td><td>45</td></tr></table>
+
+    <h3>AFC</h3>
+    <table><tr><td>Copa Asiática</td><td>45</td></tr></table>
+
+    <h3>CAF</h3>
+    <table><tr><td>Copa Africana de Naciones</td><td>60</td></tr></table>
+
+    <h3>OFC</h3>
+    <table><tr><td>Copa de Naciones de Oceanía</td><td>40</td></tr></table>
+  </div>
+</body>
+</html>
+
