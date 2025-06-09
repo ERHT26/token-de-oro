@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Token de Oro – Balón de Oro 2024</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  table { border-collapse: collapse; width: 100%; max-width: 600px; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+  th { background: #ffd700; }
+</style>
+</head>
+<body>
+
+  <h2>🏆 Token de Oro – Finalistas Balón de Oro 2024</h2>
+  <table id="results">
+    <tr><th>Jugador</th><th>Puntos</th><th>Detalles</th></tr>
+  </table>
+
+  <script>
+    const API_KEY = 'TU_API_KEY_AQUÍ'; // tu clave
+
+    const players = [
+      { name: 'Rodri', id: 550 },       // reemplaza "550" por su player_id real
+      { name: 'Vinícius Jr', id: 1123 },
+      { name: 'Jude Bellingham', id: 2156 }
+    ];
+
+    async function getStats(playerId) {
+      const url = `https://v3.football.api-sports.io/players?id=${playerId}&season=2023`;
+      const resp = await fetch(url, {
+        headers: {
+          'x-apisports-key': API_KEY
+        }
+      });
+      const data = await resp.json();
+      return data.response[0].statistics[0];
+    }
+
+    function calcPoints(stats) {
+      let pts = 0;
+      pts += stats.goals.total * 14;
+      pts += stats.goals.assists * 8;
+      pts += stats.shots.on * 3; // tiro al arco
+      pts += stats.goals.saves * 10; // atajadas (solo portero)
+      pts += stats.games.appearences * 5; // partidos jugados
+      pts += stats.cards.yellow * (-4);
+      pts += stats.cards.red * (-8);
+      return pts;
+    }
+
+    async function load() {
+      const table = document.getElementById('results');
+      for (const p of players) {
+        const stats = await getStats(p.id);
+        const puntos = calcPoints(stats);
+        const row = table.insertRow();
+        row.insertCell().textContent = p.name;
+        row.insertCell().textContent = puntos;
+        row.insertCell().innerHTML = 
+          `Goles:${stats.goals.total}, Asist:${stats.goals.assists}, `
+          + `Tiros:${stats.shots.on}, Amarillas:${stats.cards.yellow}, Rojas:${stats.cards.red}`;
+      }
+    }
+
+    load();
+  </script>
+
+</body>
+</html>
