@@ -101,14 +101,14 @@
       
   
     .container {
-      background: #ffffff10;
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 30px;
-      width: 100%;
-      max-width: 600px;
-      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    }
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
     h1 {
       text-align: center;
       margin-bottom: 20px;
