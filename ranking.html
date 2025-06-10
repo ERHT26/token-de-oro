@@ -18,10 +18,10 @@
   </table>
 
   <script>
-    const API_KEY = 6308d4db454108bc9e980a1784362264; // tu clave
+    const API_KEY = "6308d4db454108bc9e980a1784362264"; // tu clave
 
     const players = [
-      { name: 'Rodri', id: 44 },       // reemplaza "550" por su player_id real
+      { name: 'Rodri', id: 44 },
       { name: 'Vinícius Jr', id: 762 },
       { name: 'Jude Bellingham', id: 129718 }
     ];
@@ -34,18 +34,23 @@
         }
       });
       const data = await resp.json();
-      return data.response[0].statistics[0];
+      if (data.response.length > 0 && data.response[0].statistics.length > 0) {
+        return data.response[0].statistics[0];
+      }
+      return null;
     }
 
     function calcPoints(stats) {
+      if (!stats) return 0;
       let pts = 0;
-      pts += stats.goals.total * 14;
-      pts += stats.goals.assists * 8;
-      pts += stats.shots.on * 3; // tiro al arco
-      pts += stats.goals.saves * 10; // atajadas (solo portero)
-      pts += stats.games.appearences * 5; // partidos jugados
-      pts += stats.cards.yellow * (-4);
-      pts += stats.cards.red * (-8);
+      pts += (stats.goals.total || 0) * 14;
+      pts += (stats.goals.assists || 0) * 8;
+      pts += (stats.shots?.on || 0) * 3; // tiro al arco
+      // atajadas solo si es portero (no aplicable en este caso)
+      // pts += (stats.goals.saves || 0) * 10; 
+      pts += (stats.games.appearances || 0) * 5; // partidos jugados
+      pts += (stats.cards.yellow || 0) * (-4);
+      pts += (stats.cards.red || 0) * (-8);
       return pts;
     }
 
@@ -57,9 +62,13 @@
         const row = table.insertRow();
         row.insertCell().textContent = p.name;
         row.insertCell().textContent = puntos;
-        row.insertCell().innerHTML = 
-          `Goles:${stats.goals.total}, Asist:${stats.goals.assists}, `
-          + `Tiros:${stats.shots.on}, Amarillas:${stats.cards.yellow}, Rojas:${stats.cards.red}`;
+        if (stats) {
+          row.insertCell().textContent = 
+            `Goles: ${stats.goals.total || 0}, Asist: ${stats.goals.assists || 0}, ` +
+            `Tiros: ${stats.shots?.on || 0}, Amarillas: ${stats.cards.yellow || 0}, Rojas: ${stats.cards.red || 0}`;
+        } else {
+          row.insertCell().textContent = "No hay datos";
+        }
       }
     }
 
