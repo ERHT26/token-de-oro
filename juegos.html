@@ -1,5 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 40px auto;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  h1 {
+    text-align: center;
+    color: #1a73e8;
+  }
+  .question {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  .options button {
+    display: block;
+    width: 100%;
+    margin: 6px 0;
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #1a73e8;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .options button:hover {
+    background-color: #155bb5;
+  }
+  .result {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  .score {
+    margin-top: 30px;
+    font-size: 1.1em;
+    text-align: center;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
 <head>
    <link rel="stylesheet" href="estilos.css">
    <!-- Favicon -->
