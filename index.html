@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <link rel="stylesheet" href="estilos.css">
    <!-- Favicon -->
    <link rel="icon" type="image/png" href="favicon.png">
    <!-- In-Page Push -->
@@ -118,6 +119,17 @@
     </style>
 </head>
 <body>
+
+<!-- Incluir el encabezado común -->
+<div id="header"></div>
+<script>
+  fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+    });
+</script>
+
 <!-- Logo de la pagina -->
 <div style="width: 100%; text-align: center; margin-top: 20px;">
   <img src="favicon.png" alt="Logo Token de Oro" style="width: 150px; height: auto;">
