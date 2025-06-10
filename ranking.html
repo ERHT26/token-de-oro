@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Token de Oro – Balón de Oro 2024</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; max-width: 900px; margin-bottom: 20px;}
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
+    th { background: #ffd700; }
+    #winner { font-size: 1.2em; font-weight: bold; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<h2>🏆 Token de Oro – Finalistas Balón de Oro 2024</h2>
+<table id="results">
+  <tr>
+    <th>Jugador</th>
+    <th>Desglose de Puntos</th>
+    <th>Total Puntos</th>
+  </tr>
+</table>
+
+<div id="winner"></div>
+
+<script>
+  const API_KEY = '6308d4db454108bc9e980a1784362264';
+
+  const players = [
+    {
+      name: 'Rodri',
+      id: 44,
+      collectiveAchievements: {
+        championsLeague: 80,
+        leagueTop20UEFA: 50,
+        nationalCupTop20: 40,
+        superCupUEFA: 25,
+        clubWorldCup: 30,
+        euroCup: 45 // si la gana
+      }
+    },
+    {
+      name: 'Vinícius Jr',
+      id: 762,
+      collectiveAchievements: {
+        championsLeague: 80,
+        leagueTop20UEFA: 50,
+        nationalCupTop20: 40,
+        superCupUEFA: 25,
+        clubWorldCup: 30
+      }
+    },
+    {
+      name: 'Jude Bellingham',
+      id: 129718,
+      collectiveAchievements: {
+        championsLeague: 80,
+        leagueTop20UEFA: 50,
+        nationalCupTop20: 40
+      }
+    }
+  ];
+
+  const pointsScheme = {
+    goals: 14,
+    assists: 8,
+    dribblesSuccessful: 7,
+    shotsOnTargetNoGoal: 3,
+    bonusDirectCorner: 6,
+    bonusLongDistance: 6,
+    bonusAcrobatic: 5,
+    bonusFreeKick: 4,
+    bonusOutsideArea: 4,
+    bonusInsideArea: 2,
+    bonusHeader: 3,
+    bonusPenalty: 2,
+    saves: 10,
+    ballRecoveries: 7,
+    successfulTacklesBonus: 2,
+    bonusPenaltySave: 6,
+    bonusAcrobaticSave: 5,
+    bonusCloseRangeSave: 4,
+    bonusOutsideAreaSave: 3,
+    bonusAerialSave: 3,
+    matchesPlayed: 5,
+    captainLeadership: 3,
+    passesCompletedRival: 0.1,
+    kmRun: 1,
+    foulsCommitted: -2,
+    redCards: -8,
+    yellowCards: -4,
+    simulation: -5,
+    noFoulsBonus: 2
+  };
+
+  async function getStats(playerId) {
+    const url = `https://v3.football.api-sports.io/players?id=${playerId}&season=2023`;
+    const resp = await fetch(url, {
+      headers: { 'x-apisports-key': API_KEY }
+    });
+    const data = await resp.json();
+    if (!data.response || data.response.length === 0) return null;
+    return data.response[0].statistics[0];
+  }
+
+  function calcCollectivePoints(achievements) {
+    let total = 0;
+    let breakdown = '';
+    for (const [key, value] of Object.entries(achievements)) {
+      breakdown += `${key}: ${value} pts<br>`;
+      total += value;
+    }
+    return { total, breakdown };
+  }
+
+  function calcPoints(stats, player) {
+    if (!stats) return { total: 0, details: {}, collective: { total: 0, breakdown: '' } };
+
+    const dribbles = 0, recoveries = 0, successfulTackles = 0, passesCompletedRival = 0;
+    const kmRun = 0, fouls = 0, simulation = 0, noFouls = false, captain = false;
+
+    let details = {}, total = 0;
+
+    details.goals = stats.goals.total || 0;
+    total += details.goals * pointsScheme.goals;
+
+    details.assists = stats.goals.assists || 0;
+    total += details.assists * pointsScheme.assists;
+
+    details.dribbles = dribbles;
+    total += dribbles * pointsScheme.dribblesSuccessful;
+
+    const shotsOn = stats.shots.on || 0;
+    const shotsNoGoal = shotsOn - details.goals;
+    details.shotsOnTargetNoGoal = shotsNoGoal > 0 ? shotsNoGoal : 0;
+    total += details.shotsOnTargetNoGoal * pointsScheme.shotsOnTargetNoGoal;
+
+    details.saves = stats.goals.saves || 0;
+    total += details.saves * pointsScheme.saves;
+
+    details.recoveries = recoveries;
+    total += recoveries * pointsScheme.ballRecoveries;
+
+    details.tacklesBonus = successfulTackles;
+    total += successfulTackles * pointsScheme.successfulTacklesBonus;
+
+    details.appearances = stats.games.appearences || 0;
+    total += details.appearances * pointsScheme.matchesPlayed;
+
+    details.captain = captain ? 1 : 0;
+    total += captain ? pointsScheme.captainLeadership : 0;
+
+    details.passesCompletedRival = passesCompletedRival;
+    total += passesCompletedRival * pointsScheme.passesCompletedRival;
+
+    details.kmRun = kmRun;
+    total += kmRun * pointsScheme.kmRun;
+
+    details.fouls = fouls;
+    total += fouls * pointsScheme.foulsCommitted;
+
+    details.yellowCards = stats.cards.yellow || 0;
+    total += details.yellowCards * pointsScheme.yellowCards;
+
+    details.redCards = stats.cards.red || 0;
+    total += details.redCards * pointsScheme.redCards;
+
+    details.simulation = simulation;
+    total += simulation * pointsScheme.simulation;
+
+    details.noFoulsBonus = noFouls ? 1 : 0;
+    total += noFouls ? pointsScheme.noFoulsBonus : 0;
+
+    const collective = calcCollectivePoints(player.collectiveAchievements);
+    total += collective.total;
+
+    return { total, details, collective };
+  }
+
+  function formatDetails(details, collective) {
+    return `
+      <strong>Rendimiento Individual</strong><br>
+      Goles: ${details.goals} ×14 = ${details.goals * 14} pts<br>
+      Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts<br>
+      Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts<br>
+      Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts<br>
+      Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts<br>
+      Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts<br>
+      Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts<br>
+      Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts<br>
+      Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts<br>
+      Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts<br>
+      Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts<br>
+      Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts<br>
+      Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts<br>
+      Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts<br>
+      Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts<br>
+      Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts<br><br>
+      <strong>Logros Colectivos</strong><br>
+      ${collective.breakdown}
+    `;
+  }
+
+  async function load() {
+    const table = document.getElementById('results');
+    let maxPoints = -Infinity;
+    let winner = '';
+
+    for (const p of players) {
+      const stats = await getStats(p.id);
+      if (!stats) {
+        console.warn(`No hay datos para ${p.name}`);
+        continue;
+      }
+      const { total, details, collective } = calcPoints(stats, p);
+      const row = table.insertRow();
+      row.insertCell().textContent = p.name;
+      row.insertCell().innerHTML = formatDetails(details, collective);
+      row.insertCell().textContent = total.toFixed(2);
+
+      if (total > maxPoints) {
+        maxPoints = total;
+        winner = p.name;
+      }
+    }
+
+    const winnerDiv = document.getElementById('winner');
+    winnerDiv.textContent = `🏅 Ganador: ${winner} con ${maxPoints.toFixed(2)} puntos.`;
+  }
+
+  load();
+</script>
+
+</body>
+</html>
