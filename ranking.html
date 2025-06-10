@@ -28,40 +28,36 @@
   const API_KEY = '6308d4db454108bc9e980a1784362264';
 
   const players = [
-    { 
-      name: 'Rodri', id: 44,
+    {
+      name: 'Rodri',
+      id: 44,
       collectiveAchievements: {
         championsLeague: 80,
-        ligaTop20: 50,
-        copaNacionalTop20: 40,
-        euro: 45,
-        supercopa: 10,
-        segundoLugar: 0,
-        tercerLugar: 0
+        leagueTop20UEFA: 50,
+        nationalCupTop20: 40,
+        superCupUEFA: 25,
+        clubWorldCup: 30,
+        euroCup: 45 // si la gana
       }
     },
     {
-      name: 'Vinícius Jr', id: 762,
+      name: 'Vinícius Jr',
+      id: 762,
       collectiveAchievements: {
         championsLeague: 80,
-        ligaTop20: 50,
-        copaNacionalTop20: 0,
-        euro: 0,
-        supercopa: 10,
-        segundoLugar: 0,
-        tercerLugar: 0
+        leagueTop20UEFA: 50,
+        nationalCupTop20: 40,
+        superCupUEFA: 25,
+        clubWorldCup: 30
       }
     },
     {
-      name: 'Jude Bellingham', id: 129718,
+      name: 'Jude Bellingham',
+      id: 129718,
       collectiveAchievements: {
         championsLeague: 80,
-        ligaTop20: 50,
-        copaNacionalTop20: 0,
-        euro: 0,
-        supercopa: 10,
-        segundoLugar: 0,
-        tercerLugar: 0
+        leagueTop20UEFA: 50,
+        nationalCupTop20: 40
       }
     }
   ];
@@ -71,6 +67,14 @@
     assists: 8,
     dribblesSuccessful: 7,
     shotsOnTargetNoGoal: 3,
+    bonusDirectCorner: 6,
+    bonusLongDistance: 6,
+    bonusAcrobatic: 5,
+    bonusFreeKick: 4,
+    bonusOutsideArea: 4,
+    bonusInsideArea: 2,
+    bonusHeader: 3,
+    bonusPenalty: 2,
     saves: 10,
     ballRecoveries: 7,
     successfulTacklesBonus: 2,
@@ -100,14 +104,23 @@
     return data.response[0].statistics[0];
   }
 
-  function calcPoints(stats, collectiveAchievements) {
-    if (!stats) return { total: 0, details: {}, collective: 0 };
-
-    const dribbles = 0, recoveries = 0, successfulTackles = 0, captain = false;
-    const passesCompletedRival = 0, kmRun = 0, fouls = 0, simulation = 0, noFouls = false;
-
-    let details = {};
+  function calcCollectivePoints(achievements) {
     let total = 0;
+    let breakdown = '';
+    for (const [key, value] of Object.entries(achievements)) {
+      breakdown += `${key}: ${value} pts<br>`;
+      total += value;
+    }
+    return { total, breakdown };
+  }
+
+  function calcPoints(stats, player) {
+    if (!stats) return { total: 0, details: {}, collective: { total: 0, breakdown: '' } };
+
+    const dribbles = 0, recoveries = 0, successfulTackles = 0, passesCompletedRival = 0;
+    const kmRun = 0, fouls = 0, simulation = 0, noFouls = false, captain = false;
+
+    let details = {}, total = 0;
 
     details.goals = stats.goals.total || 0;
     total += details.goals * pointsScheme.goals;
@@ -159,31 +172,33 @@
     details.noFoulsBonus = noFouls ? 1 : 0;
     total += noFouls ? pointsScheme.noFoulsBonus : 0;
 
-    const collectivePoints = Object.values(collectiveAchievements).reduce((a, b) => a + b, 0);
-    total += collectivePoints;
+    const collective = calcCollectivePoints(player.collectiveAchievements);
+    total += collective.total;
 
-    return { total, details, collective: collectivePoints };
+    return { total, details, collective };
   }
 
-  function formatDetails(details, collectivePoints) {
+  function formatDetails(details, collective) {
     return `
+      <strong>Rendimiento Individual</strong><br>
       Goles: ${details.goals} ×14 = ${details.goals * 14} pts<br>
       Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts<br>
       Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts<br>
       Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts<br>
       Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts<br>
-      Recuperaciones: ${details.recoveries} ×7 = ${details.recoveries * 7} pts<br>
+      Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts<br>
       Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts<br>
       Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts<br>
-      Capitán: ${details.captain} ×3 = ${details.captain * 3} pts<br>
-      Pases campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts<br>
-      Km recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts<br>
-      Faltas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts<br>
+      Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts<br>
+      Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts<br>
+      Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts<br>
+      Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts<br>
       Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts<br>
       Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts<br>
-      Simulación: ${details.simulation} ×(-5) = ${details.simulation * -5} pts<br>
-      Bonus sin faltas: ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts<br>
-      <b>🏆 Logros colectivos: ${collectivePoints} pts</b>
+      Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts<br>
+      Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts<br><br>
+      <strong>Logros Colectivos</strong><br>
+      ${collective.breakdown}
     `;
   }
 
@@ -198,9 +213,8 @@
         console.warn(`No hay datos para ${p.name}`);
         continue;
       }
-      const { total, details, collective } = calcPoints(stats, p.collectiveAchievements);
+      const { total, details, collective } = calcPoints(stats, p);
       const row = table.insertRow();
-
       row.insertCell().textContent = p.name;
       row.insertCell().innerHTML = formatDetails(details, collective);
       row.insertCell().textContent = total.toFixed(2);
