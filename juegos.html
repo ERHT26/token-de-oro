@@ -35,6 +35,7 @@
     </div>
     <div class="score hidden" id="finalScore"></div>
   </div>
+   <button id="restart-btn" style="display: none;">Reiniciar partida</button>
 
   <script>
     const questionBank = [
@@ -155,6 +156,24 @@
       finalScoreEl.textContent = `Juego terminado. Tu puntuación: ${score}/${totalQuestions}`;
       finalScoreEl.classList.remove("hidden");
     }
+
+     const restartBtn = document.getElementById("restart-btn");
+
+restartBtn.addEventListener("click", () => {
+  // Reinicia variables del juego
+  currentQuestionIndex = 0;
+  score = 0;
+  shuffledQuestions = shuffleArray(questions).slice(0, 10); // Escoge 10 preguntas aleatorias
+  restartBtn.style.display = "none";
+  showQuestion(); // o startGame() según tu función
+});
+
+     function endGame() {
+  questionElement.innerText = `Juego terminado. Tu puntaje fue: ${score}/10`;
+  answerButtonsElement.innerHTML = "";
+  restartBtn.style.display = "block";
+}
+
 
     loadQuestion();
   </script>
