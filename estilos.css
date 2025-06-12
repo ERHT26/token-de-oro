@@ -151,60 +151,66 @@
       margin-top: 15px;
     }
 
-      #restart-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#restart-btn:hover {
-  background-color: #0056b3;
-}
-
-.ganador-container {
-  background: #fffbcc;
-  border: 3px solid #ffd700;
-  padding: 2rem;
-  text-align: center;
-  margin: 2rem auto;
-  border-radius: 10px;
-  max-width: 600px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  animation: fadeInScale 1s ease-out;
-}
-
-.ganador-container h1 {
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
-  color: #cc8800;
-}
-
-.ganador-nombre {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #1a1a1a;
-}
-
-.ganador-puntos {
-  font-size: 2rem;
-  color: #444;
-  margin-top: 0.5rem;
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
+ #winner {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    color: #333;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 1000;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  table#results {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
   }
-}
+
+  table#results th,
+  table#results td {
+    padding: 15px 20px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  table#results th {
+    background: #004aad;
+    color: white;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+  }
+
+  table#results tr:nth-child(even) {
+    background: #f7f9fc;
+  }
+
+  table#results td:nth-child(3) {
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #004aad;
+    white-space: nowrap;
+  }
+
+  /* Para mejorar el desglose de puntos */
+  .points-breakdown {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  .points-breakdown strong {
+    color: #222;
+    font-weight: 600;
+  }
 
