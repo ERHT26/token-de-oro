@@ -12,34 +12,7 @@
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Token de Oro</title>
-    <script>
-  const moveAdToBottom = () => {
-    const adDivs = [...document.querySelectorAll('div')].filter(div => {
-      const style = window.getComputedStyle(div);
-      return (
-        style.position === 'fixed' &&
-        style.top === '0px' &&
-        style.zIndex >= 1000
-      );
-    });
-
-    adDivs.forEach(ad => {
-      ad.style.top = 'auto';
-      ad.style.bottom = '0px';
-    });
-  };
-
-  // Ejecutar al cargar y repetir por si tarda en aparecer
-  window.addEventListener('load', () => {
-    moveAdToBottom();
-    const interval = setInterval(() => {
-      moveAdToBottom();
-    }, 1000);
-    // Detener después de 10 segundos
-    setTimeout(() => clearInterval(interval), 10000);
-  });
-</script>
-
+    
 </head>
 <body>
 <!-- Logo de la pagina -->
@@ -297,6 +270,34 @@
      }
    
   load();
+</script>
+
+<script>
+  const moveAdToBottom = () => {
+    const adDivs = [...document.querySelectorAll('div')].filter(div => {
+      const style = window.getComputedStyle(div);
+      return (
+        style.position === 'fixed' &&
+        style.top === '0px' &&
+        style.zIndex >= 1000
+      );
+    });
+
+    adDivs.forEach(ad => {
+      ad.style.top = 'auto';
+      ad.style.bottom = '0px';
+    });
+  };
+
+  // Ejecutar al cargar y repetir por si tarda en aparecer
+  window.addEventListener('load', () => {
+    moveAdToBottom();
+    const interval = setInterval(() => {
+      moveAdToBottom();
+    }, 1000);
+    // Detener después de 10 segundos
+    setTimeout(() => clearInterval(interval), 10000);
+  });
 </script>
 
 </body>
