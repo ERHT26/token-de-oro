@@ -35,6 +35,7 @@
 <body>
 
 <h2>Token de Oro – Finalistas Balón de Oro 2024</h2>
+<div id="winner"></div>
 <table id="results">
   <tr>
     <th>Jugador</th>
@@ -254,7 +255,14 @@
     }
 
     const winnerDiv = document.getElementById('winner');
-    winnerDiv.textContent = `🏅 Ganador: ${winner} con ${maxPoints.toFixed(2)} puntos.`;
+    winnerDiv.innerHTML = `
+  <div class="ganador-container">
+    <h1>🏆 Ganador del Token de Oro 2024</h1>
+    <div class="ganador-nombre">${winner}</div>
+    <div class="ganador-puntos">${maxPoints.toFixed(2)} puntos</div>
+  </div>
+`;
+
   }
   
      async function fetchDataOncePerDay(endpoint, key) {
