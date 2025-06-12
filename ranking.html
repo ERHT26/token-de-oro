@@ -249,7 +249,26 @@
     const winnerDiv = document.getElementById('winner');
     winnerDiv.textContent = `🏅 Ganador: ${winner} con ${maxPoints.toFixed(2)} puntos.`;
   }
-
+  
+     async function fetchDataOncePerDay(endpoint, key) {
+       const today = new Date().toISOString().split('T')[0];
+       const cache = localStorage.getItem('api_cache');
+       if (cache) {
+         const { date, data } = JSON.parse(cache);
+         if (date === today) {
+           return data;
+         }
+       }
+       const response = await fetch(endpoint, {
+         headers: {
+           'x-apisports-key': key
+         }
+       });
+       const data = await response.json();
+       localStorage.setItem('api_cache', JSON.stringify({ date: today, data }));
+       return data;
+     }
+   
   load();
 </script>
 
