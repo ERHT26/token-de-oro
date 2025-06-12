@@ -102,53 +102,46 @@
       
   
     .container {
-  width: 90%;
-  max-width: 600px;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-    h1 {
       text-align: center;
-      margin-bottom: 20px;
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
+
     .question {
-      font-size: 1.2rem;
+      font-size: 20px;
       margin-bottom: 15px;
     }
+
     .options button {
       display: block;
       width: 100%;
       margin: 8px 0;
-      padding: 12px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #4db8ff;
-      color: white;
+      padding: 10px;
+      font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    .options button:hover {
-      background-color: #3399ff;
-    }
-    .result {
-      margin-top: 20px;
-      font-weight: bold;
-    }
+
     .hidden {
       display: none;
     }
-    .score {
-      text-align: center;
+
+    #nextBtn, #restartBtn {
       margin-top: 20px;
-      font-size: 1.2rem;
+      padding: 10px 20px;
+      font-size: 16px;
     }
-    #nextBtn {
-      background-color: #28a745;
-      margin-top: 15px;
+
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #finalScore {
+      font-size: 22px;
+      margin-top: 20px;
     }
 
 .ganador-container {
