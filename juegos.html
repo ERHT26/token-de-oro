@@ -167,7 +167,7 @@
 
     loadQuestion();
   </script>
-   --->
+   
    <div class="containerjuego">
     <h1>Trivia de Fútbol</h1>
     <div class="button-row">
@@ -314,6 +314,197 @@
 
     // Inicialización
     showQuestion();
+  </script>
+   --->
+   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #c2e9fb, #81a4fd);
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .question {
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #f0f0f0;
+      transition: background-color 0.3s ease;
+    }
+
+    .options button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #nextBtn, #restartBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #nextBtn:hover, #restartBtn:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    #finalScore {
+      font-size: 24px;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Trivia de Fútbol</h1>
+    <div id="questionContainer">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      <div class="result" id="result"></div>
+      <button id="nextBtn" class="hidden">Siguiente pregunta</button>
+    </div>
+    <div class="score hidden" id="finalScore"></div>
+    <button id="restartBtn" class="hidden">Reiniciar juego</button>
+  </div>
+
+  <script>
+    const allQuestions = [
+      { question: "¿Cuántas Copas del Mundo ha ganado Brasil?", options: ["3", "4", "5", "6"], answer: 2 },
+      { question: "¿Quién tiene el récord de más goles en una temporada de La Liga?", options: ["Cristiano Ronaldo", "Lionel Messi", "Luis Suárez", "Karim Benzema"], answer: 1 },
+      { question: "¿Qué país ganó la Eurocopa 2004?", options: ["España", "Italia", "Grecia", "Francia"], answer: 2 },
+      { question: "¿Cuál es el club con más Champions League ganadas?", options: ["Barcelona", "Milán", "Bayern Múnich", "Real Madrid"], answer: 3 },
+      { question: "¿Qué jugador ha ganado más Balones de Oro?", options: ["Cristiano Ronaldo", "Lionel Messi", "Zidane", "Ronaldinho"], answer: 1 },
+      { question: "¿En qué año se jugó el primer Mundial?", options: ["1930", "1940", "1950", "1928"], answer: 0 },
+      { question: "¿Qué selección ganó el Mundial 2018?", options: ["Alemania", "Brasil", "Francia", "Croacia"], answer: 2 },
+      { question: "¿Qué equipo argentino tiene más títulos locales?", options: ["Boca Juniors", "River Plate", "Independiente", "Racing"], answer: 1 },
+      { question: "¿Qué jugador hizo el 'Gol del Siglo' en 1986?", options: ["Diego Maradona", "Pelé", "Messi", "Ronaldo"], answer: 0 },
+      { question: "¿Cuál es el estadio más grande del mundo?", options: ["Camp Nou", "Maracaná", "Rungrado 1 de Mayo", "Wembley"], answer: 2 },
+      { question: "¿Qué selección tiene más títulos de Copa América?", options: ["Argentina", "Brasil", "Uruguay", "Chile"], answer: 2 },
+      { question: "¿Quién es el máximo goleador histórico del Real Madrid?", options: ["Raúl", "Cristiano Ronaldo", "Benzema", "Di Stéfano"], answer: 1 }
+    ];
+
+    let selectedQuestions = [];
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const resultEl = document.getElementById("result");
+    const nextBtn = document.getElementById("nextBtn");
+    const finalScoreEl = document.getElementById("finalScore");
+    const restartBtn = document.getElementById("restartBtn");
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function startGame() {
+      selectedQuestions = shuffle([...allQuestions]).slice(0, 10);
+      currentQuestion = 0;
+      score = 0;
+      finalScoreEl.classList.add("hidden");
+      restartBtn.classList.add("hidden");
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = selectedQuestions[currentQuestion];
+      questionEl.textContent = `Pregunta ${currentQuestion + 1}: ${q.question}`;
+      optionsEl.innerHTML = "";
+      resultEl.textContent = "";
+      nextBtn.classList.add("hidden");
+
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.onclick = () => selectAnswer(index);
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(selected) {
+      const correct = selectedQuestions[currentQuestion].answer;
+      if (selected === correct) {
+        resultEl.textContent = "¡Correcto!";
+        resultEl.style.color = "green";
+        score++;
+      } else {
+        resultEl.textContent = `Incorrecto. La respuesta correcta es: ${selectedQuestions[currentQuestion].options[correct]}`;
+        resultEl.style.color = "red";
+      }
+      nextBtn.classList.remove("hidden");
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < selectedQuestions.length) {
+        showQuestion();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      questionEl.textContent = "";
+      optionsEl.innerHTML = "";
+      resultEl.textContent = "";
+      nextBtn.classList.add("hidden");
+      finalScoreEl.classList.remove("hidden");
+      finalScoreEl.textContent = `Puntaje final: ${score} de ${selectedQuestions.length}`;
+      restartBtn.classList.remove("hidden");
+    }
+
+    nextBtn.addEventListener("click", nextQuestion);
+    restartBtn.addEventListener("click", startGame);
+
+    // Comienza el juego
+    startGame();
   </script>
 </body>
 </html>
