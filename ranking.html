@@ -133,6 +133,68 @@
     return { total, breakdown };
   }
 
+  const collectiveAchievementsNames = {
+  // Clubes - Ligas
+  championsLeague: 'UEFA Champions League',
+  europaLeague: 'UEFA Europa League',
+  conferenceLeague: 'UEFA Conference League',
+  leagueTop20UEFA: 'Liga en Top 20 UEFA',
+  leagueUEFA: 'Liga UEFA (menos Top 20)',
+  leagueCONMEBOL: 'Liga CONMEBOL',
+  leagueCONCACAF: 'Liga CONCACAF',
+  leagueAFC: 'Liga AFC',
+  leagueCAF: 'Liga CAF',
+  leagueOFC: 'Liga OFC',
+
+  // Clubes - Copas nacionales
+  nationalCupTop20: 'Copa Nacional Top 20 UEFA',
+  nationalCupUEFA: 'Copa Nacional UEFA',
+  nationalCupCONMEBOL: 'Copa Nacional CONMEBOL',
+  nationalCupCONCACAF: 'Copa Nacional CONCACAF',
+  nationalCupAFC: 'Copa Nacional AFC',
+  nationalCupCAF: 'Copa Nacional CAF',
+  nationalCupOFC: 'Copa Nacional OFC',
+
+  // Clubes - Copas internacionales
+  superCupUEFA: 'Supercopa de la UEFA',
+  clubWorldCup: 'Mundial de Clubes',
+  libertadores: 'Copa Libertadores',
+  sudamericana: 'Copa Sudamericana',
+  championsCupCONCACAF: 'Concacaf Champions Cup',
+  leaguesCupCONCACAF: 'Leagues Cup',
+  championsLeagueAFC: 'AFC Champions League',
+  afcCup: 'AFC Cup',
+  championsLeagueCAF: 'CAF Champions League',
+  confederationCupCAF: 'CAF Confederation Cup',
+  championsLeagueOFC: 'OFC Champions League',
+
+  // Selecciones
+  worldCupFIFA: 'Copa Mundial de la FIFA',
+  fifaRankingComplete: 'Clasificación Mundial FIFA (completada)',
+  confederationsCupFIFA: 'Copa Confederaciones FIFA',
+  
+  // UEFA selecciones
+  euroCup: 'Eurocopa',
+  leagueOfNationsUEFA: 'Liga de Naciones UEFA',
+
+  // CONMEBOL selecciones
+  copaAmerica: 'Copa América',
+
+  // CONCACAF selecciones
+  copaOro: 'Copa Oro CONCACAF',
+  leagueOfNationsCONCACAF: 'Liga de Naciones CONCACAF',
+
+  // AFC selecciones
+  asianCup: 'Copa Asiática',
+
+  // CAF selecciones
+  afcon: 'Copa Africana de Naciones (AFCON)',
+
+  // OFC selecciones
+  oceaniaNationsCup: 'Copa de Naciones de Oceanía'
+};
+
+
   function calcPoints(stats, player) {
     if (!stats) return { total: 0, details: {}, collective: { total: 0, breakdown: '' } };
 
