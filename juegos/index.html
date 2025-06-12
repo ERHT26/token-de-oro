@@ -33,50 +33,7 @@
 <body>
   
    
-<style>
-    .container {
-      text-align: center;
-      max-width: 600px;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    }
 
-    .question {
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-
-    .options button {
-      display: block;
-      width: 100%;
-      margin: 8px 0;
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    #nextBtn, #restartBtn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-    }
-
-    #result {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    #finalScore {
-      font-size: 22px;
-      margin-top: 20px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -85,10 +42,11 @@
     <button id="restartBtn" class="hidden">Reiniciar juego</button>
   </div>
     <div id="questionContainer">
+       <div class="result" id="result"></div>
        <button id="nextBtn" class="hidden">Siguiente pregunta</button>
       <div class="question" id="question"></div>
       <div class="options" id="options"></div>
-      <div class="result" id="result"></div>
+      
     </div>
     
 
