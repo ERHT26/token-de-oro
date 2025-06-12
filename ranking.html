@@ -200,28 +200,35 @@
   }
 
   function formatDetails(details, collective) {
-    return `
-      <strong>Rendimiento Individual</strong><br>
-      Goles: ${details.goals} ×14 = ${details.goals * 14} pts<br>
-      Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts<br>
-      Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts<br>
-      Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts<br>
-      Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts<br>
-      Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts<br>
-      Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts<br>
-      Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts<br>
-      Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts<br>
-      Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts<br>
-      Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts<br>
-      Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts<br>
-      Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts<br>
-      Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts<br>
-      Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts<br>
-      Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts<br><br>
-      <strong>Logros Colectivos</strong><br>
-      ${collective.breakdown}
-    `;
-  }
+  return `
+    <div style="padding: 0.5rem;">
+      <strong>🧍‍♂️ Rendimiento Individual</strong>
+      <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
+        <li>Goles: ${details.goals} ×14 = ${details.goals * 14} pts</li>
+        <li>Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts</li>
+        <li>Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts</li>
+        <li>Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts</li>
+        <li>Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts</li>
+        <li>Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts</li>
+        <li>Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts</li>
+        <li>Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts</li>
+        <li>Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts</li>
+        <li>Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts</li>
+        <li>Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts</li>
+        <li>Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts</li>
+        <li>Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts</li>
+        <li>Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts</li>
+        <li>Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts</li>
+        <li>Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts</li>
+      </ul>
+
+      <strong>🏆 Logros Colectivos</strong>
+      <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
+        ${collective.breakdown.split('<br>').filter(x => x).map(item => `<li>${item}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+}
 
   async function load() {
     const table = document.getElementById('results');
@@ -272,33 +279,7 @@
   load();
 </script>
 
-<script>
-  const moveAdToBottom = () => {
-    const adDivs = [...document.querySelectorAll('div')].filter(div => {
-      const style = window.getComputedStyle(div);
-      return (
-        style.position === 'fixed' &&
-        style.top === '0px' &&
-        style.zIndex >= 1000
-      );
-    });
 
-    adDivs.forEach(ad => {
-      ad.style.top = 'auto';
-      ad.style.bottom = '0px';
-    });
-  };
-
-  // Ejecutar al cargar y repetir por si tarda en aparecer
-  window.addEventListener('load', () => {
-    moveAdToBottom();
-    const interval = setInterval(() => {
-      moveAdToBottom();
-    }, 1000);
-    // Detener después de 10 segundos
-    setTimeout(() => clearInterval(interval), 10000);
-  });
-</script>
 
 </body>
 </html>
