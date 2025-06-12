@@ -81,15 +81,16 @@
 <body>
   <div class="container">
     <h1>Trivia de Fútbol</h1>
+     <div class="score hidden" id="finalScore"></div>
+    <button id="restartBtn" class="hidden">Reiniciar juego</button>
+  </div>
     <div id="questionContainer">
+       <button id="nextBtn" class="hidden">Siguiente pregunta</button>
       <div class="question" id="question"></div>
       <div class="options" id="options"></div>
       <div class="result" id="result"></div>
-      <button id="nextBtn" class="hidden">Siguiente pregunta</button>
     </div>
-    <div class="score hidden" id="finalScore"></div>
-    <button id="restartBtn" class="hidden">Reiniciar juego</button>
-  </div>
+    
 
   <script>
     const fullQuestionBank = [
