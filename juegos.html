@@ -31,302 +31,8 @@
     
 
 <body>
-   <!---
-  <div class="container">
-    <h1>Trivia de Fútbol</h1>
-    <div id="questionContainer">
-      <div class="question" id="question"></div>
-      <div class="options" id="options"></div>
-      <div class="result" id="result"></div>
-      <button id="nextBtn" class="hidden">Siguiente pregunta</button>
-    </div>
-    <div class="score hidden" id="finalScore"></div>
-  </div>
+  
    
-  <script>
-    const questionBank = [
-      
-      { question: "¿Cuántas Copas del Mundo ha ganado Brasil?", options: ["3", "4", "5", "6"], answer: 2 },
-      { question: "¿Quién tiene el récord de más goles en una temporada de La Liga?", options: ["Cristiano Ronaldo", "Lionel Messi", "Luis Suárez", "Karim Benzema"], answer: 1 },
-      { question: "¿Qué país ganó la Eurocopa 2004?", options: ["España", "Italia", "Grecia", "Francia"], answer: 2 },
-      { question: "¿Quién es el máximo goleador histórico de la Champions League?", options: ["Messi", "Lewandowski", "Ronaldo", "Raúl"], answer: 2 },
-      { question: "¿Qué club ha ganado más veces la Champions League?", options: ["Barcelona", "AC Milan", "Liverpool", "Real Madrid"], answer: 3 },
-      { question: "¿Qué selección ganó el Mundial de 2018?", options: ["Alemania", "Francia", "Croacia", "Inglaterra"], answer: 1 },
-{ question: "¿En qué año se jugó el primer Mundial de fútbol?", options: ["1928", "1930", "1934", "1940"], answer: 1 },
-{ question: "¿Quién marcó el 'Gol del Siglo' en México 86?", options: ["Pelé", "Diego Maradona", "Zidane", "Cruyff"], answer: 1 },
-{ question: "¿Qué país ha sido anfitrión de más Mundiales?", options: ["Italia", "Alemania", "Brasil", "México"], answer: 3 },
-{ question: "¿Cuál es el club con más títulos de Premier League?", options: ["Liverpool", "Chelsea", "Manchester United", "Arsenal"], answer: 2 },
-{ question: "¿Quién es el máximo goleador histórico del FC Barcelona?", options: ["Suárez", "Eto'o", "Messi", "Ronaldinho"], answer: 2 },
-{ question: "¿Qué jugador portugués ganó 5 Balones de Oro?", options: ["Luis Figo", "Eusébio", "Cristiano Ronaldo", "João Félix"], answer: 2 },
-{ question: "¿Qué equipo argentino tiene más títulos de liga?", options: ["Boca Juniors", "River Plate", "Independiente", "San Lorenzo"], answer: 1 },
-{ question: "¿Cuál es el estadio con mayor capacidad del mundo?", options: ["Camp Nou", "Maracaná", "Estadio Azteca", "Rungrado 1 de Mayo"], answer: 3 },
-{ question: "¿Qué jugador es conocido como 'El Fenómeno'?", options: ["Ronaldinho", "Ronaldo Nazário", "Romário", "Pelé"], answer: 1 },
-{ question: "¿En qué club debutó Lionel Messi?", options: ["Newell's", "Barcelona", "PSG", "River Plate"], answer: 0 },
-{ question: "¿Qué país ganó la Copa América 2021?", options: ["Argentina", "Brasil", "Chile", "Uruguay"], answer: 0 },
-{ question: "¿Quién es el entrenador más ganador de la Champions League?", options: ["Ferguson", "Ancelotti", "Guardiola", "Zidane"], answer: 1 },
-{ question: "¿Qué selección africana llegó más lejos en un Mundial?", options: ["Senegal", "Camerún", "Ghana", "Marruecos"], answer: 3 },
-{ question: "¿Qué jugador marcó más goles en los Mundiales?", options: ["Klose", "Ronaldo", "Müller", "Pelé"], answer: 0 },
-{ question: "¿Cuántos jugadores tiene un equipo en el campo?", options: ["10", "11", "12", "9"], answer: 1 },
-{ question: "¿Qué equipo ganó la Champions 2022?", options: ["Liverpool", "Real Madrid", "Chelsea", "PSG"], answer: 1 },
-{ question: "¿Cuál fue el primer país campeón del mundo?", options: ["Brasil", "Argentina", "Uruguay", "Italia"], answer: 2 },
-{ question: "¿Qué jugador anotó el gol más rápido en un Mundial?", options: ["Hakan Şükür", "David Villa", "Mbappé", "Cristiano"], answer: 0 },
-{ question: "¿Qué país ganó la Eurocopa 2020?", options: ["Inglaterra", "Italia", "Francia", "Alemania"], answer: 1 },
-{ question: "¿Qué jugador tiene más goles con su selección nacional?", options: ["Cristiano Ronaldo", "Ali Daei", "Messi", "Pelé"], answer: 0 },
-{ question: "¿Cuál es el club más exitoso de Argentina?", options: ["River", "Boca", "Independiente", "Racing"], answer: 0 },
-{ question: "¿Quién fue el goleador del Mundial 2014?", options: ["Messi", "James Rodríguez", "Müller", "Neymar"], answer: 1 },
-{ question: "¿Cuántas veces ha ganado España la Eurocopa?", options: ["1", "2", "3", "4"], answer: 2 },
-{ question: "¿Cuál es el equipo más antiguo del mundo?", options: ["Real Madrid", "Nottingham Forest", "Sheffield FC", "AC Milan"], answer: 2 },
-{ question: "¿Cuántos mundiales ha jugado México?", options: ["15", "16", "17", "18"], answer: 3 },
-{ question: "¿Quién dirigió a Francia en 2018?", options: ["Deschamps", "Domenech", "Zidane", "Blanc"], answer: 0 },
-{ question: "¿Qué club ganó el triplete en 2009?", options: ["Chelsea", "Barcelona", "Inter", "Bayern"], answer: 1 },
-{ question: "¿Cuántas veces ganó Uruguay el Mundial?", options: ["1", "2", "3", "4"], answer: 1 },
-{ question: "¿Qué país ganó el Mundial de 2006?", options: ["Francia", "Italia", "Alemania", "Brasil"], answer: 1 },
-{ question: "¿Quién marcó el gol de cabeza en la final del Mundial 2010?", options: ["Iniesta", "Ramos", "Puyol", "Villa"], answer: 2 },
-{ question: "¿Cuántos Balones de Oro tiene Messi (hasta 2023)?", options: ["6", "7", "8", "9"], answer: 2 },
-{ question: "¿Qué jugador recibió el apodo de 'La Saeta Rubia'?", options: ["Kubala", "Di Stéfano", "Butragueño", "Raúl"], answer: 1 },
-{ question: "¿Quién fue el máximo goleador de la Euro 2020?", options: ["Ronaldo", "Lukaku", "Kane", "Schick"], answer: 0 },
-{ question: "¿Qué club tiene más Copas Libertadores?", options: ["River", "Boca", "Peñarol", "Independiente"], answer: 3 },
-{ question: "¿En qué país nació Erling Haaland?", options: ["Inglaterra", "Noruega", "Suecia", "Alemania"], answer: 0 },
-{ question: "¿Qué jugador argentino ganó el Balón de Oro en 1961?", options: ["Maradona", "Sívori", "Messi", "Rattín"], answer: 1 },
-{ question: "¿Quién es el máximo goleador histórico de la Bundesliga?", options: ["Lewandowski", "Müller", "Gerd Müller", "Klose"], answer: 2 },
-{ question: "¿Cuál fue la sede del Mundial 1994?", options: ["Italia", "Alemania", "Estados Unidos", "Francia"], answer: 2 },
-{ question: "¿Qué club italiano ha ganado más Scudettos?", options: ["Roma", "Inter", "Juventus", "Milan"], answer: 2 },
-{ question: "¿Qué país organizó el Mundial en 2002?", options: ["Japón y Corea", "Alemania", "Sudáfrica", "Italia"], answer: 0 },
-{ question: "¿Qué arquero atajó más penales en Mundiales?", options: ["Buffon", "Ochoa", "Schmeichel", "Sergio Goycochea"], answer: 3 },
-{ question: "¿Qué club alemán ha ganado más Bundesligas?", options: ["Borussia Dortmund", "Bayern Múnich", "Leverkusen", "Hamburgo"], answer: 1 },
-{ question: "¿Qué ciudad tiene más clubes campeones de Champions?", options: ["Londres", "Milán", "Madrid", "Múnich"], answer: 1 },
-{ question: "¿Qué selección ganó el oro en Tokio 2021?", options: ["España", "Brasil", "Alemania", "Argentina"], answer: 1 },
-{ question: "¿Qué jugador alemán ganó el Mundial 1990 y la Euro 1996?", options: ["Klose", "Müller", "Klinsmann", "Matthäus"], answer: 3 },
-{ question: "¿Qué país ganó la Copa Oro 2021?", options: ["EE.UU.", "México", "Canadá", "Costa Rica"], answer: 0 },
-{ question: "¿Qué jugador es conocido como 'Zizou'?", options: ["Zidane", "Zapata", "Zico", "Zubizarreta"], answer: 0 },
-{ question: "¿Qué equipo de la MLS ha ganado más títulos?", options: ["Galaxy", "NYCFC", "Seattle", "Toronto"], answer: 0 },
-{ question: "¿Cuál es el club con más FA Cups?", options: ["Arsenal", "Manchester United", "Chelsea", "Liverpool"], answer: 0 },
-{ question: "¿En qué ciudad juega el Olympique de Marsella?", options: ["París", "Lyon", "Marsella", "Toulouse"], answer: 2 },
-{ question: "¿Qué jugador fue famoso por usar la camiseta 10 de Francia en 1998?", options: ["Zidane", "Henry", "Deschamps", "Djorkaeff"], answer: 0 },
-
-    ];
-
-    function getRandomQuestions(n) {
-      const shuffled = questionBank.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, n);
-    }
-
-    const totalQuestions = 10;
-    const gameQuestions = getRandomQuestions(totalQuestions);
-    let currentIndex = 0;
-    let score = 0;
-
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
-    const resultEl = document.getElementById("result");
-    const nextBtn = document.getElementById("nextBtn");
-    const finalScoreEl = document.getElementById("finalScore");
-
-    function loadQuestion() {
-      resultEl.textContent = "";
-      nextBtn.classList.add("hidden");
-      const q = gameQuestions[currentIndex];
-      questionEl.textContent = `Pregunta ${currentIndex + 1}: ${q.question}`;
-      optionsEl.innerHTML = "";
-      q.options.forEach((option, i) => {
-        const btn = document.createElement("button");
-        btn.textContent = option;
-        btn.onclick = () => selectAnswer(i);
-        optionsEl.appendChild(btn);
-      });
-    }
-
-    function selectAnswer(selected) {
-      const q = gameQuestions[currentIndex];
-      if (selected === q.answer) {
-        resultEl.textContent = "¡Correcto!";
-        score++;
-      } else {
-        resultEl.textContent = `Incorrecto. La respuesta correcta es: ${q.options[q.answer]}`;
-      }
-      Array.from(optionsEl.children).forEach(btn => btn.disabled = true);
-      nextBtn.classList.remove("hidden");
-    }
-
-    nextBtn.onclick = () => {
-      currentIndex++;
-      if (currentIndex < totalQuestions) {
-        loadQuestion();
-      } else {
-        showFinalScore();
-      }
-    };
-
-    function showFinalScore() {
-      document.getElementById("questionContainer").classList.add("hidden");
-      finalScoreEl.textContent = `Juego terminado. Tu puntuación: ${score}/${totalQuestions}`;
-      finalScoreEl.classList.remove("hidden");
-    }
-
-
-
-    loadQuestion();
-  </script>
-   
-   <div class="containerjuego">
-    <h1>Trivia de Fútbol</h1>
-    <div class="button-row">
-  <button id="nextBtn" class="hidden">Siguiente pregunta</button>
-</div>
-    <div id="questionContainer">
-      <div class="question" id="question"></div>
-      <div class="options" id="options"></div>
-      <div class="result" id="result"></div>
-    </div>
-    <div class="score hidden" id="finalScore"></div>
-    <button id="restartBtn" class="hidden">Reiniciar juego</button>
-  </div>
-
-  <script>
-    const questionBank = [
-      { question: "¿Cuántas Copas del Mundo ha ganado Brasil?", options: ["3", "4", "5", "6"], answer: 2 },
-      { question: "¿Quién tiene el récord de más goles en una temporada de La Liga?", options: ["Cristiano Ronaldo", "Lionel Messi", "Luis Suárez", "Karim Benzema"], answer: 1 },
-      { question: "¿Qué país ganó la Eurocopa 2004?", options: ["España", "Italia", "Grecia", "Francia"], answer: 2 },
-      { question: "¿Quién es el máximo goleador histórico de la Champions League?", options: ["Messi", "Lewandowski", "Ronaldo", "Raúl"], answer: 2 },
-      { question: "¿Qué club ha ganado más veces la Champions League?", options: ["Barcelona", "AC Milan", "Liverpool", "Real Madrid"], answer: 3 },
-      { question: "¿Qué selección ganó el Mundial de 2018?", options: ["Alemania", "Francia", "Croacia", "Inglaterra"], answer: 1 },
-{ question: "¿En qué año se jugó el primer Mundial de fútbol?", options: ["1928", "1930", "1934", "1940"], answer: 1 },
-{ question: "¿Quién marcó el 'Gol del Siglo' en México 86?", options: ["Pelé", "Diego Maradona", "Zidane", "Cruyff"], answer: 1 },
-{ question: "¿Qué país ha sido anfitrión de más Mundiales?", options: ["Italia", "Alemania", "Brasil", "México"], answer: 3 },
-{ question: "¿Cuál es el club con más títulos de Premier League?", options: ["Liverpool", "Chelsea", "Manchester United", "Arsenal"], answer: 2 },
-{ question: "¿Quién es el máximo goleador histórico del FC Barcelona?", options: ["Suárez", "Eto'o", "Messi", "Ronaldinho"], answer: 2 },
-{ question: "¿Qué jugador portugués ganó 5 Balones de Oro?", options: ["Luis Figo", "Eusébio", "Cristiano Ronaldo", "João Félix"], answer: 2 },
-{ question: "¿Qué equipo argentino tiene más títulos de liga?", options: ["Boca Juniors", "River Plate", "Independiente", "San Lorenzo"], answer: 1 },
-{ question: "¿Cuál es el estadio con mayor capacidad del mundo?", options: ["Camp Nou", "Maracaná", "Estadio Azteca", "Rungrado 1 de Mayo"], answer: 3 },
-{ question: "¿Qué jugador es conocido como 'El Fenómeno'?", options: ["Ronaldinho", "Ronaldo Nazário", "Romário", "Pelé"], answer: 1 },
-{ question: "¿En qué club debutó Lionel Messi?", options: ["Newell's", "Barcelona", "PSG", "River Plate"], answer: 0 },
-{ question: "¿Qué país ganó la Copa América 2021?", options: ["Argentina", "Brasil", "Chile", "Uruguay"], answer: 0 },
-{ question: "¿Quién es el entrenador más ganador de la Champions League?", options: ["Ferguson", "Ancelotti", "Guardiola", "Zidane"], answer: 1 },
-{ question: "¿Qué selección africana llegó más lejos en un Mundial?", options: ["Senegal", "Camerún", "Ghana", "Marruecos"], answer: 3 },
-{ question: "¿Qué jugador marcó más goles en los Mundiales?", options: ["Klose", "Ronaldo", "Müller", "Pelé"], answer: 0 },
-{ question: "¿Cuántos jugadores tiene un equipo en el campo?", options: ["10", "11", "12", "9"], answer: 1 },
-{ question: "¿Qué equipo ganó la Champions 2022?", options: ["Liverpool", "Real Madrid", "Chelsea", "PSG"], answer: 1 },
-{ question: "¿Cuál fue el primer país campeón del mundo?", options: ["Brasil", "Argentina", "Uruguay", "Italia"], answer: 2 },
-{ question: "¿Qué jugador anotó el gol más rápido en un Mundial?", options: ["Hakan Şükür", "David Villa", "Mbappé", "Cristiano"], answer: 0 },
-{ question: "¿Qué país ganó la Eurocopa 2020?", options: ["Inglaterra", "Italia", "Francia", "Alemania"], answer: 1 },
-{ question: "¿Qué jugador tiene más goles con su selección nacional?", options: ["Cristiano Ronaldo", "Ali Daei", "Messi", "Pelé"], answer: 0 },
-{ question: "¿Cuál es el club más exitoso de Argentina?", options: ["River", "Boca", "Independiente", "Racing"], answer: 0 },
-{ question: "¿Quién fue el goleador del Mundial 2014?", options: ["Messi", "James Rodríguez", "Müller", "Neymar"], answer: 1 },
-{ question: "¿Cuántas veces ha ganado España la Eurocopa?", options: ["1", "2", "3", "4"], answer: 2 },
-{ question: "¿Cuál es el equipo más antiguo del mundo?", options: ["Real Madrid", "Nottingham Forest", "Sheffield FC", "AC Milan"], answer: 2 },
-{ question: "¿Cuántos mundiales ha jugado México?", options: ["15", "16", "17", "18"], answer: 3 },
-{ question: "¿Quién dirigió a Francia en 2018?", options: ["Deschamps", "Domenech", "Zidane", "Blanc"], answer: 0 },
-{ question: "¿Qué club ganó el triplete en 2009?", options: ["Chelsea", "Barcelona", "Inter", "Bayern"], answer: 1 },
-{ question: "¿Cuántas veces ganó Uruguay el Mundial?", options: ["1", "2", "3", "4"], answer: 1 },
-{ question: "¿Qué país ganó el Mundial de 2006?", options: ["Francia", "Italia", "Alemania", "Brasil"], answer: 1 },
-{ question: "¿Quién marcó el gol de cabeza en la final del Mundial 2010?", options: ["Iniesta", "Ramos", "Puyol", "Villa"], answer: 2 },
-{ question: "¿Cuántos Balones de Oro tiene Messi (hasta 2023)?", options: ["6", "7", "8", "9"], answer: 2 },
-{ question: "¿Qué jugador recibió el apodo de 'La Saeta Rubia'?", options: ["Kubala", "Di Stéfano", "Butragueño", "Raúl"], answer: 1 },
-{ question: "¿Quién fue el máximo goleador de la Euro 2020?", options: ["Ronaldo", "Lukaku", "Kane", "Schick"], answer: 0 },
-{ question: "¿Qué club tiene más Copas Libertadores?", options: ["River", "Boca", "Peñarol", "Independiente"], answer: 3 },
-{ question: "¿En qué país nació Erling Haaland?", options: ["Inglaterra", "Noruega", "Suecia", "Alemania"], answer: 0 },
-{ question: "¿Qué jugador argentino ganó el Balón de Oro en 1961?", options: ["Maradona", "Sívori", "Messi", "Rattín"], answer: 1 },
-{ question: "¿Quién es el máximo goleador histórico de la Bundesliga?", options: ["Lewandowski", "Müller", "Gerd Müller", "Klose"], answer: 2 },
-{ question: "¿Cuál fue la sede del Mundial 1994?", options: ["Italia", "Alemania", "Estados Unidos", "Francia"], answer: 2 },
-{ question: "¿Qué club italiano ha ganado más Scudettos?", options: ["Roma", "Inter", "Juventus", "Milan"], answer: 2 },
-{ question: "¿Qué país organizó el Mundial en 2002?", options: ["Japón y Corea", "Alemania", "Sudáfrica", "Italia"], answer: 0 },
-{ question: "¿Qué arquero atajó más penales en Mundiales?", options: ["Buffon", "Ochoa", "Schmeichel", "Sergio Goycochea"], answer: 3 },
-{ question: "¿Qué club alemán ha ganado más Bundesligas?", options: ["Borussia Dortmund", "Bayern Múnich", "Leverkusen", "Hamburgo"], answer: 1 },
-{ question: "¿Qué ciudad tiene más clubes campeones de Champions?", options: ["Londres", "Milán", "Madrid", "Múnich"], answer: 1 },
-{ question: "¿Qué selección ganó el oro en Tokio 2021?", options: ["España", "Brasil", "Alemania", "Argentina"], answer: 1 },
-{ question: "¿Qué jugador alemán ganó el Mundial 1990 y la Euro 1996?", options: ["Klose", "Müller", "Klinsmann", "Matthäus"], answer: 3 },
-{ question: "¿Qué país ganó la Copa Oro 2021?", options: ["EE.UU.", "México", "Canadá", "Costa Rica"], answer: 0 },
-{ question: "¿Qué jugador es conocido como 'Zizou'?", options: ["Zidane", "Zapata", "Zico", "Zubizarreta"], answer: 0 },
-{ question: "¿Qué equipo de la MLS ha ganado más títulos?", options: ["Galaxy", "NYCFC", "Seattle", "Toronto"], answer: 0 },
-{ question: "¿Cuál es el club con más FA Cups?", options: ["Arsenal", "Manchester United", "Chelsea", "Liverpool"], answer: 0 },
-{ question: "¿En qué ciudad juega el Olympique de Marsella?", options: ["París", "Lyon", "Marsella", "Toulouse"], answer: 2 },
-{ question: "¿Qué jugador fue famoso por usar la camiseta 10 de Francia en 1998?", options: ["Zidane", "Henry", "Deschamps", "Djorkaeff"], answer: 0 },
-
-    ];
-
-    let currentQuestion = 0;
-    let score = 0;
-
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
-    const resultEl = document.getElementById("result");
-    const nextBtn = document.getElementById("nextBtn");
-    const finalScoreEl = document.getElementById("finalScore");
-    const restartBtn = document.getElementById("restartBtn");
-
-    function showQuestion() {
-      const q = questionBank[currentQuestion];
-      questionEl.textContent = q.question;
-      optionsEl.innerHTML = "";
-      resultEl.textContent = "";
-      nextBtn.classList.add("hidden");
-
-      q.options.forEach((option, index) => {
-        const btn = document.createElement("button");
-        btn.textContent = option;
-        btn.onclick = () => selectAnswer(index);
-        optionsEl.appendChild(btn);
-      });
-    }
-
-    function selectAnswer(selected) {
-      const correct = questionBank[currentQuestion].answer;
-      if (selected === correct) {
-        resultEl.textContent = "¡Correcto!";
-        resultEl.style.color = "green";
-        score++;
-      } else {
-        resultEl.textContent = `Incorrecto. La respuesta correcta es: ${questionBank[currentQuestion].options[correct]}`;
-        resultEl.style.color = "red";
-      }
-      nextBtn.classList.remove("hidden");
-    }
-
-    function nextQuestion() {
-      currentQuestion++;
-      if (currentQuestion < questionBank.length) {
-        showQuestion();
-      } else {
-        endGame();
-      }
-    }
-
-    function endGame() {
-      questionEl.textContent = "";
-      optionsEl.innerHTML = "";
-      resultEl.textContent = "";
-      nextBtn.classList.add("hidden");
-      finalScoreEl.classList.remove("hidden");
-      finalScoreEl.textContent = `Puntaje final: ${score} de ${questionBank.length}`;
-      restartBtn.classList.remove("hidden");
-    }
-
-    function restartGame() {
-      currentQuestion = 0;
-      score = 0;
-      finalScoreEl.classList.add("hidden");
-      restartBtn.classList.add("hidden");
-      showQuestion();
-    }
-
-    nextBtn.addEventListener("click", nextQuestion);
-    restartBtn.addEventListener("click", restartGame);
-
-    // Inicialización
-    showQuestion();
-  </script>
-   --->
-   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f4f4f4;
-    }
 
     .container {
       text-align: center;
@@ -387,19 +93,64 @@
 
   <script>
     const fullQuestionBank = [
-      { question: "¿Cuántas Copas del Mundo ha ganado Brasil?", options: ["3", "4", "5", "6"], answer: 2 },
+     { question: "¿Cuántas Copas del Mundo ha ganado Brasil?", options: ["3", "4", "5", "6"], answer: 2 },
       { question: "¿Quién tiene el récord de más goles en una temporada de La Liga?", options: ["Cristiano Ronaldo", "Lionel Messi", "Luis Suárez", "Karim Benzema"], answer: 1 },
       { question: "¿Qué país ganó la Eurocopa 2004?", options: ["España", "Italia", "Grecia", "Francia"], answer: 2 },
-      { question: "¿En qué año se jugó la primera Copa del Mundo?", options: ["1928", "1930", "1932", "1934"], answer: 1 },
-      { question: "¿Cuál es el máximo goleador histórico de la Champions League?", options: ["Messi", "Cristiano", "Lewandowski", "Raúl"], answer: 1 },
-      { question: "¿Qué selección ganó el Mundial de 2018?", options: ["Alemania", "Brasil", "Francia", "Croacia"], answer: 2 },
-      { question: "¿Cuál es el equipo con más títulos de Premier League?", options: ["Chelsea", "Liverpool", "Arsenal", "Manchester United"], answer: 3 },
-      { question: "¿Quién fue el Balón de Oro 2022?", options: ["Messi", "Benzema", "Mbappé", "Modric"], answer: 1 },
-      { question: "¿En qué club jugó Diego Maradona en Italia?", options: ["Juventus", "Roma", "Inter", "Napoli"], answer: 3 },
-      { question: "¿Qué país organiza el Mundial 2026?", options: ["Qatar", "USA", "Canadá/USA/México", "Alemania"], answer: 2 },
-      { question: "¿Qué selección tiene más títulos de Eurocopa?", options: ["Francia", "Alemania", "España", "Italia"], answer: 2 },
-      { question: "¿Quién marcó el gol 'La mano de Dios'?", options: ["Pelé", "Messi", "Maradona", "Ronaldo"], answer: 2 }
-    ];
+      { question: "¿Quién es el máximo goleador histórico de la Champions League?", options: ["Messi", "Lewandowski", "Ronaldo", "Raúl"], answer: 2 },
+      { question: "¿Qué club ha ganado más veces la Champions League?", options: ["Barcelona", "AC Milan", "Liverpool", "Real Madrid"], answer: 3 },
+      { question: "¿Qué selección ganó el Mundial de 2018?", options: ["Alemania", "Francia", "Croacia", "Inglaterra"], answer: 1 },
+{ question: "¿En qué año se jugó el primer Mundial de fútbol?", options: ["1928", "1930", "1934", "1940"], answer: 1 },
+{ question: "¿Quién marcó el 'Gol del Siglo' en México 86?", options: ["Pelé", "Diego Maradona", "Zidane", "Cruyff"], answer: 1 },
+{ question: "¿Qué país ha sido anfitrión de más Mundiales?", options: ["Italia", "Alemania", "Brasil", "México"], answer: 3 },
+{ question: "¿Cuál es el club con más títulos de Premier League?", options: ["Liverpool", "Chelsea", "Manchester United", "Arsenal"], answer: 2 },
+{ question: "¿Quién es el máximo goleador histórico del FC Barcelona?", options: ["Suárez", "Eto'o", "Messi", "Ronaldinho"], answer: 2 },
+{ question: "¿Qué jugador portugués ganó 5 Balones de Oro?", options: ["Luis Figo", "Eusébio", "Cristiano Ronaldo", "João Félix"], answer: 2 },
+{ question: "¿Qué equipo argentino tiene más títulos de liga?", options: ["Boca Juniors", "River Plate", "Independiente", "San Lorenzo"], answer: 1 },
+{ question: "¿Cuál es el estadio con mayor capacidad del mundo?", options: ["Camp Nou", "Maracaná", "Estadio Azteca", "Rungrado 1 de Mayo"], answer: 3 },
+{ question: "¿Qué jugador es conocido como 'El Fenómeno'?", options: ["Ronaldinho", "Ronaldo Nazário", "Romário", "Pelé"], answer: 1 },
+{ question: "¿En qué club debutó Lionel Messi?", options: ["Newell's", "Barcelona", "PSG", "River Plate"], answer: 0 },
+{ question: "¿Qué país ganó la Copa América 2021?", options: ["Argentina", "Brasil", "Chile", "Uruguay"], answer: 0 },
+{ question: "¿Quién es el entrenador más ganador de la Champions League?", options: ["Ferguson", "Ancelotti", "Guardiola", "Zidane"], answer: 1 },
+{ question: "¿Qué selección africana llegó más lejos en un Mundial?", options: ["Senegal", "Camerún", "Ghana", "Marruecos"], answer: 3 },
+{ question: "¿Qué jugador marcó más goles en los Mundiales?", options: ["Klose", "Ronaldo", "Müller", "Pelé"], answer: 0 },
+{ question: "¿Cuántos jugadores tiene un equipo en el campo?", options: ["10", "11", "12", "9"], answer: 1 },
+{ question: "¿Qué equipo ganó la Champions 2022?", options: ["Liverpool", "Real Madrid", "Chelsea", "PSG"], answer: 1 },
+{ question: "¿Cuál fue el primer país campeón del mundo?", options: ["Brasil", "Argentina", "Uruguay", "Italia"], answer: 2 },
+{ question: "¿Qué jugador anotó el gol más rápido en un Mundial?", options: ["Hakan Şükür", "David Villa", "Mbappé", "Cristiano"], answer: 0 },
+{ question: "¿Qué país ganó la Eurocopa 2020?", options: ["Inglaterra", "Italia", "Francia", "Alemania"], answer: 1 },
+{ question: "¿Qué jugador tiene más goles con su selección nacional?", options: ["Cristiano Ronaldo", "Ali Daei", "Messi", "Pelé"], answer: 0 },
+{ question: "¿Cuál es el club más exitoso de Argentina?", options: ["River", "Boca", "Independiente", "Racing"], answer: 0 },
+{ question: "¿Quién fue el goleador del Mundial 2014?", options: ["Messi", "James Rodríguez", "Müller", "Neymar"], answer: 1 },
+{ question: "¿Cuántas veces ha ganado España la Eurocopa?", options: ["1", "2", "3", "4"], answer: 2 },
+{ question: "¿Cuál es el equipo más antiguo del mundo?", options: ["Real Madrid", "Nottingham Forest", "Sheffield FC", "AC Milan"], answer: 2 },
+{ question: "¿Cuántos mundiales ha jugado México?", options: ["15", "16", "17", "18"], answer: 3 },
+{ question: "¿Quién dirigió a Francia en 2018?", options: ["Deschamps", "Domenech", "Zidane", "Blanc"], answer: 0 },
+{ question: "¿Qué club ganó el triplete en 2009?", options: ["Chelsea", "Barcelona", "Inter", "Bayern"], answer: 1 },
+{ question: "¿Cuántas veces ganó Uruguay el Mundial?", options: ["1", "2", "3", "4"], answer: 1 },
+{ question: "¿Qué país ganó el Mundial de 2006?", options: ["Francia", "Italia", "Alemania", "Brasil"], answer: 1 },
+{ question: "¿Quién marcó el gol de cabeza en la final del Mundial 2010?", options: ["Iniesta", "Ramos", "Puyol", "Villa"], answer: 2 },
+{ question: "¿Cuántos Balones de Oro tiene Messi (hasta 2023)?", options: ["6", "7", "8", "9"], answer: 2 },
+{ question: "¿Qué jugador recibió el apodo de 'La Saeta Rubia'?", options: ["Kubala", "Di Stéfano", "Butragueño", "Raúl"], answer: 1 },
+{ question: "¿Quién fue el máximo goleador de la Euro 2020?", options: ["Ronaldo", "Lukaku", "Kane", "Schick"], answer: 0 },
+{ question: "¿Qué club tiene más Copas Libertadores?", options: ["River", "Boca", "Peñarol", "Independiente"], answer: 3 },
+{ question: "¿En qué país nació Erling Haaland?", options: ["Inglaterra", "Noruega", "Suecia", "Alemania"], answer: 0 },
+{ question: "¿Qué jugador argentino ganó el Balón de Oro en 1961?", options: ["Maradona", "Sívori", "Messi", "Rattín"], answer: 1 },
+{ question: "¿Quién es el máximo goleador histórico de la Bundesliga?", options: ["Lewandowski", "Müller", "Gerd Müller", "Klose"], answer: 2 },
+{ question: "¿Cuál fue la sede del Mundial 1994?", options: ["Italia", "Alemania", "Estados Unidos", "Francia"], answer: 2 },
+{ question: "¿Qué club italiano ha ganado más Scudettos?", options: ["Roma", "Inter", "Juventus", "Milan"], answer: 2 },
+{ question: "¿Qué país organizó el Mundial en 2002?", options: ["Japón y Corea", "Alemania", "Sudáfrica", "Italia"], answer: 0 },
+{ question: "¿Qué arquero atajó más penales en Mundiales?", options: ["Buffon", "Ochoa", "Schmeichel", "Sergio Goycochea"], answer: 3 },
+{ question: "¿Qué club alemán ha ganado más Bundesligas?", options: ["Borussia Dortmund", "Bayern Múnich", "Leverkusen", "Hamburgo"], answer: 1 },
+{ question: "¿Qué ciudad tiene más clubes campeones de Champions?", options: ["Londres", "Milán", "Madrid", "Múnich"], answer: 1 },
+{ question: "¿Qué selección ganó el oro en Tokio 2021?", options: ["España", "Brasil", "Alemania", "Argentina"], answer: 1 },
+{ question: "¿Qué jugador alemán ganó el Mundial 1990 y la Euro 1996?", options: ["Klose", "Müller", "Klinsmann", "Matthäus"], answer: 3 },
+{ question: "¿Qué país ganó la Copa Oro 2021?", options: ["EE.UU.", "México", "Canadá", "Costa Rica"], answer: 0 },
+{ question: "¿Qué jugador es conocido como 'Zizou'?", options: ["Zidane", "Zapata", "Zico", "Zubizarreta"], answer: 0 },
+{ question: "¿Qué equipo de la MLS ha ganado más títulos?", options: ["Galaxy", "NYCFC", "Seattle", "Toronto"], answer: 0 },
+{ question: "¿Cuál es el club con más FA Cups?", options: ["Arsenal", "Manchester United", "Chelsea", "Liverpool"], answer: 0 },
+{ question: "¿En qué ciudad juega el Olympique de Marsella?", options: ["París", "Lyon", "Marsella", "Toulouse"], answer: 2 },
+{ question: "¿Qué jugador fue famoso por usar la camiseta 10 de Francia en 1998?", options: ["Zidane", "Henry", "Deschamps", "Djorkaeff"], answer: 0 },
+];
 
     let questionSet = [];
     let currentQuestion = 0;
