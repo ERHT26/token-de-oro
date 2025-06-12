@@ -325,46 +325,30 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg, #c2e9fb, #81a4fd);
+      background: #f4f4f4;
     }
 
     .container {
       text-align: center;
       max-width: 600px;
-      width: 90%;
-      background: #fff;
-      padding: 30px 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      color: #333;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
 
     .question {
-      font-size: 22px;
+      font-size: 20px;
       margin-bottom: 15px;
-      font-weight: bold;
-      color: #444;
     }
 
     .options button {
       display: block;
       width: 100%;
       margin: 8px 0;
-      padding: 12px;
+      padding: 10px;
       font-size: 16px;
       cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      background-color: #f0f0f0;
-      transition: background-color 0.3s ease;
-    }
-
-    .options button:hover {
-      background-color: #e0e0e0;
     }
 
     .hidden {
@@ -375,28 +359,16 @@
       margin-top: 20px;
       padding: 10px 20px;
       font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background-color: #4caf50;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    #nextBtn:hover, #restartBtn:hover {
-      background-color: #45a049;
     }
 
     #result {
       margin-top: 10px;
       font-weight: bold;
-      font-size: 18px;
     }
 
     #finalScore {
-      font-size: 24px;
-      margin-top: 25px;
-      font-weight: bold;
+      font-size: 22px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -414,22 +386,22 @@
   </div>
 
   <script>
-    const allQuestions = [
+    const fullQuestionBank = [
       { question: "¿Cuántas Copas del Mundo ha ganado Brasil?", options: ["3", "4", "5", "6"], answer: 2 },
       { question: "¿Quién tiene el récord de más goles en una temporada de La Liga?", options: ["Cristiano Ronaldo", "Lionel Messi", "Luis Suárez", "Karim Benzema"], answer: 1 },
       { question: "¿Qué país ganó la Eurocopa 2004?", options: ["España", "Italia", "Grecia", "Francia"], answer: 2 },
-      { question: "¿Cuál es el club con más Champions League ganadas?", options: ["Barcelona", "Milán", "Bayern Múnich", "Real Madrid"], answer: 3 },
-      { question: "¿Qué jugador ha ganado más Balones de Oro?", options: ["Cristiano Ronaldo", "Lionel Messi", "Zidane", "Ronaldinho"], answer: 1 },
-      { question: "¿En qué año se jugó el primer Mundial?", options: ["1930", "1940", "1950", "1928"], answer: 0 },
-      { question: "¿Qué selección ganó el Mundial 2018?", options: ["Alemania", "Brasil", "Francia", "Croacia"], answer: 2 },
-      { question: "¿Qué equipo argentino tiene más títulos locales?", options: ["Boca Juniors", "River Plate", "Independiente", "Racing"], answer: 1 },
-      { question: "¿Qué jugador hizo el 'Gol del Siglo' en 1986?", options: ["Diego Maradona", "Pelé", "Messi", "Ronaldo"], answer: 0 },
-      { question: "¿Cuál es el estadio más grande del mundo?", options: ["Camp Nou", "Maracaná", "Rungrado 1 de Mayo", "Wembley"], answer: 2 },
-      { question: "¿Qué selección tiene más títulos de Copa América?", options: ["Argentina", "Brasil", "Uruguay", "Chile"], answer: 2 },
-      { question: "¿Quién es el máximo goleador histórico del Real Madrid?", options: ["Raúl", "Cristiano Ronaldo", "Benzema", "Di Stéfano"], answer: 1 }
+      { question: "¿En qué año se jugó la primera Copa del Mundo?", options: ["1928", "1930", "1932", "1934"], answer: 1 },
+      { question: "¿Cuál es el máximo goleador histórico de la Champions League?", options: ["Messi", "Cristiano", "Lewandowski", "Raúl"], answer: 1 },
+      { question: "¿Qué selección ganó el Mundial de 2018?", options: ["Alemania", "Brasil", "Francia", "Croacia"], answer: 2 },
+      { question: "¿Cuál es el equipo con más títulos de Premier League?", options: ["Chelsea", "Liverpool", "Arsenal", "Manchester United"], answer: 3 },
+      { question: "¿Quién fue el Balón de Oro 2022?", options: ["Messi", "Benzema", "Mbappé", "Modric"], answer: 1 },
+      { question: "¿En qué club jugó Diego Maradona en Italia?", options: ["Juventus", "Roma", "Inter", "Napoli"], answer: 3 },
+      { question: "¿Qué país organiza el Mundial 2026?", options: ["Qatar", "USA", "Canadá/USA/México", "Alemania"], answer: 2 },
+      { question: "¿Qué selección tiene más títulos de Eurocopa?", options: ["Francia", "Alemania", "España", "Italia"], answer: 2 },
+      { question: "¿Quién marcó el gol 'La mano de Dios'?", options: ["Pelé", "Messi", "Maradona", "Ronaldo"], answer: 2 }
     ];
 
-    let selectedQuestions = [];
+    let questionSet = [];
     let currentQuestion = 0;
     let score = 0;
 
@@ -445,7 +417,7 @@
     }
 
     function startGame() {
-      selectedQuestions = shuffle([...allQuestions]).slice(0, 10);
+      questionSet = shuffle([...fullQuestionBank]).slice(0, 10);
       currentQuestion = 0;
       score = 0;
       finalScoreEl.classList.add("hidden");
@@ -454,7 +426,7 @@
     }
 
     function showQuestion() {
-      const q = selectedQuestions[currentQuestion];
+      const q = questionSet[currentQuestion];
       questionEl.textContent = `Pregunta ${currentQuestion + 1}: ${q.question}`;
       optionsEl.innerHTML = "";
       resultEl.textContent = "";
@@ -469,13 +441,13 @@
     }
 
     function selectAnswer(selected) {
-      const correct = selectedQuestions[currentQuestion].answer;
+      const correct = questionSet[currentQuestion].answer;
       if (selected === correct) {
         resultEl.textContent = "¡Correcto!";
         resultEl.style.color = "green";
         score++;
       } else {
-        resultEl.textContent = `Incorrecto. La respuesta correcta es: ${selectedQuestions[currentQuestion].options[correct]}`;
+        resultEl.textContent = `Incorrecto. La respuesta correcta es: ${questionSet[currentQuestion].options[correct]}`;
         resultEl.style.color = "red";
       }
       nextBtn.classList.remove("hidden");
@@ -483,7 +455,7 @@
 
     function nextQuestion() {
       currentQuestion++;
-      if (currentQuestion < selectedQuestions.length) {
+      if (currentQuestion < questionSet.length) {
         showQuestion();
       } else {
         endGame();
@@ -496,14 +468,14 @@
       resultEl.textContent = "";
       nextBtn.classList.add("hidden");
       finalScoreEl.classList.remove("hidden");
-      finalScoreEl.textContent = `Puntaje final: ${score} de ${selectedQuestions.length}`;
+      finalScoreEl.textContent = `Puntaje final: ${score} de ${questionSet.length}`;
       restartBtn.classList.remove("hidden");
     }
 
     nextBtn.addEventListener("click", nextQuestion);
     restartBtn.addEventListener("click", startGame);
 
-    // Comienza el juego
+    // Inicialización
     startGame();
   </script>
 </body>
