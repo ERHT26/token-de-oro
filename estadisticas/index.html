@@ -74,24 +74,27 @@
     .card:hover {
       transform: scale(1.05);
     }
-    .card-front {
-      background: #d4af37;
-      color: white;
-      border-radius: 12px;
-      padding: 1rem;
-      text-align: center;
-      position: relative;
-    }
-    .card-front img {
-      width: 80px;
-      height: auto;
-      margin-bottom: 0.5rem;
-    }
-    .card-front span {
-      display: block;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
+    .card {
+  background: white;
+  width: 320px;
+  height: 450px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(181,142,17,0.4);
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+}
+.card-front img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.card-front span {
+  display: block;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
     .card-front::after {
       content: "Haz clic para ver más";
       position: absolute;
