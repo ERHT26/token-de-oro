@@ -284,54 +284,50 @@ una danza que hipnotiza en compás tricolor sin igual.
 const datosEquipos = {
   Palmeiras: {
     escudo: 'palmeiraslogo.png',
-    proxPartido: {
-      rival: 'Botafogo',
-      fecha: '2025-12-10 16:00'
-    }
+    proxPartido: { rival: 'Botafogo', fecha: '2025-06-28 16:00' },
+    grupo: { PJ:3, G:1, E:2, P:0, GF:4, GC:2, DF:2, PTS:5 },
+    resultados: ['vs Porto: 0‑0', 'vs Al Ahly: 2‑0', 'vs Inter Miami: 2‑2']
   },
   Botafogo: {
     escudo: 'botafogologo.png',
-    proxPartido: {
-      rival: 'Palmeiras',
-      fecha: '2025-12-10 16:00'
-    }
+    proxPartido: { rival: 'Palmeiras', fecha: '2025-06-28 16:00' },
+    grupo: { PJ:3, G:2, E:0, P:1, GF:3, GC:2, DF:1, PTS:6 },
+    resultados: ['vs Seattle Sounders: 2‑1', 'vs PSG: 1‑0', 'vs Atlético Madrid: 0‑1']
   },
   Flamengo: {
     escudo: 'flamengologo.png',
-    proxPartido: {
-      rival: 'Bayern Munich',
-      fecha: '2025-12-11 18:00'
-    }
+    proxPartido: { rival: 'Bayern Munich', fecha: '2025-06-29 18:00' },
+    grupo: { PJ:3, G:2, E:1, P:0, GF:6, GC:2, DF:4, PTS:7 },
+    resultados: ['vs Esperance: 2‑0', 'vs Chelsea: 3‑1', 'vs Los Angeles FC: 1‑1']
   },
   Fluminense: {
     escudo: 'fluminenselogo.png',
-    proxPartido: {
-      rival: 'Inter Milan',
-      fecha: '2025-12-12 16:00'
-    }
+    proxPartido: { rival: 'Inter Milan', fecha: '2025-06-30 16:00' },
+    grupo: { PJ:3, G:1, E:2, P:0, GF:4, GC:2, DF:2, PTS:5 },
+    resultados: ['vs Mamelodi Sundowns: 0‑0', 'vs Borussia Dortmund: 1‑0', 'vs Ulsan Hyundai: 1‑0']
   }
 };
 
 function mostrarCarta(equipo) {
   const stats = datosEquipos[equipo];
+  const resultadosHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
   const contenido = `
     <img src="${stats.escudo}" alt="${equipo}">
-    <h3>Próximo partido - Octavos de final</h3>
+    <h3>Próximo partido - Octavos</h3>
     <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
     <p><strong>Fecha y hora:</strong> ${stats.proxPartido.fecha}</p>
     <hr>
     <h4>Estadísticas de grupo</h4>
-    <p><strong>PJ:</strong> ___ | <strong>G:</strong> ___ | <strong>E:</strong> ___ | <strong>P:</strong> ___</p>
-    <p><strong>GF:</strong> ___ | <strong>GC:</strong> ___ | <strong>DF:</strong> ___</p>
+    <p><strong>PJ:</strong> ${stats.grupo.PJ} | <strong>G:</strong> ${stats.grupo.G} | <strong>E:</strong> ${stats.grupo.E} | <strong>P:</strong> ${stats.grupo.P}</p>
+    <p><strong>GF:</strong> ${stats.grupo.GF} | <strong>GC:</strong> ${stats.grupo.GC} | <strong>DF:</strong> ${stats.grupo.DF} | <strong>PTS:</strong> ${stats.grupo.PTS}</p>
     <hr>
     <h4>Resultados</h4>
-    <p>vs Rival 1: ___</p>
-    <p>vs Rival 2: ___</p>
-    <p>vs Rival 3: ___</p>
+    ${resultadosHtml}
   `;
   document.getElementById('bigCard').innerHTML = contenido;
   document.getElementById('overlay').style.display = 'flex';
 }
+
 
 
     function cerrarCarta(e) {
