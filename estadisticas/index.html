@@ -2,19 +2,19 @@
 <html lang="es">
 <head>
   <!-- Favicon -->
-   <link rel="icon" type="image/png" href="favicon.png">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Token de Oro - Equipos + Trivia Mundial de Clubes</title>
-<style>
-  .top-logo {
-      margin-top: 20px; /* puedes ajustar el espacio desde arriba */
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Token de Oro - Equipos + Trivia Mundial de Clubes</title>
+  <style>
+    .top-logo {
+      margin-top: 20px;
     }
     .top-logo img {
-      width: 150px; /* ajusta el tamaño según tu imagen */
+      width: 150px;
       height: auto;
     }
-        nav {
+    nav {
       background-color: #111;
       padding: 10px;
     }
@@ -35,74 +35,99 @@
     nav ul li a:hover {
       text-decoration: underline;
     }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fef9f0;
-    margin: 0; padding: 1rem;
-    color: #222;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  h1 {
-    text-align: center;
-    color: #b58e11;
-  }
-  h2 {
-    text-align: center;
-    font-size: 1rem;
-  color: #FFD700;
-    text-shadow: 2px 2px 4px black; /* más marcado */
-
-  }
-  .cards {
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fef9f0;
+      margin: 0;
+      padding: 1rem;
+      color: #222;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #FFD700; /* dorado brillante */
+    }
+    h2 {
+      text-align: center;
+      font-size: 1rem;
+      color: #8b4513;
+      text-shadow: 1px 1px 2px black;
+    }
+    .cards {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1.2rem;
       margin-bottom: 3rem;
     }
+    /* Nuevo estilo para cartas pequeñas */
     .card {
-      background: white;
-      width: 250px;
-      border-radius: 12px;
-      box-shadow: 0 5px 12px rgba(181,142,17,0.4);
+      background: linear-gradient(145deg, #fef9f0, #d4af37);
+      width: 320px;
+      height: 450px;
+      border-radius: 16px;
+      box-shadow:
+        0 0 8px 3px rgba(212,175,55,0.8),
+        0 4px 12px rgba(0,0,0,0.25);
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      color: #3b2f0b;
+      font-weight: 600;
+      user-select: none;
+      border: 3px solid #b58e11; /* marco dorado */
+      box-sizing: border-box;
     }
     .card:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
+      box-shadow:
+        0 0 15px 6px rgba(212,175,55,1),
+        0 6px 18px rgba(0,0,0,0.3);
     }
-    .card {
-  background: white;
-  width: 320px;
-  height: 450px;
-  border-radius: 12px;
-  box-shadow: 0 5px 12px rgba(181,142,17,0.4);
-  cursor: pointer;
-  transition: transform 0.3s;
-  position: relative;
-}
-.card-front img {
-  width: 100px;
-  height: auto;
-  margin-bottom: 0.5rem;
-}
-.card-front span {
-  display: block;
-  font-size: 1.1rem;
-  margin-top: 1rem;
-}
-
+    .card-front {
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+    }
+    .card-front img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 1rem;
+      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+      align-self: center;
+    }
+    .card-front span {
+      font-size: 1rem;
+      color: #5a4200;
+      margin-top: auto;
+      padding: 0.5rem 0;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      border-top: 1px solid #b58e11;
+      user-select: none;
+    }
     .card-front::after {
-      content: "Haz clic para ver más";
+      content: "Haz clic para ver más 📈";
       position: absolute;
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.8rem;
-      color: #fff9;
+      font-size: 0.85rem;
+      color: rgba(90,66,0,0.7);
+      font-weight: 500;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.05em;
     }
     .overlay {
       position: fixed;
@@ -137,112 +162,113 @@
       height: auto;
       margin-bottom: 1rem;
     }
-</style>
+  </style>
 </head>
-  <!-- Logo de la pagina -->
+<!-- Logo de la pagina -->
 <div style="width: 100%; text-align: center; margin-top: 20px;">
-  <img src="favicon.png" alt="Logo Token de Oro" style="width: 150px; height: auto;">
+  <img src="favicon.png" alt="Logo Token de Oro" style="width: 150px; height: auto;" />
 </div>
 <body>
-<nav>
-  <ul>
-    <li><a href="/">Inicio</a></li>
-    <li><a href="../ranking">Ranking</a></li>
-    <li><a href="/estadisticas">Estadisticas</a></li>
-     <li><a href="../juegos">Juegos</a></li>
-    <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer">MAS +</a></li>
-  </ul>
-</nav>
-<h1>¡Fase de grupos de equipos brasileños que ilusiona en el Mundial de Clubes 2025!</h1>
-<h2>En la tierra donde el sol besa el balón,
-donde el fútbol no se juega,
-se vive con el corazón,
-nació un canto eterno, verde y oro,
-de Pelé, Neymar y su decoro,
-de un pueblo que al mundo enseñó
-que la magia también se entrena,
-que el balón puede ser poema.<br>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="../ranking">Ranking</a></li>
+      <li><a href="/estadisticas">Estadisticas</a></li>
+      <li><a href="../juegos">Juegos</a></li>
+      <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer">MAS +</a></li>
+    </ul>
+  </nav>
+  <h1>¡Fase de grupos de equipos brasileños que ilusiona en el Mundial de Clubes 2025!</h1>
+  <h2>
+    En la tierra donde el sol besa el balón,
+    donde el fútbol no se juega,
+    se vive con el corazón,
+    nació un canto eterno, verde y oro,
+    de Pelé, Neymar y su decoro,
+    de un pueblo que al mundo enseñó
+    que la magia también se entrena,
+    que el balón puede ser poema.<br />
 
-👑 La Selección: El Legado de un Pentacampeón<br>
+    👑 La Selección: El Legado de un Pentacampeón<br />
 
-Cinco estrellas en el cielo cuelgan,
-no son mitos, no son cuentos,
-son las glorias de un momento
-que jamás dejó de arder.
-Brasil, reina entre naciones,
-marca goles y emociones.<br>
+    Cinco estrellas en el cielo cuelgan,
+    no son mitos, no son cuentos,
+    son las glorias de un momento
+    que jamás dejó de arder.
+    Brasil, reina entre naciones,
+    marca goles y emociones.<br />
 
-⚔️ La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial<br>
+    ⚔️ La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial<br />
 
-Antes vista con ternura,
-como cuna y despedida,
-hoy la liga brasileña es bravura,
-es talento, es nueva vida.
-Ya no exporta solamente,
-ahora brilla imponente
-ante el mundo y su radar.<br></h2>
-<div class="cards">
+    Antes vista con ternura,
+    como cuna y despedida,
+    hoy la liga brasileña es bravura,
+    es talento, es nueva vida.
+    Ya no exporta solamente,
+    ahora brilla imponente
+    ante el mundo y su radar.<br />
+  </h2>
+  <div class="cards">
     <div class="card" onclick="mostrarCarta('Palmeiras')">
       <div class="card-front">
         <img src="palmeiraslogo.png" alt="Palmeiras" />
-        Palmeiras 
+        Palmeiras <span>📊</span>
       </div>
     </div>
     <div class="card" onclick="mostrarCarta('Botafogo')">
       <div class="card-front">
         <img src="botafogologo.png" alt="Botafogo" />
-        Botafogo 
+        Botafogo <span>📊</span>
       </div>
     </div>
     <div class="card" onclick="mostrarCarta('Flamengo')">
       <div class="card-front">
         <img src="flamengologo.png" alt="Flamengo" />
-        Flamengo 
+        Flamengo <span>📊</span>
       </div>
     </div>
     <div class="card" onclick="mostrarCarta('Fluminense')">
       <div class="card-front">
         <img src="fluminenselogo.png" alt="Fluminense" />
-        Fluminense 
+        Fluminense <span>📊</span>
       </div>
     </div>
   </div>
 
   <div id="overlay" class="overlay" style="display:none" onclick="cerrarCarta(event)">
-    <div class="big-card" id="bigCard" onclick="event.stopPropagation()">
-    </div>
+    <div class="big-card" id="bigCard" onclick="event.stopPropagation()"></div>
   </div>
 
   <script>
     const datosEquipos = {
-      'Palmeiras': {
+      Palmeiras: {
         escudo: 'palmeiraslogo.png',
         posesion: '60%',
         goles: '1.8',
         precision: '85%',
-        estilo: 'Bloque compacto y transiciones rápidas'
+        estilo: 'Bloque compacto y transiciones rápidas',
       },
-      'Botafogo': {
+      Botafogo: {
         escudo: 'botafogologo.png',
         posesion: '55%',
         goles: '2.0',
         precision: '80%',
-        estilo: 'Presión alta y verticalidad'
+        estilo: 'Presión alta y verticalidad',
       },
-      'Flamengo': {
+      Flamengo: {
         escudo: 'flamengologo.png',
         posesion: '65%',
         goles: '2.4',
         precision: '89%',
-        estilo: 'Ataque posicional y desborde por bandas'
+        estilo: 'Ataque posicional y desborde por bandas',
       },
-      'Fluminense': {
+      Fluminense: {
         escudo: 'fluminenselogo.png',
         posesion: '70%',
         goles: '1.9',
         precision: '90%',
-        estilo: 'Toque corto y construcción elaborada'
-      }
+        estilo: 'Toque corto y construcción elaborada',
+      },
     };
 
     function mostrarCarta(equipo) {
@@ -254,6 +280,15 @@ ante el mundo y su radar.<br></h2>
         <p><strong>Goles por partido:</strong> ${stats.goles}</p>
         <p><strong>Precisión de pase:</strong> ${stats.precision}</p>
         <p><strong>Estilo:</strong> ${stats.estilo}</p>
+        <hr>
+        <h4>Estadísticas de grupo</h4>
+        <p><strong>PJ:</strong> ___ | <strong>G:</strong> ___ | <strong>E:</strong> ___ | <strong>P:</strong> ___</p>
+        <p><strong>GF:</strong> ___ | <strong>GC:</strong> ___ | <strong>DF:</strong> ___</p>
+        <hr>
+        <h4>Resultados</h4>
+        <p>vs Rival 1: ___</p>
+        <p>vs Rival 2: ___</p>
+        <p>vs Rival 3: ___</p>
       `;
       document.getElementById('bigCard').innerHTML = contenido;
       document.getElementById('overlay').style.display = 'flex';
@@ -263,6 +298,5 @@ ante el mundo y su radar.<br></h2>
       document.getElementById('overlay').style.display = 'none';
     }
   </script>
-
 </body>
 </html>
