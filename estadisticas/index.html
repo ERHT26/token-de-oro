@@ -189,6 +189,26 @@
     text-align: center;
     margin-top: 2rem;
   }
+  .big-card {
+      background: linear-gradient(to bottom right, #fff8dc, #ffd700);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      max-width: 500px;
+      color: #333;
+      text-align: center;
+    }
+    .big-card h3 {
+      color: #b58e11;
+    }
+    .big-card p {
+      margin: 0.5rem 0;
+    }
+    .big-card img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
 </style>
 </head>
   <!-- Logo de la pagina -->
@@ -297,27 +317,61 @@ ante el mundo y su radar.<br></h2>
 
 </div>
 
+<div id="overlay" class="overlay" style="display:none" onclick="cerrarCarta(event)">
+    <div class="big-card" id="bigCard" onclick="event.stopPropagation()">
+    </div>
+  </div>
 
-
-<script>
-
-  
-
-  // Código para voltear tarjetas al hacer clic o con teclado
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('flipped');
-    });
-    card.addEventListener('keypress', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.classList.toggle('flipped');
+  <script>
+    const datosEquipos = {
+      'Palmeiras': {
+        escudo: 'https://upload.wikimedia.org/wikipedia/en/1/13/Palmeiras_logo.svg',
+        posesion: '60%',
+        goles: '1.8',
+        precision: '85%',
+        estilo: 'Bloque compacto y transiciones rápidas'
+      },
+      'Botafogo': {
+        escudo: 'https://upload.wikimedia.org/wikipedia/en/1/10/Botafogo_FRJ_logo.svg',
+        posesion: '55%',
+        goles: '2.0',
+        precision: '80%',
+        estilo: 'Presión alta y verticalidad'
+      },
+      'Flamengo': {
+        escudo: 'https://upload.wikimedia.org/wikipedia/en/f/f1/Clube_de_Regatas_do_Flamengo_logo.svg',
+        posesion: '65%',
+        goles: '2.4',
+        precision: '89%',
+        estilo: 'Ataque posicional y desborde por bandas'
+      },
+      'Fluminense': {
+        escudo: 'https://upload.wikimedia.org/wikipedia/en/7/7e/Fluminense_FC_logo.svg',
+        posesion: '70%',
+        goles: '1.9',
+        precision: '90%',
+        estilo: 'Toque corto y construcción elaborada'
       }
-    });
-  });
+    };
 
-  init();
-</script>
+    function mostrarCarta(equipo) {
+      const stats = datosEquipos[equipo];
+      const contenido = `
+        <img src="${stats.escudo}" alt="${equipo}">
+        <h3>Estadísticas de ${equipo}</h3>
+        <p><strong>Posesión promedio:</strong> ${stats.posesion}</p>
+        <p><strong>Goles por partido:</strong> ${stats.goles}</p>
+        <p><strong>Precisión de pase:</strong> ${stats.precision}</p>
+        <p><strong>Estilo:</strong> ${stats.estilo}</p>
+      `;
+      document.getElementById('bigCard').innerHTML = contenido;
+      document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function cerrarCarta(e) {
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
