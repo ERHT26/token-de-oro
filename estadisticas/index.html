@@ -195,7 +195,7 @@
     <li><a href="/">Inicio</a></li>
     <li><a href="../ranking">Ranking</a></li>
     <li><a href="/estadisticas">Estadisticas</a></li>
-     <li><a href="..juegos">Juegos</a></li>
+     <li><a href="../juegos">Juegos</a></li>
     <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer">MAS +</a></li>
   </ul>
 </nav>
@@ -264,106 +264,11 @@
 
 </div>
 
-<!-- Trivia y votación -->
-<div class="poll-container" id="poll-container">
 
-  <h2>Trivia y Votación: ¿Quién pasará a octavos de final?</h2>
-
-  <form id="poll-form">
-    <ul class="options">
-      <li><label><input type="radio" name="team" value="Palmeiras" required> Palmeiras</label></li>
-      <li><label><input type="radio" name="team" value="Botafogo"> Botafogo</label></li>
-      <li><label><input type="radio" name="team" value="Flamengo"> Flamengo</label></li>
-      <li><label><input type="radio" name="team" value="Fluminense"> Fluminense</label></li>
-    </ul>
-    <button type="submit">Votar</button>
-  </form>
-
-  <div class="results" id="results" aria-live="polite" role="region" style="display:none;">
-    <p>Resultados actuales:</p>
-    <ul id="results-list" style="list-style:none; padding-left:0;"></ul>
-  </div>
-
-</div>
-
-<div id="closed-message" class="closed-message" style="display:none;">
-  La votación está cerrada. ¡Gracias por participar!
-</div>
 
 <script>
-  // Fecha límite para cerrar la votación (AAAA-MM-DDTHH:MM:SS)
-  const closingDate = new Date('2025-07-01T12:00:00');
 
-  const pollForm = document.getElementById('poll-form');
-  const resultsDiv = document.getElementById('results');
-  const resultsList = document.getElementById('results-list');
-  const pollContainer = document.getElementById('poll-container');
-  const closedMessage = document.getElementById('closed-message');
-
-  const STORAGE_KEY = 'votosMundialDeClubes';
-
-  function loadVotes() {
-    const votesJSON = localStorage.getItem(STORAGE_KEY);
-    if (votesJSON) return JSON.parse(votesJSON);
-    return { Palmeiras: 0, Botafogo: 0, Flamengo: 0, Fluminense: 0 };
-  }
-
-  function saveVotes(votes) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(votes));
-  }
-
-  function displayResults(votes) {
-    resultsList.innerHTML = '';
-    const totalVotes = Object.values(votes).reduce((a,b) => a + b, 0);
-    if (totalVotes === 0) {
-      resultsList.innerHTML = '<li>No hay votos aún.</li>';
-      return;
-    }
-    for (const team in votes) {
-      const count = votes[team];
-      const percent = ((count / totalVotes) * 100).toFixed(1);
-      const li = document.createElement('li');
-      li.textContent = `${team}: ${count} votos (${percent}%)`;
-      resultsList.appendChild(li);
-    }
-  }
-
-  function isVotingClosed() {
-    return new Date() > closingDate;
-  }
-
-  function init() {
-    if (isVotingClosed()) {
-      pollContainer.style.display = 'none';
-      closedMessage.style.display = 'block';
-      resultsDiv.style.display = 'block';
-      displayResults(loadVotes());
-    } else {
-      pollContainer.style.display = 'block';
-      resultsDiv.style.display = 'block';
-      displayResults(loadVotes());
-    }
-  }
-
-  pollForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (isVotingClosed()) {
-      alert('La votación ya está cerrada.');
-      return;
-    }
-    const formData = new FormData(pollForm);
-    const selectedTeam = formData.get('team');
-    if (!selectedTeam) return;
-
-    let votes = loadVotes();
-    votes[selectedTeam] = (votes[selectedTeam] || 0) + 1;
-    saveVotes(votes);
-    displayResults(votes);
-
-    alert(`¡Gracias por votar por ${selectedTeam}!`);
-    pollForm.querySelectorAll('input').forEach(input => input.disabled = true);
-    pollForm.querySelector('button').disabled = true;
-  });
+  
 
   // Código para voltear tarjetas al hacer clic o con teclado
   document.querySelectorAll('.card').forEach(card => {
