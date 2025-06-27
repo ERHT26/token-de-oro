@@ -281,59 +281,58 @@ una danza que hipnotiza en compás tricolor sin igual.
   </div>
 
   <script>
-    const datosEquipos = {
-      Palmeiras: {
-        escudo: 'palmeiraslogo.png',
-        posesion: '60%',
-        goles: '1.8',
-        precision: '85%',
-        estilo: 'Bloque compacto y transiciones rápidas',
-      },
-      Botafogo: {
-        escudo: 'botafogologo.png',
-        posesion: '55%',
-        goles: '2.0',
-        precision: '80%',
-        estilo: 'Presión alta y verticalidad',
-      },
-      Flamengo: {
-        escudo: 'flamengologo.png',
-        posesion: '65%',
-        goles: '2.4',
-        precision: '89%',
-        estilo: 'Ataque posicional y desborde por bandas',
-      },
-      Fluminense: {
-        escudo: 'fluminenselogo.png',
-        posesion: '70%',
-        goles: '1.9',
-        precision: '90%',
-        estilo: 'Toque corto y construcción elaborada',
-      },
-    };
-
-    function mostrarCarta(equipo) {
-      const stats = datosEquipos[equipo];
-      const contenido = `
-        <img src="${stats.escudo}" alt="${equipo}">
-        <h3>Estadísticas de ${equipo}</h3>
-        <p><strong>Posesión promedio:</strong> ${stats.posesion}</p>
-        <p><strong>Goles por partido:</strong> ${stats.goles}</p>
-        <p><strong>Precisión de pase:</strong> ${stats.precision}</p>
-        <p><strong>Estilo:</strong> ${stats.estilo}</p>
-        <hr>
-        <h4>Estadísticas de grupo</h4>
-        <p><strong>PJ:</strong> ___ | <strong>G:</strong> ___ | <strong>E:</strong> ___ | <strong>P:</strong> ___</p>
-        <p><strong>GF:</strong> ___ | <strong>GC:</strong> ___ | <strong>DF:</strong> ___</p>
-        <hr>
-        <h4>Resultados</h4>
-        <p>vs Rival 1: ___</p>
-        <p>vs Rival 2: ___</p>
-        <p>vs Rival 3: ___</p>
-      `;
-      document.getElementById('bigCard').innerHTML = contenido;
-      document.getElementById('overlay').style.display = 'flex';
+const datosEquipos = {
+  Palmeiras: {
+    escudo: 'palmeiraslogo.png',
+    proxPartido: {
+      rival: 'Botafogo',
+      fecha: '2025-12-10 16:00'
     }
+  },
+  Botafogo: {
+    escudo: 'botafogologo.png',
+    proxPartido: {
+      rival: 'Palmeiras',
+      fecha: '2025-12-10 16:00'
+    }
+  },
+  Flamengo: {
+    escudo: 'flamengologo.png',
+    proxPartido: {
+      rival: 'Bayern Munich',
+      fecha: '2025-12-11 18:00'
+    }
+  },
+  Fluminense: {
+    escudo: 'fluminenselogo.png',
+    proxPartido: {
+      rival: 'Inter Milan',
+      fecha: '2025-12-12 16:00'
+    }
+  }
+};
+
+function mostrarCarta(equipo) {
+  const stats = datosEquipos[equipo];
+  const contenido = `
+    <img src="${stats.escudo}" alt="${equipo}">
+    <h3>Próximo partido - Octavos de final</h3>
+    <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
+    <p><strong>Fecha y hora:</strong> ${stats.proxPartido.fecha}</p>
+    <hr>
+    <h4>Estadísticas de grupo</h4>
+    <p><strong>PJ:</strong> ___ | <strong>G:</strong> ___ | <strong>E:</strong> ___ | <strong>P:</strong> ___</p>
+    <p><strong>GF:</strong> ___ | <strong>GC:</strong> ___ | <strong>DF:</strong> ___</p>
+    <hr>
+    <h4>Resultados</h4>
+    <p>vs Rival 1: ___</p>
+    <p>vs Rival 2: ___</p>
+    <p>vs Rival 3: ___</p>
+  `;
+  document.getElementById('bigCard').innerHTML = contenido;
+  document.getElementById('overlay').style.display = 'flex';
+}
+
 
     function cerrarCarta(e) {
       document.getElementById('overlay').style.display = 'none';
