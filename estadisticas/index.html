@@ -52,145 +52,66 @@
     text-align: center;
     font-size: 1rem;
   color: #8b4513; /* o prueba con #b52a2a o #003366 */
-  margin-bottom: 1.5rem;
-  }
-  /* Tarjetas estilo FIFA */
   .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-bottom: 3rem;
-  }
-  .card {
-    background: white;
-    width: 250px;
-    border-radius: 12px;
-    box-shadow: 0 5px 12px rgba(181,142,17,0.4);
-    cursor: pointer;
-    transition: transform 0.3s;
-    perspective: 1000px;
-  }
-  .card:hover {
-    transform: scale(1.05);
-  }
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    border-radius: 12px;
-  }
-  .card.flipped .card-inner {
-    transform: rotateY(180deg);
-  }
-  .card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 320px;
-    backface-visibility: hidden;
-    border-radius: 12px;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-  .card-front {
-    content: "Haz clic para ver más 📈";
-    background: #d4af37;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.3rem;
-    text-align: center;
-  }
-  .card-front img {
-    width: 120px;
-    height: auto;
-    margin-bottom: 1rem;
-   
-    border: none;
-  }
-  .card-back {
-    background: #fff8dc;
-    color: #333;
-    transform: rotateY(180deg);
-    overflow-y: auto;
-  }
-  .card-back h3 {
-    margin-top: 0;
-    color: #b58e11;
-  }
-  .card-back p {
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  /* Trivia estilos */
-  .poll-container {
-    background: #fff8dc;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(181,142,17,0.4);
-    padding: 1.5rem 2rem;
-    margin-bottom: 3rem;
-  }
-  .question {
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .options {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1rem;
-  }
-  .options li {
-    margin-bottom: 0.7rem;
-  }
-  label {
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  input[type="radio"] {
-    margin-right: 0.6rem;
-  }
-  button {
-    background-color: #b58e11;
-    color: white;
-    border: none;
-    padding: 0.6rem 1.3rem;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto 1rem auto;
-    transition: background-color 0.3s;
-  }
-  button:hover:not(:disabled) {
-    background-color: #8a6f0c;
-  }
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  .results {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-top: 1rem;
-    text-align: center;
-    color: #b58e11;
-  }
-  .closed-message {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #b52a2a;
-    text-align: center;
-    margin-top: 2rem;
-  }
-  .big-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: white;
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 5px 12px rgba(181,142,17,0.4);
+      cursor: pointer;
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card-front {
+      background: #d4af37;
+      color: white;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .card-front img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .card-front span {
+      display: block;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .card-front::after {
+      content: "Haz clic para ver más 📈";
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: #fff9;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+    }
+    .big-card {
       background: linear-gradient(to bottom right, #fff8dc, #ffd700);
       padding: 2rem;
       border-radius: 20px;
@@ -255,70 +176,33 @@ Ya no exporta solamente,
 ahora brilla imponente
 ante el mundo y su radar.<br></h2>
 <div class="cards">
-
-  <div class="card" tabindex="0">
-    <div class="card-inner">
+    <div class="card" onclick="mostrarCarta('Palmeiras')">
       <div class="card-front">
         <img src="palmeiraslogo.png" alt="Palmeiras" />
-        Palmeiras
-      </div>
-      <div class="card-back">
-        <h3>Palmeiras</h3>
-        <p><strong>Estilo de juego:</strong> Táctica sólida, bloque compacto, control del balón.</p>
-        <p>“Su juego es ajedrez con chispa encendida, una muralla que ataca con alma aguerrida.”</p>
-        <p><strong>Clave:</strong> Cierra espacios y lanza goles decisivos.</p>
+        Palmeiras <span>📊</span>
       </div>
     </div>
-  </div>
-
-  <div class="card" tabindex="0">
-    <div class="card-inner">
+    <div class="card" onclick="mostrarCarta('Botafogo')">
       <div class="card-front">
         <img src="botafogologo.png" alt="Botafogo" />
-        Botafogo
-      </div>
-      <div class="card-back">
-        <h3>Botafogo</h3>
-        <p><strong>Estilo de juego:</strong> Valentía desde el silbido inicial, presión alta constante.</p>
-        <p>“Con coraje en cada cruce, presión como puñal, es el lobo que ruge sin miedo al rival.”</p>
-        <p><strong>Clave:</strong> Nunca conoce el miedo, siempre al frente.</p>
+        Botafogo <span>📊</span>
       </div>
     </div>
-  </div>
-
-  <div class="card" tabindex="0">
-    <div class="card-inner">
+    <div class="card" onclick="mostrarCarta('Flamengo')">
       <div class="card-front">
         <img src="flamengologo.png" alt="Flamengo" />
-        Flamengo
-      </div>
-      <div class="card-back">
-        <h3>Flamengo</h3>
-        <p><strong>Estilo de juego:</strong> Pasión y velocidad, ataques verticales e intensos.</p>
-        <p>“Pasión desbordada en rubro y negro, ataca como río que rompe el tiempo.”</p>
-        <p><strong>Clave:</strong> Fuegos que incendian el campo con intensidad.</p>
+        Flamengo <span>📊</span>
       </div>
     </div>
-  </div>
-
-  <div class="card" tabindex="0">
-    <div class="card-inner">
+    <div class="card" onclick="mostrarCarta('Fluminense')">
       <div class="card-front">
         <img src="fluminenselogo.png" alt="Fluminense" />
-        Fluminense
-      </div>
-      <div class="card-back">
-        <h3>Fluminense</h3>
-        <p><strong>Estilo de juego:</strong> Fútbol de toque, elegante y técnico.</p>
-        <p>“El arte fino, el pase de seda, juega con alma, con temple y entrega.”</p>
-        <p><strong>Clave:</strong> Una danza hipnotizante que domina el compás tricolor.</p>
+        Fluminense <span>📊</span>
       </div>
     </div>
   </div>
 
-</div>
-
-<div id="overlay" class="overlay" style="display:none" onclick="cerrarCarta(event)">
+  <div id="overlay" class="overlay" style="display:none" onclick="cerrarCarta(event)">
     <div class="big-card" id="bigCard" onclick="event.stopPropagation()">
     </div>
   </div>
@@ -326,28 +210,28 @@ ante el mundo y su radar.<br></h2>
   <script>
     const datosEquipos = {
       'Palmeiras': {
-        escudo: 'https://upload.wikimedia.org/wikipedia/en/1/13/Palmeiras_logo.svg',
+        escudo: 'palmeiraslogo.png',
         posesion: '60%',
         goles: '1.8',
         precision: '85%',
         estilo: 'Bloque compacto y transiciones rápidas'
       },
       'Botafogo': {
-        escudo: 'https://upload.wikimedia.org/wikipedia/en/1/10/Botafogo_FRJ_logo.svg',
+        escudo: 'botafogologo.png',
         posesion: '55%',
         goles: '2.0',
         precision: '80%',
         estilo: 'Presión alta y verticalidad'
       },
       'Flamengo': {
-        escudo: 'https://upload.wikimedia.org/wikipedia/en/f/f1/Clube_de_Regatas_do_Flamengo_logo.svg',
+        escudo: 'flamengologo.png',
         posesion: '65%',
         goles: '2.4',
         precision: '89%',
         estilo: 'Ataque posicional y desborde por bandas'
       },
       'Fluminense': {
-        escudo: 'https://upload.wikimedia.org/wikipedia/en/7/7e/Fluminense_FC_logo.svg',
+        escudo: 'fluminenselogo.png',
         posesion: '70%',
         goles: '1.9',
         precision: '90%',
