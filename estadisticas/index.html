@@ -49,12 +49,53 @@
       text-align: center;
       color: #FFD700; /* dorado brillante */
     }
-    h2 {
-      text-align: center;
-      font-size: 1rem;
-      color: #8b4513;
-      text-shadow: 1px 1px 2px white;
-    }
+    .texto-principal {
+  background: #fff8dccc; /* crema translúcido */
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  margin: 2rem auto 3rem auto;
+  max-width: 850px;
+  color: #5a3e00;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(181, 142, 17, 0.3);
+  text-align: justify;
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+
+.texto-principal p {
+  margin-bottom: 1.4rem;
+}
+
+.texto-principal p:last-child {
+  margin-bottom: 0;
+}
+
+.texto-principal .emoji {
+  font-size: 1.5rem;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+.texto-principal .titulo {
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #b58e11;
+  text-shadow: 1px 1px 3px #d4af37;
+}
+
+.texto-principal hr {
+  border: none;
+  height: 1px;
+  background: #d4af37cc;
+  margin: 1.8rem 0;
+  border-radius: 3px;
+}
+
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -179,35 +220,21 @@
     </ul>
   </nav>
   <h1>¡Fase de grupos de equipos brasileños que ilusiona en el Mundial de Clubes 2025!</h1>
-  <h2>
-    En la tierra donde el sol besa el balón,
-    donde el fútbol no se juega,
-    se vive con el corazón,
-    nació un canto eterno, verde y oro,
-    de Pelé, Neymar y su decoro,
-    de un pueblo que al mundo enseñó
-    que la magia también se entrena,
-    que el balón puede ser poema.<br />
+  
+   <section class="texto-principal" aria-label="Introducción al Mundial de Clubes y equipos brasileños">
+  <p>En la tierra donde el sol besa el balón, donde el fútbol no se juega, se vive con el corazón. Nació un canto eterno, verde y oro, de Pelé, Neymar y su decoro, de un pueblo que al mundo enseñó que la magia también se entrena, que el balón puede ser poema.</p>
 
-    👑 La Selección: El Legado de un Pentacampeón<br />
+  <p class="titulo"><span class="emoji">👑</span>La Selección: El Legado de un Pentacampeón</p>
 
-    Cinco estrellas en el cielo cuelgan,
-    no son mitos, no son cuentos,
-    son las glorias de un momento
-    que jamás dejó de arder.
-    Brasil, reina entre naciones,
-    marca goles y emociones.<br />
+  <p>Cinco estrellas en el cielo cuelgan, no son mitos, no son cuentos, son las glorias de un momento que jamás dejó de arder. Brasil, reina entre naciones, marca goles y emociones.</p>
 
-    ⚔️ La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial<br />
+  <hr />
 
-    Antes vista con ternura,
-    como cuna y despedida,
-    hoy la liga brasileña es bravura,
-    es talento, es nueva vida.
-    Ya no exporta solamente,
-    ahora brilla imponente
-    ante el mundo y su radar.<br />
-  </h2>
+  <p class="titulo"><span class="emoji">⚔️</span>La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial</p>
+
+  <p>Antes vista con ternura, como cuna y despedida, hoy la liga brasileña es bravura, es talento, es nueva vida. Ya no exporta solamente, ahora brilla imponente ante el mundo y su radar.</p>
+</section>
+
   <div class="cards">
     <div class="card" onclick="mostrarCarta('Palmeiras')">
       <div class="card-front">
