@@ -284,27 +284,47 @@ una danza que hipnotiza en compás tricolor sin igual.
 const datosEquipos = {
   Palmeiras: {
     escudo: 'palmeiraslogo.png',
-    proxPartido: { rival: 'Botafogo', fecha: '2025-06-28' },
+    proxPartido: { rival: 'Chelsea', fecha: '2025-07-04 – Cuartos de Final' },
     grupo: { PJ:3, G:2, E:1, P:0, GF:4, GC:2, DF:2, PTS:7 },
-    resultados: ['vs Al Ahly: 2‑0', 'vs Porto: 0‑0', 'vs Inter Miami: 2‑2']
+    resultados: [
+      'vs Al Ahly: 2‑0',
+      'vs Porto: 0‑0',
+      'vs Inter Miami: 2‑2',
+      'Octavos: vs Botafogo: 1‑0'
+    ]
   },
   Botafogo: {
     escudo: 'botafogologo.png',
-    proxPartido: { rival: 'Palmeiras', fecha: '2025-06-28' },
+    proxPartido: { rival: 'Eliminado', fecha: '–' },
     grupo: { PJ:3, G:2, E:0, P:1, GF:3, GC:2, DF:1, PTS:6 },
-    resultados: ['vs Seattle Sounders: 2‑1', 'vs PSG: 1‑0', 'vs Atlético Madrid: 0‑1']
+    resultados: [
+      'vs Seattle Sounders: 2‑1',
+      'vs PSG: 1‑0',
+      'vs Atlético Madrid: 0‑1',
+      'Octavos: vs Palmeiras: 0‑1 (Eliminado)'
+    ]
   },
   Flamengo: {
     escudo: 'flamengologo.png',
-    proxPartido: { rival: 'Bayern Munich', fecha: '2025-06-29' },
+    proxPartido: { rival: 'Eliminado', fecha: '–' },
     grupo: { PJ:3, G:2, E:1, P:0, GF:6, GC:2, DF:4, PTS:7 },
-    resultados: ['vs Esperance: 2‑0', 'vs Chelsea: 3‑1', 'vs Los Angeles FC: 1‑1']
+    resultados: [
+      'vs Esperance: 2‑0',
+      'vs Chelsea: 3‑1',
+      'vs Los Angeles FC: 1‑1',
+      'Octavos: vs Bayern Múnich: 1‑2 (Eliminado)'
+    ]
   },
   Fluminense: {
     escudo: 'fluminenselogo.png',
-    proxPartido: { rival: 'Inter Milan', fecha: '2025-06-30' },
+    proxPartido: { rival: 'Al‑Hilal', fecha: '2025-07-04 – Cuartos de Final' },
     grupo: { PJ:3, G:1, E:2, P:0, GF:4, GC:2, DF:2, PTS:5 },
-    resultados: ['vs Mamelodi Sundowns: 0‑0', 'vs Borussia Dortmund: 1‑0', 'vs Ulsan Hyundai: 1‑0']
+    resultados: [
+      'vs Mamelodi Sundowns: 0‑0',
+      'vs Borussia Dortmund: 1‑0',
+      'vs Ulsan Hyundai: 1‑0',
+      'Octavos: vs Inter de Milán: 2‑0'
+    ]
   }
 };
 
@@ -313,7 +333,7 @@ function mostrarCarta(equipo) {
   const resHtml = stats.resultados.map(r=>`<p>${r}</p>`).join('');
   const contenido = `
     <img src="${stats.escudo}" alt="${equipo}">
-    <h3>Próximo partido – Octavos</h3>
+    <h3>Próximo partido</h3>
     <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
     <p><strong>Fecha y hora:</strong> ${stats.proxPartido.fecha}</p>
     <hr>
@@ -323,19 +343,17 @@ function mostrarCarta(equipo) {
     <p><strong>GF:</strong> ${stats.grupo.GF} | <strong>GC:</strong> ${stats.grupo.GC} | 
        <strong>DF:</strong> ${stats.grupo.DF} | <strong>PTS:</strong> ${stats.grupo.PTS}</p>
     <hr>
-    <h4>Resultados de grupo</h4>
+    <h4>Resultados de grupo y eliminación</h4>
     ${resHtml}
   `;
   document.getElementById('bigCard').innerHTML = contenido;
   document.getElementById('overlay').style.display = 'flex';
 }
 
+function cerrarCarta(e) {
+  document.getElementById('overlay').style.display = 'none';
+}
+</script>
 
-
-
-    function cerrarCarta(e) {
-      document.getElementById('overlay').style.display = 'none';
-    }
-  </script>
 </body>
 </html>
