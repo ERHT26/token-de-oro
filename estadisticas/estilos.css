@@ -2,24 +2,61 @@
   width: 100%;
   text-align: center;
   margin: 0;
-  padding: 10px 0; /* pequeño padding vertical */
-  background: linear-gradient(to bottom, #fff9e5, #fef9f0); /* mismo tono de fondo */
+  padding: 10px 0;
+  background: linear-gradient(to bottom, #fff9e5, #fef9f0);
 }
 
-.logo-integrado img {
-  width: 150px;
-  height: auto;
+.logo-brillo {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 20px;
+  background: transparent;
+  position: relative;
   transition: transform 0.3s ease;
 }
 
-.logo-integrado:hover img {
+.logo-brillo img {
+  width: 150px;
+  height: auto;
+  display: block;
+}
+
+/* Brillo animado al pasar el cursor */
+.logo-brillo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  opacity: 0;
+}
+
+.logo-brillo:hover {
   transform: scale(1.04);
 }
 
-.logo-integrado {
-  box-shadow: inset 0 -1px 3px rgba(212,175,55,0.1);
+.logo-brillo:hover::before {
+  animation: shine 0.8s ease forwards;
+  opacity: 1;
 }
 
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
     nav {
   background-color: #111;
   padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
