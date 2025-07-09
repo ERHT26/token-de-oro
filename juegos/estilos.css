@@ -7,7 +7,7 @@
     }
         nav {
   background-color: #111;
-  padding: 12px 20px;
+  padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
   box-shadow: 0 2px 8px rgba(0,0,0,0.8);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: sticky;
@@ -21,7 +21,7 @@ nav ul {
   padding: 0;
   display: flex;
   justify-content: center; /* Centrar el menú */
-  gap: 30px; /* espacio entre items */
+  gap: 24px; /* reducido ligeramente el espacio entre ítems */
 }
 
 nav ul li {
@@ -32,11 +32,10 @@ nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: 700;
-  font-size: 16px;
-  padding: 8px 10px;
+  font-size: 18px; /* un poco más grande para mejor lectura */
+  padding: 4px 8px; /* menos padding vertical */
   display: inline-block;
   transition: color 0.3s ease;
-  /* Para el subrayado animado */
 }
 
 nav ul li a::after {
@@ -71,12 +70,8 @@ nav ul li a.active {
 nav ul li a.active::after {
   width: 100%;
 }
-        * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+
+
 
     body {
       background: linear-gradient(135deg, #1c1c1c, #3a3a3a);
