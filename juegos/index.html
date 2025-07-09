@@ -46,7 +46,7 @@
 <div class="game-card" onclick="openGame()">
   <img src="Trivia de futbol.png" alt="Trivia de Fútbol">
   <h3>Trivia de Fútbol</h3>
-  <p>Demuestra tus conocimientos sobre la Copa del Mundo respondiendo preguntas desafiantes.</p>
+  <p>Demuestra tus conocimientos sobre Fútbol respondiendo preguntas desafiantes.</p>
 </div>
 
 
@@ -54,10 +54,14 @@
   <div class="overlay" id="overlay" onclick="closeGame(event)">
     <div class="popup-game" onclick="event.stopPropagation()">
       <div class="container">
+         <div style="color: black; font-family: 'Georgia', serif; font-weight: 600;">
+  Trivia de Fútbol
+</div>
         <div class="score hidden" id="finalScore"></div>
         <button id="restartBtn" class="hidden">Reiniciar juego</button>
       </div>
       <div id="questionContainer">
+        
         <div class="result" id="result"></div>
         <button id="nextBtn" class="hidden">Siguiente pregunta</button>
         <div class="question" id="question"></div>
