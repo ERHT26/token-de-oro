@@ -76,7 +76,8 @@ nav ul li a.active::after {
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f4f9;
+           
+            background: #fef9f0;  /* <-- Aquí está el color de fondo */
             margin: 0;
             padding: 0;
            
