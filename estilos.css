@@ -89,19 +89,7 @@ nav ul li a.active::after {
     border-bottom: 3px solid #a67c00;
   }
 
-  .medal-bg {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle at center, #ffe57f, #f1c40f, #b48a00);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    z-index: 1;
-    animation: pulse 3s ease-in-out infinite;
-  }
+  
 
   .header-content {
     position: relative;
@@ -127,11 +115,7 @@ nav ul li a.active::after {
     animation: fadeInUp 1s ease-out;
   }
 
-  @keyframes pulse {
-    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-    50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
-    100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
-  }
+ 
 
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
