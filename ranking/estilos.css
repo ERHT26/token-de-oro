@@ -80,58 +80,71 @@ nav ul li a.active::after {
            
         }
    
-      .main-header {
+      .trophy-header {
+    position: relative;
+    background: linear-gradient(135deg, #f9d423, #ffcc00);
+    padding: 30px 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid #a67c00;
+  }
+
+  .medal-bg {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at center, #ffe57f, #f1c40f, #b48a00);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    z-index: 1;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    padding: 20px 15px;
-    background: linear-gradient(135deg, #ffd700, #f5c518, #e0b100);
-    border-bottom: 2px solid #c29200;
-    box-shadow: 0 4px 10px rgba(218, 165, 32, 0.4);
-    animation: fadeIn 0.8s ease-in-out;
   }
 
-  .main-header h1 {
-    font-size: 28px;
-    background: linear-gradient(to right, #a67c00, #ffcc00, #e6be8a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-    margin-bottom: 6px;
-    text-shadow: 1px 1px 4px rgba(255, 215, 0, 0.4);
-    animation: glow 1.8s ease-in-out infinite alternate;
-  }
-
-  .main-header h2 {
-    font-size: 18px;
+  .header-content h1 {
+    font-size: 22px;
+    font-weight: 800;
     color: #3e2f00;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  .header-content h2 {
+    font-size: 14px;
     font-weight: 600;
-    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.2);
+    color: #1a1a1a;
+    margin-top: 5px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+    animation: fadeInUp 1s ease-out;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
+    100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
   }
 
-  @keyframes glow {
-    from {
-      text-shadow: 1px 1px 6px rgba(255, 215, 0, 0.2);
-    }
-    to {
-      text-shadow: 1px 1px 12px rgba(255, 215, 0, 0.6);
-    }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
 
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
+       
         section {
             max-width: 1000px;
             margin: 20px auto;
