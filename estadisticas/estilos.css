@@ -1,10 +1,25 @@
- .top-logo {
-      margin-top: 20px;
-    }
-    .top-logo img {
-      width: 150px;
-      height: auto;
-    }
+ .logo-integrado {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0; /* pequeño padding vertical */
+  background: linear-gradient(to bottom, #fff9e5, #fef9f0); /* mismo tono de fondo */
+}
+
+.logo-integrado img {
+  width: 150px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-integrado:hover img {
+  transform: scale(1.04);
+}
+
+.logo-integrado {
+  box-shadow: inset 0 -1px 3px rgba(212,175,55,0.1);
+}
+
     nav {
   background-color: #111;
   padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
