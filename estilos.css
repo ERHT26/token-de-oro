@@ -20,12 +20,14 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center; /* Centrar el menú */
-  gap: 30px; /* espacio entre items */
+  justify-content: center;
+  flex-wrap: wrap;       /* permite que los ítems pasen a otra línea si no caben */
+  gap: 20px;             /* espacio entre ítems ajustado */
 }
 
 nav ul li {
   position: relative;
+  flex: 0 1 auto;        /* permite que los ítems crezcan o se ajusten */
 }
 
 nav ul li a {
@@ -33,10 +35,12 @@ nav ul li a {
   text-decoration: none;
   font-weight: 700;
   font-size: 16px;
-  padding: 8px 10px;
-  display: inline-block;
+  padding: 10px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: color 0.3s ease;
-  /* Para el subrayado animado */
+  white-space: nowrap;   /* evita que las palabras se corten */
 }
 
 nav ul li a::after {
@@ -46,22 +50,19 @@ nav ul li a::after {
   bottom: 0;
   height: 3px;
   width: 0;
-  background-color: #ffcc00; /* color amarillo brillante para destacar */
+  background-color: #ffcc00;
   transition: width 0.3s ease;
   border-radius: 2px;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a:focus {
   color: #ffcc00;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a:focus::after {
   width: 100%;
-}
-
-nav ul li a:focus {
-  outline: 2px solid #ffcc00;
-  outline-offset: 3px;
 }
 
 nav ul li a.active {
@@ -71,6 +72,19 @@ nav ul li a.active {
 nav ul li a.active::after {
   width: 100%;
 }
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 400px) {
+  nav ul {
+    gap: 15px;
+  }
+  
+  nav ul li a {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}
+
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
