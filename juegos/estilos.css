@@ -1,10 +1,69 @@
-.top-logo {
-      margin-top: 20px; /* puedes ajustar el espacio desde arriba */
-    }
-    .top-logo img {
-      width: 150px; /* ajusta el tamaño según tu imagen */
-      height: auto;
-    }
+.logo-integrado {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  background: transparent; /* sin color de fondo */
+}
+
+.logo-brillo {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s ease;
+  border-radius: 12px; /* un borde redondeado suave para el brillo */
+}
+
+/* Ajustamos la imagen para que tenga borde invisible para el efecto */
+.logo-brillo img {
+  width: 150px;
+  height: auto;
+  display: block;
+  border-radius: 12px; /* igual que el contenedor para que el brillo siga la forma */
+  box-shadow:
+    0 0 8px 3px rgba(212,175,55,0.6); /* brillo dorado suave base */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Brillo animado al pasar el cursor */
+.logo-brillo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 215, 0, 0.4) 0%,
+    rgba(255, 255, 224, 0.7) 50%,
+    rgba(255, 215, 0, 0.4) 100%
+  );
+  opacity: 0;
+  transform: skewX(-20deg) translateX(-100%);
+  transition: none;
+}
+
+/* Hover: inflar + brillo dorado en bordes */
+.logo-brillo:hover {
+  transform: scale(1.04);
+}
+
+.logo-brillo:hover::before {
+  animation: shine 0.8s ease forwards;
+  opacity: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: skewX(-20deg) translateX(-100%);
+  }
+  100% {
+    transform: skewX(-20deg) translateX(200%);
+  }
+}
+
         nav {
   background-color: #111;
   padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
