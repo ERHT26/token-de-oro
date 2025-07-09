@@ -80,54 +80,50 @@ nav ul li a.active::after {
         }
    
       .trophy-header {
-    position: relative;
-    background: linear-gradient(135deg, #f9d423, #ffcc00);
-    padding: 30px 15px;
-    overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    border-bottom: 3px solid #a67c00;
-  }
+  position: relative;
+  background: linear-gradient(135deg, #f9d423, #ffcc00);
+  padding: 12px 15px; /* menos padding arriba/abajo para hacerlo compacto */
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid #a67c00;
+}
 
+.header-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.header-content h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #3e2f00;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
+  animation: fadeInDown 0.8s ease-out;
+  line-height: 1.1; /* para reducir espacio vertical entre líneas */
+}
+
+.header-content h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 4px; /* ligeramente menor margen arriba */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+  animation: fadeInUp 1s ease-out;
+  line-height: 1.1;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
   
-
-  .header-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-  }
-
-  .header-content h1 {
-    font-size: 22px;
-    font-weight: 800;
-    color: #3e2f00;
-    margin: 0;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
-    animation: fadeInDown 0.8s ease-out;
-  }
-
-  .header-content h2 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-top: 5px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
-    animation: fadeInUp 1s ease-out;
-  }
-
- 
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-
-       
         section {
             max-width: 1000px;
             margin: 20px auto;
