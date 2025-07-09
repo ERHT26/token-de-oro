@@ -46,20 +46,31 @@
    
 
 </head>
-<body>
-  <div class="container">
 
-     <div class="score hidden" id="finalScore"></div>
-    <button id="restartBtn" class="hidden">Reiniciar juego</button>
-  </div>
-    <div id="questionContainer">
-       <div class="result" id="result"></div>
-       <button id="nextBtn" class="hidden">Siguiente pregunta</button>
-      <div class="question" id="question"></div>
-      <div class="options" id="options"></div>
-      
-    </div>
     
+
+  
+
+   <body>
+
+  <!-- Tarjeta para abrir juego -->
+  <div class="game-card" onclick="openGame()">🧠 Iniciar Trivia Mundial</div>
+
+  <!-- Overlay y juego flotante -->
+  <div class="overlay" id="overlay" onclick="closeGame(event)">
+    <div class="popup-game" onclick="event.stopPropagation()">
+      <div class="container">
+        <div class="score hidden" id="finalScore"></div>
+        <button id="restartBtn" class="hidden">Reiniciar juego</button>
+      </div>
+      <div id="questionContainer">
+        <div class="result" id="result"></div>
+        <button id="nextBtn" class="hidden">Siguiente pregunta</button>
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+      </div>
+    </div>
+  </div>
 
   <script>
     const fullQuestionBank = [
@@ -491,16 +502,14 @@
 
     ];
 
-    let questionSet = [];
-    let currentQuestion = 0;
-    let score = 0;
-
+    let questionSet = [], currentQuestion = 0, score = 0;
     const questionEl = document.getElementById("question");
     const optionsEl = document.getElementById("options");
     const resultEl = document.getElementById("result");
     const nextBtn = document.getElementById("nextBtn");
     const finalScoreEl = document.getElementById("finalScore");
     const restartBtn = document.getElementById("restartBtn");
+    const overlay = document.getElementById("overlay");
 
     function shuffle(array) {
       return array.sort(() => Math.random() - 0.5);
@@ -562,11 +571,17 @@
       restartBtn.classList.remove("hidden");
     }
 
+    function openGame() {
+      overlay.style.display = "flex";
+      startGame();
+    }
+
+    function closeGame(e) {
+      overlay.style.display = "none";
+    }
+
     nextBtn.addEventListener("click", nextQuestion);
     restartBtn.addEventListener("click", startGame);
-
-    // Inicialización
-    startGame();
   </script>
 </body>
 </html>
