@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Token de Oro - Equipos + Trivia Mundial de Clubes</title>
+  
   
 </head>
 
@@ -28,7 +28,7 @@
       <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer">MAS +</a></li>
     </ul>
   </nav>
-  <h1>¡Fase de grupos de equipos brasileños que ilusiona en el Mundial de Clubes 2025!</h1>
+  <h1>¡Equipos brasileños que ilusionaron en el Mundial de Clubes 2025!</h1>
   
    <section class="texto-principal" aria-label="Introducción al Mundial de Clubes y equipos brasileños">
   <p>En la tierra donde el sol besa el balón, donde el fútbol no se juega, se vive con el corazón. Nació un canto eterno, verde y oro, de Pelé, Neymar y su decoro, de un pueblo que al mundo enseñó que la magia también se entrena, que el balón puede ser poema.</p>
@@ -93,76 +93,54 @@ una danza que hipnotiza en compás tricolor sin igual.
 const datosEquipos = {
   Palmeiras: {
     escudo: 'palmeiraslogo.png',
-    proxPartido: { rival: 'Chelsea', fecha: '2025-07-04 – Cuartos de Final' },
-    grupo: { PJ:3, G:2, E:1, P:0, GF:4, GC:2, DF:2, PTS:7 },
+    proxPartido: { rival: 'Eliminado', fecha: '–' },
+    grupo: { PJ:3, G:2, E:1, P:0, GF:?, GC:?, DF:?, PTS:7 },
     resultados: [
       'vs Al Ahly: 2‑0',
-      'vs Porto: 0‑0',
-      'vs Inter Miami: 2‑2',
-      'Octavos: vs Botafogo: 1‑0'
+      'vs Porto: ???',  // ajusta según GF/GC exactos si los tienes
+      'vs Inter Miami: ???',
+      'Octavos: vs Botafogo: 1‑0 (prórroga)',
+      'Cuartos: vs Chelsea: 1‑2 (Eliminado)'
     ]
   },
   Botafogo: {
     escudo: 'botafogologo.png',
     proxPartido: { rival: 'Eliminado', fecha: '–' },
-    grupo: { PJ:3, G:2, E:0, P:1, GF:3, GC:2, DF:1, PTS:6 },
+    grupo: { PJ:3, G:2, E:0, P:1, GF:?, GC:?, DF:?, PTS:6 },
     resultados: [
       'vs Seattle Sounders: 2‑1',
       'vs PSG: 1‑0',
       'vs Atlético Madrid: 0‑1',
-      'Octavos: vs Palmeiras: 0‑1 (Eliminado)'
+      'Octavos: vs Palmeiras: 0‑1 (prórroga, Eliminado)'
     ]
   },
   Flamengo: {
     escudo: 'flamengologo.png',
     proxPartido: { rival: 'Eliminado', fecha: '–' },
-    grupo: { PJ:3, G:2, E:1, P:0, GF:6, GC:2, DF:4, PTS:7 },
+    grupo: { PJ:3, G:2, E:1, P:0, GF:?, GC:?, DF:?, PTS:7 },
     resultados: [
-      'vs Esperance: 2‑0',
+      'vs Espérance: 2‑0',
       'vs Chelsea: 3‑1',
-      'vs Los Angeles FC: 1‑1',
-      'Octavos: vs Bayern Múnich: 1‑2 (Eliminado)'
+      'vs LAFC: 1‑1',
+      'Octavos: vs Bayern Múnich: 2‑4 (Eliminado)'
     ]
   },
   Fluminense: {
     escudo: 'fluminenselogo.png',
-    proxPartido: { rival: 'Al‑Hilal', fecha: '2025-07-04 – Cuartos de Final' },
-    grupo: { PJ:3, G:1, E:2, P:0, GF:4, GC:2, DF:2, PTS:5 },
+    proxPartido: { rival: 'Eliminado', fecha: '–' },
+    grupo: { PJ:3, G:1, E:2, P:0, GF:?, GC:?, DF:?, PTS:5 },
     resultados: [
       'vs Mamelodi Sundowns: 0‑0',
       'vs Borussia Dortmund: 1‑0',
       'vs Ulsan Hyundai: 1‑0',
-      'Octavos: vs Inter de Milán: 2‑0'
+      'Octavos: vs Inter de Milán: 2‑0',
+      'Cuartos: vs Al‑Hilal: 1‑0',
+      'Semis: vs Chelsea: 0‑2 (Eliminado)'
     ]
   }
 };
-
-function mostrarCarta(equipo) {
-  const stats = datosEquipos[equipo];
-  const resHtml = stats.resultados.map(r=>`<p>${r}</p>`).join('');
-  const contenido = `
-    <img src="${stats.escudo}" alt="${equipo}">
-    <h3>Próximo partido</h3>
-    <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
-    <p><strong>Fecha y hora:</strong> ${stats.proxPartido.fecha}</p>
-    <hr>
-    <h4>Estadísticas de grupo</h4>
-    <p><strong>PJ:</strong> ${stats.grupo.PJ} | <strong>G:</strong> ${stats.grupo.G} | 
-       <strong>E:</strong> ${stats.grupo.E} | <strong>P:</strong> ${stats.grupo.P}</p>
-    <p><strong>GF:</strong> ${stats.grupo.GF} | <strong>GC:</strong> ${stats.grupo.GC} | 
-       <strong>DF:</strong> ${stats.grupo.DF} | <strong>PTS:</strong> ${stats.grupo.PTS}</p>
-    <hr>
-    <h4>Resultados de grupo y eliminación</h4>
-    ${resHtml}
-  `;
-  document.getElementById('bigCard').innerHTML = contenido;
-  document.getElementById('overlay').style.display = 'flex';
-}
-
-function cerrarCarta(e) {
-  document.getElementById('overlay').style.display = 'none';
-}
 </script>
+
 
 </body>
 </html>
