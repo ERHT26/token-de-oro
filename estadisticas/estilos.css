@@ -326,41 +326,28 @@ nav ul li a.active::after {
       margin-bottom: 1rem;
     }
 
-/* --- CONTENEDOR PRINCIPAL ESTILO PERIÓDICO --- */
+/* CONTENEDOR PRINCIPAL PERIODICO - AJUSTE */
 .periodico-layout {
   display: grid;
-  grid-template-columns: 3fr 1.3fr;
-  gap: 2rem;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 1.5rem;
   max-width: 900px;
   margin: 0 auto 3rem;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden; /* evita scroll horizontal */
 }
 
-/* ASIDE - BARRA LATERAL CON CARRUSEL Y NOTICIAS SECUNDARIAS */
-.sidebar {
-  background: #fff8dccc; /* crema translúcido, coherente con .texto-principal */
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow:
-    0 0 10px rgba(181, 142, 17, 0.4);
-  border: 2px solid #b58e11; /* marco dorado */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #5a3e00;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* CARTAS (LOGOS) */
+.card-front img {
+  width: 100px; /* reducir tamaño para que no sean gigantes */
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+  align-self: center;
 }
 
-/* TITULOS EN SIDEBAR */
-.sidebar h3 {
-  color: #b58e11;
-  font-weight: 700;
-  border-bottom: 2px solid #d4af37;
-  padding-bottom: 0.3rem;
-  margin: 0 0 0.6rem 0;
-}
-
-/* CARRUSEL (scroll horizontal) */
+/* CARRUSEL - Ajuste tamaños de imágenes y contenedor */
 .carousel {
   display: flex;
   overflow-x: auto;
@@ -368,27 +355,14 @@ nav ul li a.active::after {
   padding-bottom: 0.3rem;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.carousel::-webkit-scrollbar {
-  height: 6px;
-}
-
-.carousel::-webkit-scrollbar-track {
-  background: #fef9f0;
-  border-radius: 3px;
-}
-
-.carousel::-webkit-scrollbar-thumb {
-  background: #b58e11;
-  border-radius: 3px;
-}
-
-/* ITEM CARRUSEL */
 .carousel-item {
   flex: 0 0 auto;
   scroll-snap-align: center;
-  width: 260px;
+  width: 220px; /* más pequeño para que no se vean gigantes */
   border-radius: 16px;
   border: 2px solid #b58e11;
   background: linear-gradient(145deg, #fff8dc, #d4af37);
@@ -410,11 +384,60 @@ nav ul li a.active::after {
 .carousel-item img,
 .carousel-item video {
   width: 100%;
-  height: 160px;
+  height: 140px; /* un poco más pequeño */
   object-fit: cover;
   border-radius: 14px 14px 0 0;
   user-select: none;
 }
+
+/* IMAGEN GRANDE EN MODAL */
+.big-card img {
+  width: 90px; /* más pequeño para que no sobresalga */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: #fff8dccc;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow:
+    0 0 10px rgba(181, 142, 17, 0.4);
+  border: 2px solid #b58e11;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #5a3e00;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+/* RESPONSIVE: Para móviles */
+@media (max-width: 850px) {
+  .periodico-layout {
+    display: block;
+    max-width: 95%;
+    padding: 0 0.5rem;
+  }
+  .sidebar {
+    margin-top: 2rem;
+  }
+  .carousel-item {
+    width: 180px;
+  }
+  .carousel-item img,
+  .carousel-item video {
+    height: 120px;
+  }
+  .card {
+    width: 280px;
+    height: 420px;
+  }
+}
+
 
 .carousel-item .contenido {
   padding: 0.4rem 1rem 1rem;
