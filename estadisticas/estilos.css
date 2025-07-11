@@ -1,30 +1,28 @@
+/* Logo */
 .logo-integrado {
   width: 100%;
   text-align: center;
   margin: 0;
   padding: 10px 0;
-  background: transparent; /* sin color de fondo */
+  background: transparent;
 }
 
 .logo-brillo {
   display: inline-block;
   position: relative;
   transition: transform 0.3s ease;
-  border-radius: 12px; /* un borde redondeado suave para el brillo */
+  border-radius: 12px;
 }
 
-/* Ajustamos la imagen para que tenga borde invisible para el efecto */
 .logo-brillo img {
   width: 150px;
   height: auto;
   display: block;
-  border-radius: 12px; /* igual que el contenedor para que el brillo siga la forma */
-  box-shadow:
-    0 0 8px 3px rgba(212,175,55,0.6); /* brillo dorado suave base */
+  border-radius: 12px;
+  box-shadow: 0 0 8px 3px rgba(212,175,55,0.6);
   transition: box-shadow 0.3s ease;
 }
 
-/* Brillo animado al pasar el cursor */
 .logo-brillo::before {
   content: '';
   position: absolute;
@@ -45,7 +43,6 @@
   transition: none;
 }
 
-/* Hover: inflar + brillo dorado en bordes */
 .logo-brillo:hover {
   transform: scale(1.04);
 }
@@ -64,37 +61,10 @@
   }
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 20px;
-  background-color: #000;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.menu-item {
-  color: gold;
-  text-decoration: none;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
-
-.menu-item:hover {
-  transform: scale(1.2);
-  color: #fff700;
-}
-
-.menu-item i {
-  width: 28px;
-  height: 28px;
-}
-
+/* Nav */
 nav {
   background-color: #111;
-  padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
+  padding: 4px 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.8);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: sticky;
@@ -107,22 +77,19 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center; /* Centrar el menú */
-  gap: 24px; /* reducido ligeramente el espacio entre ítems */
-}
-
-nav ul li {
-  position: relative;
+  justify-content: center;
+  gap: 24px;
 }
 
 nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: 700;
-  font-size: 18px; /* un poco más grande para mejor lectura */
-  padding: 4px 8px; /* menos padding vertical */
+  font-size: 18px;
+  padding: 4px 8px;
   display: inline-block;
   transition: color 0.3s ease;
+  position: relative;
 }
 
 nav ul li a::after {
@@ -132,7 +99,7 @@ nav ul li a::after {
   bottom: 0;
   height: 3px;
   width: 0;
-  background-color: #ffcc00; /* color amarillo brillante para destacar */
+  background-color: #ffcc00;
   transition: width 0.3s ease;
   border-radius: 2px;
 }
@@ -141,8 +108,13 @@ nav ul li a:hover {
   color: #ffcc00;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
   width: 100%;
+}
+
+nav ul li a.active {
+  color: #ffcc00;
 }
 
 nav ul li a:focus {
@@ -150,14 +122,7 @@ nav ul li a:focus {
   outline-offset: 3px;
 }
 
-nav ul li a.active {
-  color: #ffcc00;
-}
-
-nav ul li a.active::after {
-  width: 100%;
-}
-
+/* Body */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #fef9f0;
@@ -169,13 +134,15 @@ body {
   margin-right: auto;
 }
 
+/* Titulos */
 h1 {
   text-align: center;
-  color: #FFD700; /* dorado brillante */
+  color: #FFD700;
 }
 
+/* Texto principal */
 .texto-principal {
-  background: #fff8dccc; /* crema translúcido */
+  background: #fff8dccc;
   border-radius: 12px;
   padding: 2rem 2.5rem;
   margin: 2rem auto 3rem auto;
@@ -221,6 +188,7 @@ h1 {
   border-radius: 3px;
 }
 
+/* Cards */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -229,7 +197,6 @@ h1 {
   margin-bottom: 3rem;
 }
 
-/* Nuevo estilo para cartas pequeñas */
 .card {
   background: linear-gradient(145deg, #fef9f0, #d4af37);
   width: 320px;
@@ -248,123 +215,88 @@ h1 {
   color: #3b2f0b;
   font-weight: 600;
   user-select: none;
-  border: 3px solid #b58e11; /* marco dorado */
+  border: 3px solid #b58e11;
   box-sizing: border-box;
   text-align: center;
 }
 
 .card:hover {
-  transform: scale(1.07);
+  transform: scale(1.05);
   box-shadow:
-    0 0 15px 6px rgba(212,175,55,1),
-    0 6px 18px rgba(0,0,0,0.3);
+    0 0 20px 6px rgba(212,175,55,1),
+    0 8px 24px rgba(0,0,0,0.3);
 }
 
-.card-front {
-  text-align: center;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-}
-
-.card-front img {
-  width: 100px;
-  height: auto;
+.card img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
   margin-bottom: 1rem;
-  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
-  align-self: center;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #b58e11;
 }
 
-.card-front span {
-  font-size: 1rem;
-  color: #5a4200;
-  margin-top: auto;
-  padding: 0.5rem 0;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  border-top: 1px solid #b58e11;
-  user-select: none;
-}
-
-.card-front::after {
-  content: "Clic para ver más";
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  color: rgba(90,66,0,0.7);
-  font-weight: 500;
-  pointer-events: none;
-  user-select: none;
-  letter-spacing: 0.05em;
-}
-
-/* Overlay modal para carta grande */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(4px);
-}
-
-.big-card {
-  background: linear-gradient(to bottom right, #fff8dc, #ffd700);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-  max-width: 500px;
-  color: #333;
-  text-align: center;
-}
-
-.big-card h3 {
-  color: #b58e11;
-}
-
-.big-card p {
-  margin: 0.5rem 0;
-}
-
-.big-card img {
-  width: 90px;
-  height: auto;
-  margin-bottom: 1rem;
-}
-
-/* CONTENEDOR PRINCIPAL PERIODICO - AJUSTE */
+/* Periodico Layout */
 .periodico-layout {
   display: grid;
   grid-template-columns: 2.5fr 1fr;
   gap: 1.5rem;
+  width: 100%;
   max-width: 900px;
   margin: 0 auto 3rem;
   padding: 0 1rem;
   box-sizing: border-box;
-  overflow-x: hidden; /* deja oculto solo scroll horizontal */
-  /* REMUEVE overflow-y o hidden que limite vertical */
+  overflow-x: hidden;
 }
 
-/* CARTAS (LOGOS) */
-.card-front img {
-  width: 100px; /* reducir tamaño para que no sean gigantes */
+/* Sidebar */
+.sidebar {
+  background: #fff8dccc;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(181, 142, 17, 0.4);
+  border: 2px solid #b58e11;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #5a3e00;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
   height: auto;
-  margin-bottom: 1rem;
-  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
-  align-self: center;
+  min-height: 0;
 }
 
-/* CARRUSEL - Ajuste tamaños de imágenes y contenedor */
+/* Asegura que hijos de sidebar no salgan del contenedor */
+.sidebar > * {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Secciones mágicas dentro del sidebar */
+.seccion-magica {
+  border: 2px solid #b58e11;
+  border-radius: 16px;
+  padding: 0.6rem;
+  text-align: center;
+  background: linear-gradient(145deg, #fef9f0, #d4af37);
+  box-shadow:
+    0 0 8px 3px rgba(212,175,55,0.8),
+    0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Títulos en el sidebar */
+.seccion-magica > .titulo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #b58e11;
+  text-shadow: 1px 1px 2px #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+/* Carrusel */
 .carousel {
   display: flex;
   overflow-x: auto;
@@ -372,10 +304,9 @@ h1 {
   padding-bottom: 0.3rem;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  max-width: 100%;
+  width: 100%;
   box-sizing: border-box;
   cursor: grab;
-  /* Aseguramos que el carousel no tenga overflow oculto vertical que corte */
   overflow-y: visible;
 }
 
@@ -383,10 +314,12 @@ h1 {
   cursor: grabbing;
 }
 
+/* Items del carrusel */
 .carousel-item {
   flex: 0 0 auto;
   scroll-snap-align: center;
-  width: 220px;
+  width: 200px;
+  max-width: 100%;
   border-radius: 16px;
   border: 2px solid #b58e11;
   background: linear-gradient(145deg, #fff8dc, #d4af37);
@@ -406,6 +339,7 @@ h1 {
     0 6px 18px rgba(0,0,0,0.3);
 }
 
+/* Imágenes y videos en carrusel */
 .carousel-item img,
 .carousel-item video {
   width: 100%;
@@ -415,68 +349,60 @@ h1 {
   user-select: none;
 }
 
-/* Contenido dentro del carrusel-item si se usa texto */
-.carousel-item .contenido {
-  padding: 0.4rem 1rem 1rem;
-  color: #5a3e00;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Imagen con movimiento (efecto flotante suave) */
+/* Imagen flotante */
 .imagen-flotante {
-  display: block;
-  margin: 0 auto;
-  width: 160px;
-  animation: flotar 3.5s ease-in-out infinite;
-  border-radius: 20px;
-  box-shadow:
-    0 0 12px 4px rgba(212,175,55,0.7);
+  width: 100%;
+  max-width: 100%;
+  animation: flotar 3s ease-in-out infinite alternate;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(212,175,55,0.7);
+  margin-top: 1rem;
 }
 
 @keyframes flotar {
-  0%, 100% {
-    transform: translateY(0);
-    filter: drop-shadow(0 4px 4px rgba(212,175,55,0.6));
+  0% {
+    transform: translateY(0) rotate(0deg);
+    filter: drop-shadow(0 0 3px rgba(212,175,55,0.8));
   }
-  50% {
-    transform: translateY(-15px);
-    filter: drop-shadow(0 8px 6px rgba(212,175,55,0.9));
+  100% {
+    transform: translateY(-15px) rotate(1deg);
+    filter: drop-shadow(0 0 12px rgba(212,175,55,1));
   }
 }
 
-/* SIDEBAR */
-.sidebar {
-  background: #fff8dccc;
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 0 10px rgba(181, 142, 17, 0.4);
-  border: 2px solid #b58e11;
+/* Overlay y carta grande */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.big-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  max-width: 380px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(181,142,17,0.8);
+  text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #5a3e00;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-
-  /* NUEVO: Aseguramos que pueda crecer según contenido */
-  height: auto;
-  min-height: 0;
-  overflow: visible; /* permitir mostrar todo contenido */
-  .sidebar {
-  max-width: 100%;      /* Evita que se pase del ancho asignado */
-  overflow-x: hidden;   /* Oculta cualquier desbordamiento horizontal */
-}
-.sidebar > * {
-  max-width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
 }
 
+.big-card img {
+  max-width: 120px;
+  margin-bottom: 1rem;
 }
 
-/* RESPONSIVE: Para móviles */
+/* Responsive */
 @media (max-width: 850px) {
   .periodico-layout {
     display: block;
