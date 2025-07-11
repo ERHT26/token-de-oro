@@ -15,148 +15,208 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-
-  <header>
-    <div class="logo-integrado">
+  <div class="logo-integrado">
+    <div class="logo-brillo">
       <img src="favicon.png" alt="Logo Token de Oro" />
-      <h1>TOKEN DE ORO - Estadísticas Deportivas</h1>
     </div>
-    <nav>
-      <ul>
-        <li><a href="/" title="Inicio"><i data-lucide="home"></i></a></li>
-        <li><a href="../ranking" title="Ranking"><i data-lucide="trophy"></i></a></li>
-        <li><a href="/estadisticas" class="active" title="Estadísticas"><i data-lucide="bar-chart-3"></i></a></li>
-        <li><a href="../juegos" title="Juegos"><i data-lucide="gamepad-2"></i></a></li>
-        <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer" title="Más"><i data-lucide="more-horizontal"></i></a></li>
-      </ul>
-    </nav>
-  </header>
+  </div>  
 
-  <main class="periodico-layout">
-    <!-- Sección principal - noticia destacada -->
-    <article class="principal">
-      <h2>¡Equipos brasileños que ilusionaron en el Mundial de Clubes 2025!</h2>
+  <nav>
+    <ul>
+      <li><a href="/" title="Inicio"><i data-lucide="home"></i></a></li>
+      <li><a href="../ranking" title="Ranking"><i data-lucide="trophy"></i></a></li>
+      <li><a href="/estadisticas" class="active" title="Estadísticas"><i data-lucide="bar-chart-3"></i></a></li>
+      <li><a href="../juegos" title="Juegos"><i data-lucide="gamepad-2"></i></a></li>
+      <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer" title="Más"><i data-lucide="more-horizontal"></i></a></li>
+    </ul>
+  </nav>
 
+  <script>lucide.createIcons();</script>
+
+  <main class="periodico">
+
+    <!-- Titular principal -->
+    <article class="noticia-principal">
+      <h1>¡Equipos brasileños que ilusionaron en el Mundial de Clubes 2025!</h1>
       <section class="texto-principal" aria-label="Introducción al Mundial de Clubes y equipos brasileños">
         <p>En la tierra donde el sol besa el balón, donde el fútbol no se juega, se vive con el corazón. Nació un canto eterno, verde y oro, de Pelé, Neymar y su decoro, de un pueblo que al mundo enseñó que la magia también se entrena, que el balón puede ser poema.</p>
 
-        <p class="subtitulo"><span class="emoji">👑</span>La Selección: El Legado de un Pentacampeón</p>
+        <p class="titulo"><span class="emoji">👑</span>La Selección: El Legado de un Pentacampeón</p>
 
         <p>Cinco estrellas en el cielo cuelgan, no son mitos, no son cuentos, son las glorias de un momento que jamás dejó de arder. Brasil, reina entre naciones, marca goles y emociones.</p>
 
         <hr />
 
-        <p class="subtitulo"><span class="emoji">⚔️</span>La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial</p>
+        <p class="titulo"><span class="emoji">⚔️</span>La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial</p>
 
         <p>Antes vista con ternura, como cuna y despedida, hoy la liga brasileña es bravura, es talento, es nueva vida. Ya no exporta solamente, ahora brilla imponente ante el mundo y su radar.</p>
       </section>
+    </article>
 
+    <!-- Sección noticias destacadas (las cartas) -->
+    <section class="noticias-destacadas">
+      <h2>Lo más destacado</h2>
       <div class="cards">
-        <!-- Tus 4 cartas con equipos -->
         <div class="card" onclick="mostrarCarta('Palmeiras')">
-          <img src="palmeiraslogo.png" alt="Palmeiras" />
           <div class="card-front">
-            Palmeiras, firme en táctica, en bloque, en control, cierra espacios y clava el gol. Su juego es ajedrez con chispa encendida, una muralla que ataca con alma aguerrida.
+            <img src="palmeiraslogo.png" alt="Palmeiras" />
+            Palmeiras, firme en táctica, en bloque, en control,<br>
+            cierra espacios y clava el gol.<br>
+            Su juego es ajedrez con chispa encendida,<br>
+            una muralla que ataca con alma aguerrida.
           </div>
         </div>
         <div class="card" onclick="mostrarCarta('Botafogo')">
-          <img src="botafogologo.png" alt="Botafogo" />
           <div class="card-front">
-            Botafogo, valiente desde el primer silbido, no conoce el miedo, va siempre al frente erguido. Con coraje en cada cruce, presión como puñal, es el lobo que ruge sin miedo al rival.
+            <img src="botafogologo.png" alt="Botafogo" />
+            Botafogo, valiente desde el primer silbido,<br>
+            no conoce el miedo, va siempre al frente erguido.<br>
+            Con coraje en cada cruce, presión como puñal,<br>
+            es el lobo que ruge sin miedo al rival.
           </div>
         </div>
         <div class="card" onclick="mostrarCarta('Flamengo')">
-          <img src="flamengologo.png" alt="Flamengo" />
           <div class="card-front">
-            Flamengo, pasión desbordada en rubro y negro, ataca como río que rompe el tiempo. Vertical, intenso, eléctrico en su andar, de sus botas nacen fuegos que saben incendiar.
+            <img src="flamengologo.png" alt="Flamengo" />
+            Flamengo, pasión desbordada en rubro y negro,<br>
+            ataca como río que rompe el tiempo.<br>
+            Vertical, intenso, eléctrico en su andar,<br>
+            de sus botas nacen fuegos que saben incendiar.
           </div>
         </div>
         <div class="card" onclick="mostrarCarta('Fluminense')">
-          <img src="fluminenselogo.png" alt="Fluminense" />
           <div class="card-front">
-            Fluminense, el arte fino, el pase de seda, juega con alma, con temple, con entrega. Su toque es poesía, su fútbol es moral, una danza que hipnotiza en compás tricolor sin igual.
+            <img src="fluminenselogo.png" alt="Fluminense" />
+            Fluminense, el arte fino, el pase de seda,<br>
+            juega con alma, con temple, con entrega.<br>
+            Su toque es poesía, su fútbol es moral,<br>
+            una danza que hipnotiza en compás tricolor sin igual.
           </div>
         </div>
       </div>
-    </article>
-
-    <!-- Sección lateral derecha - Carrusel de multimedia -->
-    <aside class="sidebar">
-      <h3>Multimedia Destacada</h3>
-      <section class="carousel" aria-label="Carrusel de videos e imágenes">
-        <div class="carousel-item">
-          <img src="brasilfutbol.jpg" alt="Brasil pasión" />
-          <div class="contenido">
-            <h4>Rugido Brasileño</h4>
-            <p>Una afición que late con cada jugada.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <video autoplay muted loop>
-            <source src="golmaracanazo.mp4" type="video/mp4" />
-          </video>
-          <div class="contenido">
-            <h4>Golazo Inolvidable</h4>
-            <p>El Maracaná volvió a vibrar con fuerza.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="torcida.jpg" alt="Torcida vibrante" />
-          <div class="contenido">
-            <h4>Torcida Apasionada</h4>
-            <p>El alma del fútbol está en sus tribunas.</p>
-          </div>
-        </div>
-      </section>
-
-      <h3>Otras Noticias</h3>
-      <div class="noticias-laterales">
-        <article class="noticia-lateral" onclick="mostrarCarta('Noticia1')">
-          <h4>Jugador revelación</h4>
-          <p>Estadísticas sorprendentes en el mediocampo.</p>
-        </article>
-        <article class="noticia-lateral" onclick="mostrarCarta('Noticia2')">
-          <h4>La defensa más sólida</h4>
-          <p>Datos de bloqueos y despejes cruciales.</p>
-        </article>
-        <article class="noticia-lateral" onclick="mostrarCarta('Noticia3')">
-          <h4>El gol más rápido</h4>
-          <p>Récords que marcan historia en minutos.</p>
-        </article>
-      </div>
-    </aside>
-
-    <!-- Sección inferior con tabla estadística (ficticia) -->
-    <section class="inferior">
-      <h3>Estadísticas Generales del Torneo</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Equipo</th>
-            <th>Partidos</th>
-            <th>Goles</th>
-            <th>Asistencias</th>
-            <th>Tarjetas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Brasil FC</td><td>6</td><td>14</td><td>8</td><td>3</td></tr>
-          <tr><td>Equipo X</td><td>5</td><td>10</td><td>12</td><td>5</td></tr>
-          <tr><td>Club Y</td><td>6</td><td>8</td><td>10</td><td>1</td></tr>
-          <tr><td>Selección Z</td><td>7</td><td>17</td><td>7</td><td>4</td></tr>
-          <tr><td>Equipo Equis</td><td>4</td><td>5</td><td>4</td><td>2</td></tr>
-        </tbody>
-      </table>
     </section>
+
+    <!-- Sección estadísticas relleno estilo periódico en columnas -->
+    <section class="estadisticas-relleno">
+      <h2>Otras estadísticas relevantes</h2>
+      <div class="columnas-estadisticas">
+        <article>
+          <h3>Estadística X1</h3>
+          <p>Jugadores destacados, goles anotados y récords imbatibles durante la temporada 2025.</p>
+          <ul>
+            <li>Jugador A: 23 goles</li>
+            <li>Jugador B: 18 goles</li>
+            <li>Jugador C: 15 goles</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Estadística X2</h3>
+          <p>Equipos con mayor posesión de balón y efectividad en pases.</p>
+          <ul>
+            <li>Equipo Alpha: 62%</li>
+            <li>Equipo Beta: 58%</li>
+            <li>Equipo Gamma: 54%</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Estadística X3</h3>
+          <p>Rendimiento defensivo y bloqueos de tiro por equipo.</p>
+          <ul>
+            <li>Equipo Zeta: 30 bloqueos</li>
+            <li>Equipo Eta: 28 bloqueos</li>
+            <li>Equipo Theta: 25 bloqueos</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Modal overlay para cartas -->
+  <!-- Overlay y modal para las cartas -->
   <div id="overlay" class="overlay" style="display:none" onclick="cerrarCarta(event)">
     <div class="big-card" id="bigCard" onclick="event.stopPropagation()"></div>
   </div>
 
-  <script src="script.js"></script>
-  <script>lucide.createIcons();</script>
+  <!-- Script para mostrar y cerrar cartas (igual que tu original) -->
+  <script>
+    const datosEquipos = {
+      Palmeiras: {
+        escudo: 'palmeiraslogo.png',
+        proxPartido: { rival: 'Eliminado', fecha: '–' },
+        grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 4, GC: 2, DF: 2, PTS: 7 },
+        resultados: [
+          'vs Al Ahly: 2‑0',
+          'vs Porto: 0‑0',
+          'vs Inter Miami: 2‑2',
+          'Octavos: vs Botafogo: 1‑0 (prórroga)',
+          'Cuartos: vs Chelsea: 1‑2 (Eliminado)'
+        ]
+      },
+      Botafogo: {
+        escudo: 'botafogologo.png',
+        proxPartido: { rival: 'Eliminado', fecha: '–' },
+        grupo: { PJ: 3, G: 2, E: 0, P: 1, GF: 3, GC: 2, DF: 1, PTS: 6 },
+        resultados: [
+          'vs Seattle Sounders: 2‑1',
+          'vs PSG: 1‑0',
+          'vs Atlético Madrid: 0‑1',
+          'Octavos: vs Palmeiras: 0‑1 (prórroga, Eliminado)'
+        ]
+      },
+      Flamengo: {
+        escudo: 'flamengologo.png',
+        proxPartido: { rival: 'Eliminado', fecha: '–' },
+        grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 6, GC: 2, DF: 4, PTS: 7 },
+        resultados: [
+          'vs Espérance: 2‑0',
+          'vs Chelsea: 3‑1',
+          'vs LAFC: 1‑1',
+          'Octavos: vs Bayern Múnich: 2‑4 (Eliminado)'
+        ]
+      },
+      Fluminense: {
+        escudo: 'fluminenselogo.png',
+        proxPartido: { rival: 'Eliminado', fecha: '–' },
+        grupo: { PJ: 3, G: 1, E: 2, P: 0, GF: 2, GC: 0, DF: 2, PTS: 5 },
+        resultados: [
+          'vs Mamelodi Sundowns: 0‑0',
+          'vs Borussia Dortmund: 1‑0',
+          'vs Ulsan Hyundai: 1‑0',
+          'Octavos: vs Inter de Milán: 2‑0',
+          'Cuartos: vs Al‑Hilal: 1‑0',
+          'Semis: vs Chelsea: 0‑2 (Eliminado)'
+        ]
+      }
+    };
 
+    function mostrarCarta(equipo) {
+      const stats = datosEquipos[equipo];
+      const resHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
+      const contenido = `
+        <img src="${stats.escudo}" alt="${equipo}" style="max-width:100px; display:block; margin:0 auto 1rem;">
+        <h3>Próximo partido</h3>
+        <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
+        <p><strong>Fecha:</strong> ${stats.proxPartido.fecha}</p>
+        <hr>
+        <h4>Estadísticas de grupo</h4>
+        <p><strong>PJ:</strong> ${stats.grupo.PJ} | <strong>G:</strong> ${stats.grupo.G} | 
+           <strong>E:</strong> ${stats.grupo.E} | <strong>P:</strong> ${stats.grupo.P}</p>
+        <p><strong>GF:</strong> ${stats.grupo.GF} | <strong>GC:</strong> ${stats.grupo.GC} | 
+           <strong>DF:</strong> ${stats.grupo.DF} | <strong>PTS:</strong> ${stats.grupo.PTS}</p>
+        <hr>
+        <h4>Resultados</h4>
+        ${resHtml}
+      `;
+      document.getElementById('bigCard').innerHTML = contenido;
+      document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function cerrarCarta(event) {
+      if(event.target.id === 'overlay'){
+        document.getElementById('overlay').style.display = 'none';
+      }
+    }
+  </script>
 </body>
+
 </html>
