@@ -250,6 +250,7 @@ h1 {
   user-select: none;
   border: 3px solid #b58e11; /* marco dorado */
   box-sizing: border-box;
+  text-align: center;
 }
 
 .card:hover {
@@ -270,7 +271,7 @@ h1 {
 }
 
 .card-front img {
-  width: 120px;
+  width: 100px;
   height: auto;
   margin-bottom: 1rem;
   filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
@@ -302,6 +303,7 @@ h1 {
   letter-spacing: 0.05em;
 }
 
+/* Overlay modal para carta grande */
 .overlay {
   position: fixed;
   top: 0;
@@ -335,7 +337,7 @@ h1 {
 }
 
 .big-card img {
-  width: 100px;
+  width: 90px;
   height: auto;
   margin-bottom: 1rem;
 }
@@ -371,12 +373,17 @@ h1 {
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
   box-sizing: border-box;
+  cursor: grab;
+}
+
+.carousel:active {
+  cursor: grabbing;
 }
 
 .carousel-item {
   flex: 0 0 auto;
   scroll-snap-align: center;
-  width: 220px; /* más pequeño para que no se vean gigantes */
+  width: 220px;
   border-radius: 16px;
   border: 2px solid #b58e11;
   background: linear-gradient(145deg, #fff8dc, #d4af37);
@@ -386,6 +393,7 @@ h1 {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  user-select: none;
 }
 
 .carousel-item:hover {
@@ -398,17 +406,39 @@ h1 {
 .carousel-item img,
 .carousel-item video {
   width: 100%;
-  height: 140px; /* un poco más pequeño */
+  height: 140px;
   object-fit: cover;
   border-radius: 14px 14px 0 0;
   user-select: none;
 }
 
-/* IMAGEN GRANDE EN MODAL */
-.big-card img {
-  width: 90px; /* más pequeño para que no sobresalga */
-  height: auto;
-  margin-bottom: 1rem;
+/* Contenido dentro del carrusel-item si se usa texto */
+.carousel-item .contenido {
+  padding: 0.4rem 1rem 1rem;
+  color: #5a3e00;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Imagen con movimiento (efecto flotante suave) */
+.imagen-flotante {
+  display: block;
+  margin: 0 auto;
+  width: 160px;
+  animation: flotar 3.5s ease-in-out infinite;
+  border-radius: 20px;
+  box-shadow:
+    0 0 12px 4px rgba(212,175,55,0.7);
+}
+
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 4px 4px rgba(212,175,55,0.6));
+  }
+  50% {
+    transform: translateY(-15px);
+    filter: drop-shadow(0 8px 6px rgba(212,175,55,0.9));
+  }
 }
 
 /* SIDEBAR */
@@ -450,10 +480,4 @@ h1 {
     width: 280px;
     height: 420px;
   }
-}
-
-.carousel-item .contenido {
-  padding: 0.4rem 1rem 1rem;
-  color: #5a3e00;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
