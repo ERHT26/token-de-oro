@@ -88,26 +88,25 @@
       </section>
 
       <section class="seccion-magica">
-  <h2 class="titulo">JUEGOS DESTACADOS</h2>
-  <div class="carousel">
-    <div class="carousel-item">
-      <iframe width="100%" height="140" src="https://www.youtube.com/embed/a1bQWCiFqgE" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
-    </div>
-    <div class="carousel-item">
-      <iframe width="100%" height="140" src="https://www.youtube.com/embed/i3Hu6Q0yrPo" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
-    </div>
-    <div class="carousel-item">
-      <iframe width="100%" height="140" src="https://www.youtube.com/embed/BZDckbEMUlk" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
+        <h2 class="titulo">JUEGOS DESTACADOS</h2>
+        <div class="carousel">
+          <div class="carousel-item">
+            <iframe width="100%" height="140" src="https://www.youtube.com/embed/a1bQWCiFqgE" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe width="100%" height="140" src="https://www.youtube.com/embed/i3Hu6Q0yrPo" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe width="100%" height="140" src="https://www.youtube.com/embed/BZDckbEMUlk" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+      </section>
 
       <section class="seccion-magica">
         <h2 class="titulo">JUGADOR DE LA SEMANA</h2>
@@ -173,15 +172,16 @@
 
     function mostrarCarta(equipo) {
       const stats = datosEquipos[equipo];
-      const resHtml = stats.resultados.map(r => <p>${r}</p>).join('');
-      const contenido = 
+      // Generamos el HTML de resultados con join y template string
+      const resHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
+      const contenido = `
         <img src="${stats.escudo}" alt="${equipo}" style="max-width:100px;">
         <h3>Próximo partido</h3>
         <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
         <p><strong>Fecha:</strong> ${stats.proxPartido.fecha}</p>
         <h3>Resultados</h3>
         ${resHtml}
-      ;
+      `;
       document.getElementById('bigCard').innerHTML = contenido;
       document.getElementById('overlay').style.display = 'flex';
     }
