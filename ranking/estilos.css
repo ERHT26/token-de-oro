@@ -63,6 +63,33 @@
     transform: skewX(-20deg) translateX(200%);
   }
 }
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  background-color: #000;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.menu-item {
+  color: gold;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: scale(1.2);
+  color: #fff700;
+}
+
+.menu-item i {
+  width: 28px;
+  height: 28px;
+}
         nav {
   background-color: #111;
   padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
