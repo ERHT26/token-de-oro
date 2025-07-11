@@ -227,14 +227,26 @@ h1 {
     0 8px 24px rgba(0,0,0,0.3);
 }
 
-/* Aquí el cambio principal: las imágenes dentro de las cartas sin borde redondeado ni sombra */
 .card img {
   width: 160px;
   height: 160px;
   object-fit: contain;
   margin-bottom: 1rem;
-  border-radius: 0; /* quita bordes redondeados */
-  box-shadow: none; /* quita sombra */
+  border-radius: 12px; /* suavizado de bordes normal */
+  box-shadow: 0 0 10px #b58e11;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Leyenda en carta chica */
+.card .leyenda-ver-mas {
+  font-size: 0.9rem;
+  color: #b58e11;
+  margin-top: 0.3rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px #d4af37;
+  user-select: none;
 }
 
 /* Periodico Layout */
@@ -387,20 +399,25 @@ h1 {
 
 .big-card {
   background: #fff;
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 2rem;
   max-width: 380px;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 0 20px rgba(181,142,17,0.8);
+  box-shadow: 0 0 15px rgba(212,175,55,0.8); /* sombra dorada estática */
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #5a3e00;
 }
 
 .big-card img {
-  max-width: 120px;
+  max-width: 140px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(212,175,55,0.6); /* sombra suave dorada */
   margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Responsive */
