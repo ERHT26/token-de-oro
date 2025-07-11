@@ -464,6 +464,16 @@ h1 {
   height: auto;
   min-height: 0;
   overflow: visible; /* permitir mostrar todo contenido */
+  .sidebar {
+  max-width: 100%;      /* Evita que se pase del ancho asignado */
+  overflow-x: hidden;   /* Oculta cualquier desbordamiento horizontal */
+}
+.sidebar > * {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
 }
 
 /* RESPONSIVE: Para móviles */
