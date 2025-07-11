@@ -80,7 +80,7 @@
     <aside class="sidebar">
       <section class="seccion-magica">
         <h2 class="titulo">🖼️ Carrusel de Imágenes en Movimiento</h2>
-        <div class="carousel">
+        <div class="carousel" id="carousel1">
           <div class="carousel-item"><img src="gif1.gif" alt="Celebración 1"></div>
           <div class="carousel-item"><img src="gif2.gif" alt="Gol histórico"></div>
           <div class="carousel-item"><img src="gif3.gif" alt="Hinchas"></div>
@@ -89,7 +89,7 @@
 
       <section class="seccion-magica">
         <h2 class="titulo">🎥 Carrusel de Videos</h2>
-        <div class="carousel">
+        <div class="carousel" id="carousel2">
           <div class="carousel-item"><video src="video1.mp4" controls></video></div>
           <div class="carousel-item"><video src="video2.mp4" controls></video></div>
           <div class="carousel-item"><video src="video3.mp4" controls></video></div>
@@ -176,6 +176,30 @@
     function cerrarCarta() {
       document.getElementById('overlay').style.display = 'none';
     }
+
+    // Auto-scroll del carrusel con pausa al hover
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      let scrollAmount = 0;
+      const scrollStep = 1; // px por frame, ajusta velocidad
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      let isPaused = false;
+
+      carousel.addEventListener('mouseenter', () => { isPaused = true; });
+      carousel.addEventListener('mouseleave', () => { isPaused = false; });
+
+      function autoScroll() {
+        if (!isPaused) {
+          scrollAmount += scrollStep;
+          if (scrollAmount >= maxScroll) {
+            scrollAmount = 0;
+          }
+          carousel.scrollLeft = scrollAmount;
+        }
+        requestAnimationFrame(autoScroll);
+      }
+
+      autoScroll();
+    });
   </script>
 </body>
 </html>
