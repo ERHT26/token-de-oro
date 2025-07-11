@@ -100,11 +100,11 @@ const datosEquipos = {
   Palmeiras: {
     escudo: 'palmeiraslogo.png',
     proxPartido: { rival: 'Eliminado', fecha: '–' },
-    grupo: { PJ:3, G:2, E:1, P:0, GF:?, GC:?, DF:?, PTS:7 },
+    grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 4, GC: 2, DF: 2, PTS: 7 },
     resultados: [
       'vs Al Ahly: 2‑0',
-      'vs Porto: ???',  // ajusta según GF/GC exactos si los tienes
-      'vs Inter Miami: ???',
+      'vs Porto: 0‑0',
+      'vs Inter Miami: 2‑2',
       'Octavos: vs Botafogo: 1‑0 (prórroga)',
       'Cuartos: vs Chelsea: 1‑2 (Eliminado)'
     ]
@@ -112,7 +112,7 @@ const datosEquipos = {
   Botafogo: {
     escudo: 'botafogologo.png',
     proxPartido: { rival: 'Eliminado', fecha: '–' },
-    grupo: { PJ:3, G:2, E:0, P:1, GF:?, GC:?, DF:?, PTS:6 },
+    grupo: { PJ: 3, G: 2, E: 0, P: 1, GF: 3, GC: 2, DF: 1, PTS: 6 },
     resultados: [
       'vs Seattle Sounders: 2‑1',
       'vs PSG: 1‑0',
@@ -123,7 +123,7 @@ const datosEquipos = {
   Flamengo: {
     escudo: 'flamengologo.png',
     proxPartido: { rival: 'Eliminado', fecha: '–' },
-    grupo: { PJ:3, G:2, E:1, P:0, GF:?, GC:?, DF:?, PTS:7 },
+    grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 6, GC: 2, DF: 4, PTS: 7 },
     resultados: [
       'vs Espérance: 2‑0',
       'vs Chelsea: 3‑1',
@@ -134,7 +134,7 @@ const datosEquipos = {
   Fluminense: {
     escudo: 'fluminenselogo.png',
     proxPartido: { rival: 'Eliminado', fecha: '–' },
-    grupo: { PJ:3, G:1, E:2, P:0, GF:?, GC:?, DF:?, PTS:5 },
+    grupo: { PJ: 3, G: 1, E: 2, P: 0, GF: 2, GC: 0, DF: 2, PTS: 5 },
     resultados: [
       'vs Mamelodi Sundowns: 0‑0',
       'vs Borussia Dortmund: 1‑0',
@@ -145,7 +145,34 @@ const datosEquipos = {
     ]
   }
 };
+
+function mostrarCarta(equipo) {
+  const stats = datosEquipos[equipo];
+  const resHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
+  const contenido = `
+    <img src="${stats.escudo}" alt="${equipo}" style="max-width:100px;">
+    <h3>Próximo partido</h3>
+    <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
+    <p><strong>Fecha:</strong> ${stats.proxPartido.fecha}</p>
+    <hr>
+    <h4>Estadísticas de grupo</h4>
+    <p><strong>PJ:</strong> ${stats.grupo.PJ} | <strong>G:</strong> ${stats.grupo.G} | 
+       <strong>E:</strong> ${stats.grupo.E} | <strong>P:</strong> ${stats.grupo.P}</p>
+    <p><strong>GF:</strong> ${stats.grupo.GF} | <strong>GC:</strong> ${stats.grupo.GC} | 
+       <strong>DF:</strong> ${stats.grupo.DF} | <strong>PTS:</strong> ${stats.grupo.PTS}</p>
+    <hr>
+    <h4>Resultados</h4>
+    ${resHtml}
+  `;
+  document.getElementById('bigCard').innerHTML = contenido;
+  document.getElementById('overlay').style.display = 'flex';
+}
+
+function cerrarCarta() {
+  document.getElementById('overlay').style.display = 'none';
+}
 </script>
+
 
 
 </body>
