@@ -351,7 +351,8 @@ h1 {
   margin: 0 auto 3rem;
   padding: 0 1rem;
   box-sizing: border-box;
-  overflow-x: hidden; /* evita scroll horizontal */
+  overflow-x: hidden; /* deja oculto solo scroll horizontal */
+  /* REMUEVE overflow-y o hidden que limite vertical */
 }
 
 /* CARTAS (LOGOS) */
@@ -374,6 +375,8 @@ h1 {
   max-width: 100%;
   box-sizing: border-box;
   cursor: grab;
+  /* Aseguramos que el carousel no tenga overflow oculto vertical que corte */
+  overflow-y: visible;
 }
 
 .carousel:active {
@@ -446,8 +449,7 @@ h1 {
   background: #fff8dccc;
   border-radius: 16px;
   padding: 1rem;
-  box-shadow:
-    0 0 10px rgba(181, 142, 17, 0.4);
+  box-shadow: 0 0 10px rgba(181, 142, 17, 0.4);
   border: 2px solid #b58e11;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #5a3e00;
@@ -457,6 +459,11 @@ h1 {
   max-width: 100%;
   box-sizing: border-box;
   overflow-wrap: break-word;
+
+  /* NUEVO: Aseguramos que pueda crecer según contenido */
+  height: auto;
+  min-height: 0;
+  overflow: visible; /* permitir mostrar todo contenido */
 }
 
 /* RESPONSIVE: Para móviles */
