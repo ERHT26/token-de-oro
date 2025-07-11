@@ -227,13 +227,14 @@ h1 {
     0 8px 24px rgba(0,0,0,0.3);
 }
 
+/* Aquí el cambio principal: las imágenes dentro de las cartas sin borde redondeado ni sombra */
 .card img {
   width: 160px;
   height: 160px;
   object-fit: contain;
   margin-bottom: 1rem;
-  border-radius: 100%;
-  box-shadow: 0 0 10px #b58e11;
+  border-radius: 0; /* quita bordes redondeados */
+  box-shadow: none; /* quita sombra */
 }
 
 /* Periodico Layout */
