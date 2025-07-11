@@ -232,27 +232,14 @@ h1 {
   height: 160px;
   object-fit: contain;
   margin-bottom: 1rem;
-  border-radius: 12px; /* suavizado de bordes normal */
+  border-radius: 100%;
   box-shadow: 0 0 10px #b58e11;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Leyenda en carta chica */
-.card .leyenda-ver-mas {
-  font-size: 0.9rem;
-  color: #b58e11;
-  margin-top: 0.3rem;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px #d4af37;
-  user-select: none;
 }
 
 /* Periodico Layout */
 .periodico-layout {
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
+  grid-template-columns: 1fr 1fr;  /* Mitad y mitad */
   gap: 1.5rem;
   width: 100%;
   max-width: 900px;
@@ -399,25 +386,20 @@ h1 {
 
 .big-card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 2rem;
   max-width: 380px;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 0 15px rgba(212,175,55,0.8); /* sombra dorada estática */
+  box-shadow: 0 0 20px rgba(181,142,17,0.8);
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #5a3e00;
 }
 
 .big-card img {
-  max-width: 140px;
-  border-radius: 16px;
-  box-shadow: 0 0 12px rgba(212,175,55,0.6); /* sombra suave dorada */
+  max-width: 120px;
   margin-bottom: 1rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Responsive */
