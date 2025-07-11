@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="description" content="Consulta el ranking actualizado de futbolistas según el sistema Token de Oro. Clasificación basada en puntos por rendimiento real en cada partido.">
     <title>Token de Oro</title>
-    
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 <!-- Logo de la pagina -->
@@ -24,14 +24,15 @@
 </div>
     <nav>
   <ul>
-    <li><a href="/" >Inicio</a></li>
-    <li><a href="/ranking" class="active">Ranking</a></li>
-     <li><a href="../estadisticas">Estadisticas</a></li>
-    <li><a href="../juegos">Juegos</a></li>
-    <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer">MAS +</a></li>
+    <li><a href="/" title="Inicio"><i data-lucide="home"></i></a></li>
+    <li><a href="/ranking" class="active" title="Ranking"><i data-lucide="trophy"></i></a></li>
+    <li><a href="../estadisticas" title="Estadísticas"><i data-lucide="bar-chart-3"></i></a></li>
+    <li><a href="../juegos" title="Juegos"><i data-lucide="gamepad-2"></i></a></li>
+    <li><a href="https://otieu.com/4/9419626" target="_blank" rel="noopener noreferrer" title="Más"><i data-lucide="more-horizontal"></i></a></li>
   </ul>
 </nav>
 
+<script>lucide.createIcons();</script>
    <header class="trophy-header">
   
   <div class="header-content">
