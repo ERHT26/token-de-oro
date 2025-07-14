@@ -381,6 +381,7 @@ td:nth-child(3) {
   font-size: 16px;
 }
 
+/* Resultado final con nombre y puntos */
 #result {
   margin-top: 10px;
   font-weight: bold;
@@ -391,6 +392,7 @@ td:nth-child(3) {
   margin-top: 20px;
 }
 
+/* Estilo mejorado para ganador con nombre y puntos destacados */
 .ganador-container {
   background: #fffbcc;
   border: 3px solid #ffd700;
@@ -401,24 +403,31 @@ td:nth-child(3) {
   max-width: 600px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   animation: fadeInScale 1s ease-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .ganador-container h1 {
   margin-bottom: 1rem;
   font-size: 2.5rem;
   color: #cc8800;
+  font-weight: 800;
+  text-shadow: 0 0 5px #ffd700aa;
 }
 
 .ganador-nombre {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 900;
   color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 7px #ffcc00cc;
 }
 
 .ganador-puntos {
-  font-size: 2rem;
-  color: #444;
-  margin-top: 0.5rem;
+  font-size: 2.5rem;
+  color: #bb8a00;
+  font-weight: 700;
+  margin-top: 0;
+  text-shadow: 0 0 6px #ffd700cc;
 }
 
 @keyframes fadeInScale {
