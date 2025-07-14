@@ -243,7 +243,6 @@ h1 {
   padding: 0 0.5rem;
   box-sizing: border-box;
   padding-bottom: 2rem;
-
 }
 
 /* Imagen del escudo sin marco ni recortes */
@@ -347,8 +346,6 @@ h1 {
   overflow-x: hidden;
 }
 
-
-
 /* Asegura que hijos de sidebar no salgan del contenedor */
 .periodico-layout > * {
   max-width: 100%;
@@ -366,6 +363,11 @@ h1 {
   box-shadow:
     0 0 8px 3px rgba(212,175,55,0.8),
     0 2px 8px rgba(0,0,0,0.15);
+
+  /* Ajuste para altura justa */
+  height: auto;
+  min-height: 0;
+  display: block;
 }
 
 /* Títulos en el sidebar */
@@ -432,12 +434,17 @@ h1 {
 
 /* Imagen flotante */
 .imagen-flotante {
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  max-height: 300px;
   animation: flotar 3s ease-in-out infinite alternate;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(212,175,55,0.7);
   margin-top: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
 }
 
 @keyframes flotar {
@@ -477,4 +484,3 @@ h1 {
     font-size: 0.9rem;
   }
 }
-
