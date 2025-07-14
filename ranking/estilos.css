@@ -265,11 +265,32 @@ tbody tr:nth-child(even) td {
   background-color: #fdf9e7; /* Fondo ligeramente distinto en filas pares */
 }
 
-td:nth-child(2) {
-  font-size: 0.9em;
-  color: #555;
+/* Nombre del jugador: segunda columna */
+td.nombre-jugador {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #bb8a00; /* dorado oscuro */
   max-width: 350px;
   word-wrap: break-word;
+  padding-left: 12px;
+}
+
+/* Puntos: tercera columna */
+td.puntos {
+  font-weight: 900;
+  font-size: 1.3em;
+  color: #d4af37; /* dorado brillante */
+  text-align: center;
+  padding: 12px 20px;
+  background: #fff8dc; /* fondo crema suave */
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  transition: background-color 0.3s ease;
+}
+
+td.puntos:hover {
+  background-color: #fff1a8; /* aclara al pasar mouse */
+  cursor: default;
 }
 
 /* Estilo para desglose de puntos en tabla (corregido e integrado) */
@@ -310,13 +331,6 @@ td:nth-child(2) {
 .points-breakdown li:hover {
   background-color: #fff3b0;
   cursor: default;
-}
-
-td:nth-child(3) {
-  font-weight: 700;
-  color: #bb8a00;
-  text-align: center;
-  font-size: 1.1em;
 }
 
 .flag {
@@ -381,7 +395,6 @@ td:nth-child(3) {
   font-size: 16px;
 }
 
-/* Resultado final con nombre y puntos */
 #result {
   margin-top: 10px;
   font-weight: bold;
@@ -392,7 +405,6 @@ td:nth-child(3) {
   margin-top: 20px;
 }
 
-/* Estilo mejorado para ganador con nombre y puntos destacados */
 .ganador-container {
   background: #fffbcc;
   border: 3px solid #ffd700;
@@ -403,31 +415,24 @@ td:nth-child(3) {
   max-width: 600px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   animation: fadeInScale 1s ease-out;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .ganador-container h1 {
   margin-bottom: 1rem;
   font-size: 2.5rem;
   color: #cc8800;
-  font-weight: 800;
-  text-shadow: 0 0 5px #ffd700aa;
 }
 
 .ganador-nombre {
   font-size: 3rem;
-  font-weight: 900;
+  font-weight: bold;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 7px #ffcc00cc;
 }
 
 .ganador-puntos {
-  font-size: 2.5rem;
-  color: #bb8a00;
-  font-weight: 700;
-  margin-top: 0;
-  text-shadow: 0 0 6px #ffd700cc;
+  font-size: 2rem;
+  color: #444;
+  margin-top: 0.5rem;
 }
 
 @keyframes fadeInScale {
