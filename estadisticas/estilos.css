@@ -242,6 +242,8 @@ h1 {
   white-space: normal;
   padding: 0 0.5rem;
   box-sizing: border-box;
+  padding-bottom: 2rem;
+
 }
 
 /* Imagen del escudo sin marco ni recortes */
