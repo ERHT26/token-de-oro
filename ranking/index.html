@@ -128,6 +128,7 @@
   };
 
   async function getStats(playerId) {
+    // Aquí se usa season=2023 para la temporada 2023/2024 (que incluye el año 2024)
     const url = `https://v3.football.api-sports.io/players?id=${playerId}&season=2023`;
     const resp = await fetch(url, {
       headers: { 'x-apisports-key': API_KEY }
@@ -136,88 +137,84 @@
     if (!data.response || data.response.length === 0) return null;
     return data.response[0].statistics[0];
   }
-  function calcCollectivePoints(achievements) {
-  let total = 0;
-  let breakdown = '';
-  for (const [key, value] of Object.entries(achievements)) {
-    if(value > 0) {
-      const name = collectiveAchievementsNames[key] || key;  // Aquí usamos el nombre real o la key si no existe
-      breakdown += `${name}: ${value} pts<br>`;
-      total += value;
-    }
-  }
-  return { total, breakdown };
-}
 
- 
+  function calcCollectivePoints(achievements) {
+    let total = 0;
+    let breakdown = '';
+    for (const [key, value] of Object.entries(achievements)) {
+      if (value > 0) {
+        const name = collectiveAchievementsNames[key] || key;
+        breakdown += `${name}: ${value} pts<br>`;
+        total += value;
+      }
+    }
+    return { total, breakdown };
+  }
 
   const collectiveAchievementsNames = {
-  // Clubes - Ligas
-  championsLeague: 'UEFA Champions League',
-  europaLeague: 'UEFA Europa League',
-  conferenceLeague: 'UEFA Conference League',
-  leagueTop20UEFA: 'Liga en Top 20 UEFA',
-  leagueUEFA: 'Liga UEFA (menos Top 20)',
-  leagueCONMEBOL: 'Liga CONMEBOL',
-  leagueCONCACAF: 'Liga CONCACAF',
-  leagueAFC: 'Liga AFC',
-  leagueCAF: 'Liga CAF',
-  leagueOFC: 'Liga OFC',
+    championsLeague: 'UEFA Champions League',
+    europaLeague: 'UEFA Europa League',
+    conferenceLeague: 'UEFA Conference League',
+    leagueTop20UEFA: 'Liga en Top 20 UEFA',
+    leagueUEFA: 'Liga UEFA (menos Top 20)',
+    leagueCONMEBOL: 'Liga CONMEBOL',
+    leagueCONCACAF: 'Liga CONCACAF',
+    leagueAFC: 'Liga AFC',
+    leagueCAF: 'Liga CAF',
+    leagueOFC: 'Liga OFC',
 
-  // Clubes - Copas nacionales
-  nationalCupTop20: 'Copa Nacional Top 20 UEFA',
-  nationalCupUEFA: 'Copa Nacional UEFA',
-  nationalCupCONMEBOL: 'Copa Nacional CONMEBOL',
-  nationalCupCONCACAF: 'Copa Nacional CONCACAF',
-  nationalCupAFC: 'Copa Nacional AFC',
-  nationalCupCAF: 'Copa Nacional CAF',
-  nationalCupOFC: 'Copa Nacional OFC',
+    nationalCupTop20: 'Copa Nacional Top 20 UEFA',
+    nationalCupUEFA: 'Copa Nacional UEFA',
+    nationalCupCONMEBOL: 'Copa Nacional CONMEBOL',
+    nationalCupCONCACAF: 'Copa Nacional CONCACAF',
+    nationalCupAFC: 'Copa Nacional AFC',
+    nationalCupCAF: 'Copa Nacional CAF',
+    nationalCupOFC: 'Copa Nacional OFC',
 
-  // Clubes - Copas internacionales
-  superCupUEFA: 'Supercopa de la UEFA',
-  clubWorldCup: 'Mundial de Clubes',
-  libertadores: 'Copa Libertadores',
-  sudamericana: 'Copa Sudamericana',
-  championsCupCONCACAF: 'Concacaf Champions Cup',
-  leaguesCupCONCACAF: 'Leagues Cup',
-  championsLeagueAFC: 'AFC Champions League',
-  afcCup: 'AFC Cup',
-  championsLeagueCAF: 'CAF Champions League',
-  confederationCupCAF: 'CAF Confederation Cup',
-  championsLeagueOFC: 'OFC Champions League',
+    superCupUEFA: 'Supercopa de la UEFA',
+    clubWorldCup: 'Mundial de Clubes',
+    libertadores: 'Copa Libertadores',
+    sudamericana: 'Copa Sudamericana',
+    championsCupCONCACAF: 'Concacaf Champions Cup',
+    leaguesCupCONCACAF: 'Leagues Cup',
+    championsLeagueAFC: 'AFC Champions League',
+    afcCup: 'AFC Cup',
+    championsLeagueCAF: 'CAF Champions League',
+    confederationCupCAF: 'CAF Confederation Cup',
+    championsLeagueOFC: 'OFC Champions League',
 
-  // Selecciones
-  worldCupFIFA: 'Copa Mundial de la FIFA',
-  fifaRankingComplete: 'Clasificación Mundial FIFA (completada)',
-  confederationsCupFIFA: 'Copa Confederaciones FIFA',
-  
-  // UEFA selecciones
-  euroCup: 'Eurocopa',
-  leagueOfNationsUEFA: 'Liga de Naciones UEFA',
+    worldCupFIFA: 'Copa Mundial de la FIFA',
+    fifaRankingComplete: 'Clasificación Mundial FIFA (completada)',
+    confederationsCupFIFA: 'Copa Confederaciones FIFA',
 
-  // CONMEBOL selecciones
-  copaAmerica: 'Copa América',
+    euroCup: 'Eurocopa',
+    leagueOfNationsUEFA: 'Liga de Naciones UEFA',
 
-  // CONCACAF selecciones
-  copaOro: 'Copa Oro CONCACAF',
-  leagueOfNationsCONCACAF: 'Liga de Naciones CONCACAF',
+    copaAmerica: 'Copa América',
 
-  // AFC selecciones
-  asianCup: 'Copa Asiática',
+    copaOro: 'Copa Oro CONCACAF',
+    leagueOfNationsCONCACAF: 'Liga de Naciones CONCACAF',
 
-  // CAF selecciones
-  afcon: 'Copa Africana de Naciones (AFCON)',
+    asianCup: 'Copa Asiática',
 
-  // OFC selecciones
-  oceaniaNationsCup: 'Copa de Naciones de Oceanía'
-};
+    afcon: 'Copa Africana de Naciones (AFCON)',
 
+    oceaniaNationsCup: 'Copa de Naciones de Oceanía'
+  };
 
   function calcPoints(stats, player) {
     if (!stats) return { total: 0, details: {}, collective: { total: 0, breakdown: '' } };
 
-    const dribbles = 0, recoveries = 0, successfulTackles = 0, passesCompletedRival = 0;
-    const kmRun = 0, fouls = 0, simulation = 0, noFouls = false, captain = false;
+    // No disponibles en API ni internet: quedan en 0 o false
+    const dribbles = 0;
+    const recoveries = 0;
+    const successfulTackles = 0;
+    const passesCompletedRival = 0;
+    const kmRun = 0;
+    const fouls = 0;
+    const simulation = 0;
+    const noFouls = false;
+    const captain = false;
 
     let details = {}, total = 0;
 
@@ -278,35 +275,35 @@
   }
 
   function formatDetails(details, collective) {
-  return `
-    <div style="padding: 0.5rem;">
-      <strong>🧍‍♂️ Rendimiento Individual</strong>
-      <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
-        <li>Goles: ${details.goals} ×14 = ${details.goals * 14} pts</li>
-        <li>Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts</li>
-        <li>Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts</li>
-        <li>Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts</li>
-        <li>Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts</li>
-        <li>Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts</li>
-        <li>Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts</li>
-        <li>Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts</li>
-        <li>Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts</li>
-        <li>Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts</li>
-        <li>Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts</li>
-        <li>Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts</li>
-        <li>Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts</li>
-        <li>Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts</li>
-        <li>Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts</li>
-        <li>Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts</li>
-      </ul>
+    return `
+      <div style="padding: 0.5rem;">
+        <strong>🧍‍♂️ Rendimiento Individual</strong>
+        <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
+          <li>Goles: ${details.goals} ×14 = ${details.goals * 14} pts</li>
+          <li>Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts</li>
+          <li>Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts</li>
+          <li>Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts</li>
+          <li>Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts</li>
+          <li>Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts</li>
+          <li>Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts</li>
+          <li>Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts</li>
+          <li>Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts</li>
+          <li>Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts</li>
+          <li>Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts</li>
+          <li>Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts</li>
+          <li>Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts</li>
+          <li>Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts</li>
+          <li>Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts</li>
+          <li>Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts</li>
+        </ul>
 
-      <strong>🏆 Logros Colectivos</strong>
-      <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
-        ${collective.breakdown.split('<br>').filter(x => x).map(item => `<li>${item}</li>`).join('')}
-      </ul>
-    </div>
-  `;
-}
+        <strong>🏆 Logros Colectivos</strong>
+        <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
+          ${collective.breakdown.split('<br>').filter(x => x).map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
 
   async function load() {
     const table = document.getElementById('results');
@@ -333,69 +330,24 @@
 
     const winnerDiv = document.getElementById('winner');
     winnerDiv.innerHTML = `
-  <div class="ganador-container">
-    <h1>🏆 Ganador del Token de Oro 2024</h1>
-    <div class="ganador-nombre">${winner}</div>
-    <div class="ganador-puntos">${maxPoints.toFixed(2)} puntos</div>
-  </div>
-`;
-
+      <div class="ganador-container">
+        <h1>🏆 Ganador del Token de Oro 2024</h1>
+        <div class="ganador-nombre">${winner}</div>
+        <div class="ganador-puntos">${maxPoints.toFixed(2)} puntos</div>
+      </div>
+    `;
   }
-  
-     async function fetchDataOncePerDay(endpoint, key) {
-       const today = new Date().toISOString().split('T')[0];
-       const cache = localStorage.getItem('api_cache');
-       if (cache) {
-         const { date, data } = JSON.parse(cache);
-         if (date === today) {
-           return data;
-         }
-       }
-       const response = await fetch(endpoint, {
-         headers: {
-           'x-apisports-key': key
-         }
-       });
-       const data = await response.json();
-       localStorage.setItem('api_cache', JSON.stringify({ date: today, data }));
-       return data;
-     }
-   
+
   load();
 </script>
 
-<!-- Pantalla en construcción -->
+
+<!-- Pantalla en construcción 
 <div id="overlay-construccion">
   <div class="mensaje-construccion">🛠️ En Construcción 🛠️</div>
 </div>
+-->
 
-<style>
-  #overlay-construccion {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* permite hacer scroll y clics en lo que hay debajo */
-    background: rgba(255, 255, 255, 0.1); /* leve transparencia blanca */
-    backdrop-filter: blur(1px); /* pequeño desenfoque para dar efecto */
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .mensaje-construccion {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #d9534f;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 1rem 2rem;
-    border: 2px dashed #d9534f;
-    border-radius: 12px;
-    pointer-events: auto; /* permite copiar el texto si se desea */
-  }
-</style>
 
 
 </body>
