@@ -63,6 +63,7 @@
     transform: skewX(-20deg) translateX(200%);
   }
 }
+
 .menu {
   display: flex;
   justify-content: center;
@@ -90,7 +91,8 @@
   width: 28px;
   height: 28px;
 }
-        nav {
+
+nav {
   background-color: #111;
   padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
   box-shadow: 0 2px 8px rgba(0,0,0,0.8);
@@ -156,15 +158,14 @@ nav ul li a.active::after {
   width: 100%;
 }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fef9f0;  /* <-- Aquí está el color de fondo */
-            margin: 0;
-            padding: 0;
-           
-        }
-   
-      .trophy-header {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fef9f0;  /* <-- Aquí está el color de fondo */
+  margin: 0;
+  padding: 0;
+}
+
+.trophy-header {
   position: relative;
   background: linear-gradient(135deg, #f9d423, #ffcc00);
   padding: 12px 15px; /* menos padding arriba/abajo para hacerlo compacto */
@@ -208,108 +209,147 @@ nav ul li a.active::after {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-  
-        section {
-            max-width: 1000px;
-            margin: 20px auto;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #333;
-            border-bottom: 2px solid #ffd700;
-            padding-bottom: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-        th {
-            background-color: #fef3c7;
-        }
-        tr:nth-child(even) {
-            background-color: #fafafa;
-        }
-        .flag {
-            font-size: 1.2em;
-        }
-       
-       #bottom-banner {
-       position: fixed;
-       bottom: 0;
-       left: 0;
-       width: 100%;
-       height: 70px; /* Altura ajustable */
-       background: #f9f9f9;
-       box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-       z-index: 9999;
-       display: flex;
-       align-items: center;       /* Centra verticalmente */
-       justify-content: center;   /* Centra horizontalmente */
-       padding: 0 20px;
-       box-sizing: border-box;
-       }
 
-       #close-banner {
-       position: absolute;
-       top: 5px;
-       right: 15px;
-       cursor: pointer;
-       font-size: 20px;
-       color: #333;
-       }
-      
-  
-    .container {
-      text-align: center;
-      max-width: 600px;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    }
+section {
+  max-width: 1000px;
+  margin: 20px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-    .question {
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
+h2 {
+  color: #333;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 5px;
+}
 
-    .options button {
-      display: block;
-      width: 100%;
-      margin: 8px 0;
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+/* === TABLA CORREGIDA E INTEGRADA === */
 
-    .hidden {
-      display: none;
-    }
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Separación entre filas para efecto “card” */
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    #nextBtn, #restartBtn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-    }
+th, td {
+  background: #fffef0; /* Fondo crema muy suave */
+  border: 1px solid #f0e6b8; /* Borde dorado clarito */
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(255, 215, 0, 0.15); /* Sombra dorada suave */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-    #result {
-      margin-top: 10px;
-      font-weight: bold;
-    }
+th {
+  background-color: #fff5b1; /* Dorado claro para encabezados */
+  color: #664d00; /* Marrón oscuro */
+  font-weight: 700;
+  font-size: 1em;
+  border-bottom: 3px solid #ffcc00; /* Línea dorada más gruesa */
+  box-shadow: none;
+}
 
-    #finalScore {
-      font-size: 22px;
-      margin-top: 20px;
-    }
+tbody tr:hover td {
+  background-color: #fff9cc; /* Hover suave en filas */
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.25);
+}
+
+tbody tr:nth-child(even) td {
+  background-color: #fdf9e7; /* Fondo ligeramente distinto en filas pares */
+}
+
+td:nth-child(2) {
+  font-size: 0.9em;
+  color: #555;
+  max-width: 350px;
+  word-wrap: break-word;
+}
+
+td:nth-child(3) {
+  font-weight: 700;
+  color: #bb8a00;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.flag {
+  font-size: 1.2em;
+}
+
+#bottom-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* Altura ajustable */
+  background: #f9f9f9;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: center;       /* Centra verticalmente */
+  justify-content: center;   /* Centra horizontalmente */
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+#close-banner {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.container {
+  text-align: center;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.question {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.options button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#nextBtn, #restartBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+#result {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#finalScore {
+  font-size: 22px;
+  margin-top: 20px;
+}
 
 .ganador-container {
   background: #fffbcc;
@@ -352,9 +392,7 @@ nav ul li a.active::after {
   }
 }
 
-
-  .points-breakdown strong {
-    color: #222;
-    font-weight: 600;
-  }
-
+.points-breakdown strong {
+  color: #222;
+  font-weight: 600;
+}
