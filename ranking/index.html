@@ -136,16 +136,20 @@
     if (!data.response || data.response.length === 0) return null;
     return data.response[0].statistics[0];
   }
-
   function calcCollectivePoints(achievements) {
-    let total = 0;
-    let breakdown = '';
-    for (const [key, value] of Object.entries(achievements)) {
-      breakdown += `${key}: ${value} pts<br>`;
+  let total = 0;
+  let breakdown = '';
+  for (const [key, value] of Object.entries(achievements)) {
+    if(value > 0) {
+      const name = collectiveAchievementsNames[key] || key;  // Aquí usamos el nombre real o la key si no existe
+      breakdown += `${name}: ${value} pts<br>`;
       total += value;
     }
-    return { total, breakdown };
   }
+  return { total, breakdown };
+}
+
+ 
 
   const collectiveAchievementsNames = {
   // Clubes - Ligas
