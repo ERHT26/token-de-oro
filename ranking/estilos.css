@@ -272,23 +272,44 @@ td:nth-child(2) {
   word-wrap: break-word;
 }
 
-/* Estilo para desglose de puntos en tabla */
+/* Estilo para desglose de puntos en tabla (corregido e integrado) */
 .points-breakdown {
-  font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
-  color: #FFD700; /* Dorado fuerte */
-  text-shadow:
-    0 0 5px #FFD700,
-    0 0 10px #FFA500,
-    0 0 20px #FFCC00;
-  font-weight: 900;
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffef0;      /* fondo crema muy suave */
+  border-left: 5px solid #ffcc00; /* barra lateral dorada */
+  padding: 12px 20px;
+  margin: 1rem 0 1rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.15);
+  color: #4a4a4a;                /* texto gris oscuro para mejor lectura */
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
   user-select: text;
-  margin: 0.3rem 0 0 1rem;
-  padding-left: 1rem;
+  max-width: 600px;
 }
+
+.points-breakdown strong {
+  display: block;
+  font-size: 1.3rem;
+  color: #b8860b;               /* dorado oscuro */
+  margin-bottom: 0.8rem;
+  text-align: center;
+  text-shadow: 0 0 5px #ffd700aa;
+}
+
 .points-breakdown li {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+  padding-left: 8px;
+  border-left: 3px solid #ffcc00;
+  background-color: #fffaf0;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.points-breakdown li:hover {
+  background-color: #fff3b0;
+  cursor: default;
 }
 
 td:nth-child(3) {
@@ -410,12 +431,6 @@ td:nth-child(3) {
     transform: scale(1);
   }
 }
-
-.points-breakdown strong {
-  color: #222;
-  font-weight: 600;
-}
-
 
 #overlay-construccion {
   position: fixed;
