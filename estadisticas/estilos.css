@@ -242,7 +242,7 @@ h1 {
   white-space: normal;
   padding: 0 0.5rem;
   box-sizing: border-box;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 }
 
 /* Imagen del escudo sin marco ni recortes */
@@ -292,6 +292,7 @@ h1 {
   pointer-events: none;
   user-select: none;
   letter-spacing: 0.05em;
+  z-index: 2;
 }
 
 /* Overlay y carta grande */
