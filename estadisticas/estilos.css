@@ -281,7 +281,7 @@ h1 {
 
 /* Texto "clic para ver más" */
 .card-front::after {
-  
+  content: ".";
   position: absolute;
   bottom: 10px;
   left: 50%;
