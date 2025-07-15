@@ -296,18 +296,21 @@ h1 {
 }
 .click-ver-mas {
   margin-top: auto;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-style: italic;
-  color: #5a4200;
-  background: rgba(255, 255, 255, 0.75);
-  border-top: 1px solid #b58e11;
-  padding: 8px 0;
+  color: #a57c1b; /* dorado más suave */
+  background: transparent;
+  border-top: 1px dashed #d4af37; /* línea dorada sutil */
+  padding: 6px 0 4px 0;
   width: 100%;
   text-align: center;
-  border-radius: 0 0 12px 12px;
-  font-weight: 600;
+  font-weight: 500;
+  opacity: 0.8;
   user-select: none;
   pointer-events: none;
+  letter-spacing: 0.3px;
+}
+
 }
 /* Overlay y carta grande */
 .overlay {
@@ -451,9 +454,9 @@ h1 {
 
 /* Imagen flotante */
 .imagen-flotante {
-  width: auto;
-  max-width: 100%;
-  max-height: 500px;
+  width: 100%;
+  max-width: 480px; /* o más, como 600px */
+  max-height: none; /* o elimínalo si no necesitas limitar altura */
   animation: flotar 3s ease-in-out infinite alternate;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(212,175,55,0.7);
@@ -463,6 +466,7 @@ h1 {
   margin-right: auto;
   object-fit: contain;
 }
+
 
 @keyframes flotar {
   0% {
