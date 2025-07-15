@@ -484,3 +484,13 @@ h1 {
     font-size: 0.9rem;
   }
 }
+/* Contenedor largo para alojar jugador de la semana u otra sección destacada */
+.contenedor-largo-jugador {
+  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-sizing: border-box;
+  background: transparent; /* No interfiere con estilos internos */
+}
+
