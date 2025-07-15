@@ -281,7 +281,7 @@ h1 {
 
 /* Texto "clic para ver más" */
 .card-front::after {
-  content: "Clic para ver más";
+  /*content: "Clic para ver más";*/
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -294,7 +294,21 @@ h1 {
   letter-spacing: 0.05em;
   z-index: 2;
 }
-
+.click-ver-mas {
+  margin-top: auto;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #5a4200;
+  background: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid #b58e11;
+  padding: 8px 0;
+  width: 100%;
+  text-align: center;
+  border-radius: 0 0 12px 12px;
+  font-weight: 600;
+  user-select: none;
+  pointer-events: none;
+}
 /* Overlay y carta grande */
 .overlay {
   position: fixed;
