@@ -439,7 +439,7 @@ h1 {
 .imagen-flotante {
   width: auto;
   max-width: 100%;
-  max-height: 300px;
+  max-height: 500px;
   animation: flotar 3s ease-in-out infinite alternate;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(212,175,55,0.7);
