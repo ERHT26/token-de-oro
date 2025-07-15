@@ -484,13 +484,30 @@ h1 {
     font-size: 0.9rem;
   }
 }
-/* Contenedor largo para alojar jugador de la semana u otra sección destacada */
-.contenedor-largo-jugador {
+.contenedor-jugador-semana {
+  border: 2px solid #b58e11;
+  border-radius: 16px;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  background: linear-gradient(145deg, #fef9f0, #d4af37);
+  box-shadow:
+    0 0 8px 3px rgba(212,175,55,0.8),
+    0 2px 8px rgba(0,0,0,0.15);
+
+  display: inline-block;
   width: 100%;
   max-width: 100%;
-  padding: 1.5rem;
-  margin: 2rem 0;
+  height: auto;
+  overflow: hidden;
   box-sizing: border-box;
-  background: transparent; /* No interfiere con estilos internos */
+  margin-bottom: 2rem;
 }
+.contenedor-jugador-semana > .titulo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #b58e11;
+  text-shadow: 1px 1px 2px #d4af37;
+  margin-bottom: 0.5rem;
+}
+
 
