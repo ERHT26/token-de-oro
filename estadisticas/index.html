@@ -154,87 +154,97 @@
   </div>
 
   <script>
-    const datosEquipos = {
-      Palmeiras: {
-        escudo: 'palmeiraslogo.png',
-        proxPartido: { rival: 'Eliminado', fecha: '–' },
-        grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 4, GC: 2, DF: 2, PTS: 7 },
-        resultados: [
-          'vs Al Ahly: 2‑0',
-          'vs Porto: 0‑0',
-          'vs Inter Miami: 2‑2',
-          'Octavos: vs Botafogo: 1‑0 (prórroga)',
-          'Cuartos: vs Chelsea: 1‑2 (Eliminado)'
-        ]
-      },
-      Botafogo: {
-        escudo: 'botafogologo.png',
-        proxPartido: { rival: 'Eliminado', fecha: '–' },
-        grupo: { PJ: 3, G: 2, E: 0, P: 1, GF: 3, GC: 2, DF: 1, PTS: 6 },
-        resultados: [
-          'vs Seattle Sounders: 2‑1',
-          'vs PSG: 1‑0',
-          'vs Atlético Madrid: 0‑1',
-          'Octavos: vs Palmeiras: 0‑1 (prórroga, Eliminado)'
-        ]
-      },
-      Flamengo: {
-        escudo: 'flamengologo.png',
-        proxPartido: { rival: 'Eliminado', fecha: '–' },
-        grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 6, GC: 2, DF: 4, PTS: 7 },
-        resultados: [
-          'vs Espérance: 2‑0',
-          'vs Chelsea: 3‑1',
-          'vs LAFC: 1‑1',
-          'Octavos: vs Bayern Múnich: 2‑4 (Eliminado)'
-        ]
-      },
-      Fluminense: {
-        escudo: 'fluminenselogo.png',
-        proxPartido: { rival: 'Eliminado', fecha: '–' },
-        grupo: { PJ: 3, G: 1, E: 2, P: 0, GF: 2, GC: 0, DF: 2, PTS: 5 },
-        resultados: [
-          'vs Mamelodi Sundowns: 0‑0',
-          'vs Borussia Dortmund: 1‑0',
-          'vs Ulsan Hyundai: 1‑0',
-          'Octavos: vs Inter de Milán: 2‑0',
-          'Cuartos: vs Al‑Hilal: 1‑0',
-          'Semis: vs Chelsea: 0‑2 (Eliminado)'
-        ]
+  const datosEquipos = {
+    Palmeiras: {
+      escudo: 'palmeiraslogo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 4, GC: 2, DF: 2, PTS: 7 },
+      resultados: [
+        'vs Al Ahly: 2‑0',
+        'vs Porto: 0‑0',
+        'vs Inter Miami: 2‑2',
+        'Octavos: vs Botafogo: 1‑0 (prórroga)',
+        'Cuartos: vs Chelsea: 1‑2 (Eliminado)'
+      ]
+    },
+    Botafogo: {
+      escudo: 'botafogologo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 2, E: 0, P: 1, GF: 3, GC: 2, DF: 1, PTS: 6 },
+      resultados: [
+        'vs Seattle Sounders: 2‑1',
+        'vs PSG: 1‑0',
+        'vs Atlético Madrid: 0‑1',
+        'Octavos: vs Palmeiras: 0‑1 (prórroga, Eliminado)'
+      ]
+    },
+    Flamengo: {
+      escudo: 'flamengologo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 6, GC: 2, DF: 4, PTS: 7 },
+      resultados: [
+        'vs Espérance: 2‑0',
+        'vs Chelsea: 3‑1',
+        'vs LAFC: 1‑1',
+        'Octavos: vs Bayern Múnich: 2‑4 (Eliminado)'
+      ]
+    },
+    Fluminense: {
+      escudo: 'fluminenselogo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 1, E: 2, P: 0, GF: 2, GC: 0, DF: 2, PTS: 5 },
+      resultados: [
+        'vs Mamelodi Sundowns: 0‑0',
+        'vs Borussia Dortmund: 1‑0',
+        'vs Ulsan Hyundai: 1‑0',
+        'Octavos: vs Inter de Milán: 2‑0',
+        'Cuartos: vs Al‑Hilal: 1‑0',
+        'Semis: vs Chelsea: 0‑2 (Eliminado)'
+      ]
+    }
+  };
+
+  function mostrarCarta(equipo) {
+    const stats = datosEquipos[equipo];
+    const resultadosHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
+    const contenido = `
+      <img src="${stats.escudo}" alt="${equipo}" style="max-width:100px; margin-bottom: 10px;">
+      <h2>${equipo}</h2>
+      <h3>Próximo partido</h3>
+      <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
+      <p><strong>Fecha:</strong> ${stats.proxPartido.fecha}</p>
+      <h3>Resultados</h3>
+      ${resultadosHtml}
+    `;
+    document.getElementById('bigCard').innerHTML = contenido;
+    document.getElementById('overlay').style.display = 'flex';
+  }
+
+  function cerrarCarta() {
+    document.getElementById('overlay').style.display = 'none';
+  }
+
+  // Auto-scroll del carrusel (opcionalmente corrige si quieres que funcione también)
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    let scrollAmount = 0;
+    const scrollStep = 1;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    let isPaused = false;
+
+    carousel.addEventListener('mouseenter', () => { isPaused = true; });
+    carousel.addEventListener('mouseleave', () => { isPaused = false; });
+
+    function autoScroll() {
+      if (!isPaused) {
+        scrollAmount += scrollStep;
+        if (scrollAmount >= maxScroll) scrollAmount = 0;
+        carousel.scrollLeft = scrollAmount;
       }
-    };
-
-    function mostrarCarta(equipo) {
-      const stats = datosEquipos[equipo];
-      // Generamos el HTML de resultados con join y template string
-      const resHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
-      const contenido = `
-        <img src="${stats.escudo}" alt="${equipo}" style="max-width:100px;">
-        <h3>Próximo partido</h3>
-        <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
-        <p><strong>Fecha:</strong> ${stats.proxPartido.fecha}</p>
-        <h3>Resultados</h3>
-        ${resHtml}
-      `;
-      document.getElementById('bigCard').innerHTML = contenido;
-      document.getElementById('overlay').style.display = 'flex';
+      requestAnimationFrame(autoScroll);
     }
+    autoScroll();
+  });
+</script>
 
-    function cerrarCarta() {
-      document.getElementById('overlay').style.display = 'none';
-    }
-
-    // Auto-scroll del carrusel con pausa al hover
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      let scrollAmount = 0;
-      const scrollStep = 1; // px por frame, ajusta velocidad
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-      let isPaused = false;
-
-      carousel.addEventListener('mouseenter', () => { isPaused = true; });
-      carousel.addEventListener('mouseleave', () => { isPaused = false; });
-
-     
-  </script>
 </body>
 </html>
