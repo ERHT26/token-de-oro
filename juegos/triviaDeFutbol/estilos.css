@@ -1,1 +1,344 @@
+.logo-integrado {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  background: transparent; /* sin color de fondo */
+}
 
+.logo-brillo {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s ease;
+  border-radius: 12px; /* un borde redondeado suave para el brillo */
+}
+
+/* Ajustamos la imagen para que tenga borde invisible para el efecto */
+.logo-brillo img {
+  width: 150px;
+  height: auto;
+  display: block;
+  border-radius: 12px; /* igual que el contenedor para que el brillo siga la forma */
+  box-shadow:
+    0 0 8px 3px rgba(212,175,55,0.6); /* brillo dorado suave base */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Brillo animado al pasar el cursor */
+.logo-brillo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 215, 0, 0.4) 0%,
+    rgba(255, 255, 224, 0.7) 50%,
+    rgba(255, 215, 0, 0.4) 100%
+  );
+  opacity: 0;
+  transform: skewX(-20deg) translateX(-100%);
+  transition: none;
+}
+
+/* Hover: inflar + brillo dorado en bordes */
+.logo-brillo:hover {
+  transform: scale(1.04);
+}
+
+.logo-brillo:hover::before {
+  animation: shine 0.8s ease forwards;
+  opacity: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: skewX(-20deg) translateX(-100%);
+  }
+  100% {
+    transform: skewX(-20deg) translateX(200%);
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  background-color: #000;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.menu-item {
+  color: gold;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: scale(1.2);
+  color: #fff700;
+}
+
+.menu-item i {
+  width: 28px;
+  height: 28px;
+}
+        nav {
+  background-color: #111;
+  padding: 4px 20px; /* antes 12px: ahora menos espacio arriba/abajo */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centrar el menú */
+  gap: 24px; /* reducido ligeramente el espacio entre ítems */
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px; /* un poco más grande para mejor lectura */
+  padding: 4px 8px; /* menos padding vertical */
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background-color: #ffcc00; /* color amarillo brillante para destacar */
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+nav ul li a:hover {
+  color: #ffcc00;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+nav ul li a:focus {
+  outline: 2px solid #ffcc00;
+  outline-offset: 3px;
+}
+
+nav ul li a.active {
+  color: #ffcc00;
+}
+
+nav ul li a.active::after {
+  width: 100%;
+}
+
+
+
+    body {
+      background: linear-gradient(135deg, #1c1c1c, #3a3a3a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container, #questionContainer {
+      background: linear-gradient(145deg, #d4af37, #c0c0c0);
+      color: #1c1c1c;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: black;
+      background: linear-gradient(to right, gold, silver);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .options button {
+      background: #fff;
+      color: #1c1c1c;
+      padding: 10px 20px;
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .options button:hover {
+      background: #d4af37;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #finalScore {
+      font-size: 2rem;
+      background: #fff;
+      color: #1c1c1c;
+      border-radius: 12px;
+      padding: 15px 25px;
+      margin: 20px 0;
+      border: 3px solid gold;
+      box-shadow: 0 0 10px gold;
+    }
+
+    .result {
+      font-size: 1.2rem;
+      margin: 15px 0;
+    }
+
+    button#restartBtn,
+    button#nextBtn {
+      background: linear-gradient(to right, gold, silver);
+      color: #1c1c1c;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    button#restartBtn:hover,
+    button#nextBtn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, silver, gold);
+    }
+
+  .game-card {
+  width: 280px;
+  height: auto;
+  background: linear-gradient(to right, #ffd700, #fef9f0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 16px;
+  font-weight: bold;
+  color: #5a3e00;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 40px auto;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.game-card:hover {
+  transform: scale(1.05);
+}
+.game-card img {
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.game-card p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a3a00;
+  margin: 0;
+}
+
+/* Centrado y scroll manejado si es necesario */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Juego centrado flotante */
+.popup-game {
+  background: #fff8dc;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+  .hidden {
+    display: none;
+  }
+
+  button {
+    padding: 10px 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #ffcc00;
+    color: #222;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #e6b800;
+  }
