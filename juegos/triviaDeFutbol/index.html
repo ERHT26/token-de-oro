@@ -576,11 +576,17 @@
     }
 
     function closeGame(e) {
-      overlay.style.display = "none";
-    }
+  if (e.target.id === "overlay") {
+    window.location.href = "../index.html"; // Regresa al menú de juegos
+  }
+}
+
 
     nextBtn.addEventListener("click", nextQuestion);
     restartBtn.addEventListener("click", startGame);
+     // Abrir automáticamente al cargar
+window.onload = openGame;
+
   </script>
 </body>
 </html>
