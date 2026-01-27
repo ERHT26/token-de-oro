@@ -38,341 +38,125 @@
   </div>
 </header>
 
-<div id="winner"></div>
-<table id="results">
-  <tr>
-    <th>Jugador</th>
-    <th>Desglose de Puntos</th>
-    <th>Total Puntos</th>
-  </tr>
-</table>
+<div id="fut-pyramid"></div>
+
+<!-- Modal para mostrar el desglose -->
+<div id="player-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <div id="modal-details"></div>
+  </div>
+</div>
 
 <script>
-  const API_KEY = '6308d4db454108bc9e980a1784362264';
+const API_KEY = "6308d4db454108bc9e980a1784362264";
+const proxy = "https://api.allorigins.win/get?url=";
+const leagueId = 39; // Premier League
+const season = 2024;
 
-  const players = [
-    {
-      name: 'Rodri',
-      id: 44,
-      collectiveAchievements: {
-        championsLeague: 80,
-        leagueTop20UEFA: 50,
-        nationalCupTop20: 40,
-        superCupUEFA: 25,
-        clubWorldCup: 30,
-        euroCup: 45 // si la gana
-      }
-    },
-    {
-      name: 'Vinícius Jr',
-      id: 762,
-      collectiveAchievements: {
-        championsLeague: 80,
-        leagueTop20UEFA: 50,
-        nationalCupTop20: 40,
-        superCupUEFA: 25,
-        clubWorldCup: 30
-      }
-    },
-    {
-      name: 'Jude Bellingham',
-      id: 129718,
-      collectiveAchievements: {
-        championsLeague: 80,
-        leagueTop20UEFA: 50,
-        nationalCupTop20: 40
-      }
-    }
-  ];
+// --- OBTENER JUGADORES ---
+async function getPlayers() {
+    const url = encodeURIComponent(
+        `https://v3.football.api-sports.io/players?league=${leagueId}&season=${season}`
+    );
 
-  const pointsScheme = {
-    goals: 14,
-    assists: 8,
-    dribblesSuccessful: 7,
-    shotsOnTargetNoGoal: 3,
-    bonusDirectCorner: 6,
-    bonusLongDistance: 6,
-    bonusAcrobatic: 5,
-    bonusFreeKick: 4,
-    bonusOutsideArea: 4,
-    bonusInsideArea: 2,
-    bonusHeader: 3,
-    bonusPenalty: 2,
-    saves: 10,
-    ballRecoveries: 7,
-    successfulTacklesBonus: 2,
-    bonusPenaltySave: 6,
-    bonusAcrobaticSave: 5,
-    bonusCloseRangeSave: 4,
-    bonusOutsideAreaSave: 3,
-    bonusAerialSave: 3,
-    matchesPlayed: 5,
-    captainLeadership: 3,
-    passesCompletedRival: 0.1,
-    kmRun: 1,
-    foulsCommitted: -2,
-    redCards: -8,
-    yellowCards: -4,
-    simulation: -5,
-    noFoulsBonus: 2
-  };
-
-  const STORAGE_KEY = 'tokenDeOroPlayerStats';
-  const STORAGE_DATE_KEY = 'tokenDeOroStatsDate';
-
-  function isToday(dateString) {
-    if (!dateString) return false;
-    const savedDate = new Date(dateString);
-    const today = new Date();
-    return savedDate.getFullYear() === today.getFullYear() &&
-           savedDate.getMonth() === today.getMonth() &&
-           savedDate.getDate() === today.getDate();
-  }
-
-  async function getStats(playerId) {
-    // Temporada 2023/2024
-    const url = `https://v3.football.api-sports.io/players?id=${playerId}&season=2023`;
-    const resp = await fetch(url, {
-      headers: { 'x-apisports-key': API_KEY }
+    const response = await fetch(proxy + url, {
+        headers: { "x-apisports-key": API_KEY }
     });
-    const data = await resp.json();
-    if (!data.response || data.response.length === 0) return null;
-    return data.response[0].statistics[0];
-  }
 
-  async function fetchAndCacheStats() {
-    let allStats = {};
-    for (const p of players) {
-      const stats = await getStats(p.id);
-      allStats[p.id] = stats;
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allStats));
-    localStorage.setItem(STORAGE_DATE_KEY, new Date().toISOString());
-    return allStats;
-  }
+    const wrap = await response.json();
+    const data = JSON.parse(wrap.contents);
+    return data.response;
+}
 
-  function calcCollectivePoints(achievements) {
-    let total = 0;
-    let breakdown = '';
-    for (const [key, value] of Object.entries(achievements)) {
-      if (value > 0) {
-        const name = collectiveAchievementsNames[key] || key;
-        breakdown += `${name}: ${value} pts<br>`;
-        total += value;
-      }
-    }
-    return { total, breakdown };
-  }
+// --- CALCULAR PUNTOS TOKEN DE ORO ---
+function calcularPuntos(stats) {
+    let p = 0;
 
-  const collectiveAchievementsNames = {
-    championsLeague: 'UEFA Champions League',
-    europaLeague: 'UEFA Europa League',
-    conferenceLeague: 'UEFA Conference League',
-    leagueTop20UEFA: 'Liga en Top 20 UEFA',
-    leagueUEFA: 'Liga UEFA (menos Top 20)',
-    leagueCONMEBOL: 'Liga CONMEBOL',
-    leagueCONCACAF: 'Liga CONCACAF',
-    leagueAFC: 'Liga AFC',
-    leagueCAF: 'Liga CAF',
-    leagueOFC: 'Liga OFC',
+    p += (stats.goals.total || 0) * 14;
+    p += (stats.goals.assists || 0) * 8;
+    p += (stats.shots.on || 0) * 3;
+    p += (stats.tackles.interceptions || 0) * 4;
+    p += (stats.tackles.total || 0) * 2;
+    p += (stats.passes.total || 0) / 10;
 
-    nationalCupTop20: 'Copa Nacional Top 20 UEFA',
-    nationalCupUEFA: 'Copa Nacional UEFA',
-    nationalCupCONMEBOL: 'Copa Nacional CONMEBOL',
-    nationalCupCONCACAF: 'Copa Nacional CONCACAF',
-    nationalCupAFC: 'Copa Nacional AFC',
-    nationalCupCAF: 'Copa Nacional CAF',
-    nationalCupOFC: 'Copa Nacional OFC',
+    return Math.round(p);
+}
 
-    superCupUEFA: 'Supercopa de la UEFA',
-    clubWorldCup: 'Mundial de Clubes',
-    libertadores: 'Copa Libertadores',
-    sudamericana: 'Copa Sudamericana',
-    championsCupCONCACAF: 'Concacaf Champions Cup',
-    leaguesCupCONCACAF: 'Leagues Cup',
-    championsLeagueAFC: 'AFC Champions League',
-    afcCup: 'AFC Cup',
-    championsLeagueCAF: 'CAF Champions League',
-    confederationCupCAF: 'CAF Confederation Cup',
-    championsLeagueOFC: 'OFC Champions League',
-
-    worldCupFIFA: 'Copa Mundial de la FIFA',
-    fifaRankingComplete: 'Clasificación Mundial FIFA (completada)',
-    confederationsCupFIFA: 'Copa Confederaciones FIFA',
-
-    euroCup: 'Eurocopa',
-    leagueOfNationsUEFA: 'Liga de Naciones UEFA',
-
-    copaAmerica: 'Copa América',
-
-    copaOro: 'Copa Oro CONCACAF',
-    leagueOfNationsCONCACAF: 'Liga de Naciones CONCACAF',
-
-    asianCup: 'Copa Asiática',
-
-    afcon: 'Copa Africana de Naciones (AFCON)',
-
-    oceaniaNationsCup: 'Copa de Naciones de Oceanía'
-  };
-
-  function calcPoints(stats, player) {
-    if (!stats) return { total: 0, details: {}, collective: { total: 0, breakdown: '' } };
-
-    // Variables que no se obtienen de la API por ahora
-    const dribbles = 0;
-    const recoveries = 0;
-    const successfulTackles = 0;
-    const passesCompletedRival = 0;
-    const kmRun = 0;
-    const fouls = 0;
-    const simulation = 0;
-    const noFouls = false;
-    const captain = false;
-
-    let details = {}, total = 0;
-
-    details.goals = stats.goals.total || 0;
-    total += details.goals * pointsScheme.goals;
-
-    details.assists = stats.goals.assists || 0;
-    total += details.assists * pointsScheme.assists;
-
-    details.dribbles = dribbles;
-    total += dribbles * pointsScheme.dribblesSuccessful;
-
-    const shotsOn = stats.shots.on || 0;
-    const shotsNoGoal = shotsOn - details.goals;
-    details.shotsOnTargetNoGoal = shotsNoGoal > 0 ? shotsNoGoal : 0;
-    total += details.shotsOnTargetNoGoal * pointsScheme.shotsOnTargetNoGoal;
-
-    details.saves = stats.goals.saves || 0;
-    total += details.saves * pointsScheme.saves;
-
-    details.recoveries = recoveries;
-    total += recoveries * pointsScheme.ballRecoveries;
-
-    details.tacklesBonus = successfulTackles;
-    total += successfulTackles * pointsScheme.successfulTacklesBonus;
-
-    details.appearances = stats.games.appearences || 0;
-    total += details.appearances * pointsScheme.matchesPlayed;
-
-    details.captain = captain ? 1 : 0;
-    total += captain ? pointsScheme.captainLeadership : 0;
-
-    details.passesCompletedRival = passesCompletedRival;
-    total += passesCompletedRival * pointsScheme.passesCompletedRival;
-
-    details.kmRun = kmRun;
-    total += kmRun * pointsScheme.kmRun;
-
-    details.fouls = fouls;
-    total += fouls * pointsScheme.foulsCommitted;
-
-    details.yellowCards = stats.cards.yellow || 0;
-    total += details.yellowCards * pointsScheme.yellowCards;
-
-    details.redCards = stats.cards.red || 0;
-    total += details.redCards * pointsScheme.redCards;
-
-    details.simulation = simulation;
-    total += simulation * pointsScheme.simulation;
-
-    details.noFoulsBonus = noFouls ? 1 : 0;
-    total += noFouls ? pointsScheme.noFoulsBonus : 0;
-
-    const collective = calcCollectivePoints(player.collectiveAchievements);
-    total += collective.total;
-
-    return { total, details, collective };
-  }
-
-  function formatDetails(details, collective) {
+// --- CREAR CARTA FUT ---
+function crearCarta(j, i) {
     return `
-      <div class="points-breakdown" style="padding: 0.5rem;">
-        <strong>🧍‍♂️ Rendimiento Individual</strong>
-        <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
-          <li>Goles: ${details.goals} ×14 = ${details.goals * 14} pts</li>
-          <li>Asistencias: ${details.assists} ×8 = ${details.assists * 8} pts</li>
-          <li>Regates exitosos: ${details.dribbles} ×7 = ${details.dribbles * 7} pts</li>
-          <li>Tiros al arco (sin gol): ${details.shotsOnTargetNoGoal} ×3 = ${details.shotsOnTargetNoGoal * 3} pts</li>
-          <li>Atajadas: ${details.saves} ×10 = ${details.saves * 10} pts</li>
-          <li>Recuperaciones de balón: ${details.recoveries} ×7 = ${details.recoveries * 7} pts</li>
-          <li>Entradas exitosas: ${details.tacklesBonus} ×2 = ${details.tacklesBonus * 2} pts</li>
-          <li>Partidos jugados: ${details.appearances} ×5 = ${details.appearances * 5} pts</li>
-          <li>Liderazgo como capitán: ${details.captain} ×3 = ${details.captain * 3} pts</li>
-          <li>Pases en campo rival: ${details.passesCompletedRival} ×0.1 = ${(details.passesCompletedRival * 0.1).toFixed(1)} pts</li>
-          <li>Kilómetros recorridos: ${details.kmRun} ×1 = ${details.kmRun} pts</li>
-          <li>Faltas cometidas: ${details.fouls} ×(-2) = ${details.fouls * -2} pts</li>
-          <li>Amarillas: ${details.yellowCards} ×(-4) = ${details.yellowCards * -4} pts</li>
-          <li>Rojas: ${details.redCards} ×(-8) = ${details.redCards * -8} pts</li>
-          <li>Simulaciones: ${details.simulation} ×(-5) = ${details.simulation * -5} pts</li>
-          <li>Sin faltas (bonus): ${details.noFoulsBonus} ×2 = ${details.noFoulsBonus * 2} pts</li>
-        </ul>
-
-        <strong>🏆 Logros Colectivos</strong>
-        <ul style="margin: 0 0 0.5rem 1rem; padding-left: 1rem;">
-          ${collective.breakdown.split('<br>').filter(x => x).map(item => `<li>${item}</li>`).join('')}
-        </ul>
-      </div>
+    <div class="fut-card" onclick='mostrarModal(${JSON.stringify(JSON.stringify(j))})'>
+        <img class="fut-photo" src="${j.photo}" onerror="this.src='https://i.imgur.com/2yaf2wb.png'">
+        <div class="fut-name">${j.name}</div>
+        <div class="fut-team">${j.team}</div>
+        <div class="fut-score">${j.score} pts</div>
+    </div>
     `;
-  }
+}
 
-  async function load() {
-    const table = document.getElementById('results');
-    let maxPoints = -Infinity;
-    let winner = '';
+// --- MOSTRAR MODAL ---
+function mostrarModal(jData) {
+    const j = JSON.parse(jData);
 
-    // Revisar localStorage para ver si hay datos del día actual
-    const savedDateStr = localStorage.getItem(STORAGE_DATE_KEY);
-    let statsCache = null;
-    if (savedDateStr && isToday(savedDateStr)) {
-      const savedStatsStr = localStorage.getItem(STORAGE_KEY);
-      if (savedStatsStr) {
-        statsCache = JSON.parse(savedStatsStr);
-      }
-    }
-
-    if (!statsCache) {
-      // No hay datos o son antiguos, obtener de la API y guardar
-      statsCache = await fetchAndCacheStats();
-    }
-
-    for (const p of players) {
-      const stats = statsCache[p.id];
-
-      const row = table.insertRow();
-      row.insertCell().textContent = p.name;
-
-      if (!stats) {
-        // Si no hay datos, mostrar leyenda en vez de puntos
-        row.insertCell().innerHTML = '<em>En proceso de obtención de datos...</em>';
-        row.insertCell().textContent = '—';
-        continue;
-      }
-
-      const { total, details, collective } = calcPoints(stats, p);
-      row.insertCell().innerHTML = formatDetails(details, collective);
-      row.insertCell().textContent = total.toFixed(2);
-
-      if (total > maxPoints) {
-        maxPoints = total;
-        winner = p.name;
-      }
-    }
-
-    const winnerDiv = document.getElementById('winner');
-    winnerDiv.innerHTML = `
-      <div class="ganador-container">
-        <h1>🏆 Ganador del Token de Oro 2024</h1>
-        <div class="ganador-nombre">${winner}</div>
-        <div class="ganador-puntos">${maxPoints.toFixed(2)} puntos</div>
-      </div>
+    document.getElementById("modal-details").innerHTML = `
+        <h2>${j.name}</h2>
+        <p><strong>Equipo:</strong> ${j.team}</p>
+        <p><strong>Puntaje Total:</strong> ${j.score} pts</p>
+        <hr>
+        <p><strong>Goles:</strong> ${j.goals}</p>
+        <p><strong>Asistencias:</strong> ${j.assists}</p>
+        <p><strong>Tiros al arco:</strong> ${j.shots}</p>
+        <p><strong>Intercepciones:</strong> ${j.interceptions}</p>
+        <p><strong>Entradas:</strong> ${j.tackles}</p>
+        <p><strong>Pases:</strong> ${j.passes}</p>
     `;
-  }
 
-  load();
+    document.getElementById("player-modal").style.display = "block";
+}
+
+document.querySelector(".close-btn").onclick = () =>
+    document.getElementById("player-modal").style.display = "none";
+
+// --- ARMAR PIRÁMIDE FUT ---
+function construirPiramide(top10) {
+    const pyramid = document.getElementById("fut-pyramid");
+
+    pyramid.innerHTML = `
+        <div class="fut-row">${crearCarta(top10[0])}</div>
+        <div class="fut-row">${crearCarta(top10[1])}${crearCarta(top10[2])}</div>
+        <div class="fut-row">${crearCarta(top10[3])}${crearCarta(top10[4])}${crearCarta(top10[5])}</div>
+        <div class="fut-row">${crearCarta(top10[6])}${crearCarta(top10[7])}${crearCarta(top10[8])}${crearCarta(top10[9])}</div>
+    `;
+}
+
+// --- PRINCIPAL ---
+async function iniciar() {
+    const data = await getPlayers();
+    const jugadores = data.map(j => {
+        const s = j.statistics[0];
+
+        return {
+            name: j.player.name,
+            team: s.team.name,
+            photo: j.player.photo,
+            goals: s.goals.total || 0,
+            assists: s.goals.assists || 0,
+            shots: s.shots.on || 0,
+            interceptions: s.tackles.interceptions || 0,
+            tackles: s.tackles.total || 0,
+            passes: s.passes.total || 0,
+            score: calcularPuntos(s)
+        };
+    });
+
+    jugadores.sort((a, b) => b.score - a.score);
+    construirPiramide(jugadores.slice(0, 10));
+}
+
+iniciar();
 </script>
+
 
 </body>
 </html>
