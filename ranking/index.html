@@ -56,18 +56,13 @@ const season = 2024;
 
 // --- OBTENER JUGADORES ---
 async function getPlayers() {
-    const url = encodeURIComponent(
-        `https://v3.football.api-sports.io/players?league=${leagueId}&season=${season}`
-    );
+    const apiURL = `https://v3.football.api-sports.io/players?league=${leagueId}&season=${season}`;
 
-    const response = await fetch(proxy + url, {
-        headers: { "x-apisports-key": API_KEY }
-    });
-
-    const wrap = await response.json();
-    const data = JSON.parse(wrap.contents);
+    const response = await fetch("/proxy.php?url=" + encodeURIComponent(apiURL));
+    const data = await response.json();
     return data.response;
 }
+
 
 // --- CALCULAR PUNTOS TOKEN DE ORO ---
 function calcularPuntos(stats) {
