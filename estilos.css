@@ -260,13 +260,13 @@ h1 {
 }
 
 /* CONTENEDOR */
-.carrusel {
-  display: flex;
+.contenedor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  overflow-x: auto;
   padding: 20px;
 }
-.carrusel::-webkit-scrollbar { display: none; }
+
 
 /* TARJETA FUT */
 .card {
