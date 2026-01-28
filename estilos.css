@@ -252,4 +252,61 @@ nav ul li a.active::after {
        color: #333;
        }
 
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: gold;
+  font-size: 28px;
+}
 
+/* CONTENEDOR */
+.carrusel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+}
+.carrusel::-webkit-scrollbar { display: none; }
+
+/* TARJETA FUT */
+.card {
+  min-width: 200px;
+  height: 260px;
+  padding: 15px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #d4af37, #8d6e26);
+  box-shadow: 0 0 20px rgba(255,215,0,0.45);
+  position: relative;
+  cursor: pointer;
+  transition: .3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* ICONO */
+.icono {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  font-size: 50px;
+  margin-top: 25px;
+}
+
+/* NOMBRE */
+.card h2 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: white;
+}
+
+/* ACENTOS POR CONFEDERACIÓN */
+.uefa { border-bottom: 6px solid #002F6C; }
+.conmebol { border-bottom: 6px solid #F5C300; }
+.concacaf { border-bottom: 6px solid #002D4B; }
+.afc { border-bottom: 6px solid #C3002F; }
+.caf { border-bottom: 6px solid #00853E; }
+.ofc { border-bottom: 6px solid #00B7C2; }
+.fifa { border-bottom: 6px solid #4FA3F7; }
