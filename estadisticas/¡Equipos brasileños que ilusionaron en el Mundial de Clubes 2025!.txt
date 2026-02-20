@@ -1,0 +1,140 @@
+<section class="texto-principal" aria-label="Introducción al Mundial de Clubes y equipos brasileños">
+      <h1>¡Equipos brasileños que ilusionaron en el Mundial de Clubes 2025!</h1>
+      <p>En la tierra donde el sol besa el balón, donde el fútbol no se juega, se vive con el corazón. Nació un canto eterno, verde y oro, de Pelé, Neymar y su decoro, de un pueblo que al mundo enseñó que la magia también se entrena, que el balón puede ser poema.</p>
+      <p class="titulo"><span class="emoji">👑</span>La Selección: El Legado de un Pentacampeón</p>
+      <p>Cinco estrellas en el cielo cuelgan, no son mitos, no son cuentos, son las glorias de un momento que jamás dejó de arder. Brasil, reina entre naciones, marca goles y emociones.</p>
+      <hr />
+      <p class="titulo"><span class="emoji">⚔️</span>La Liga Brasileña: El Nuevo Corazón del Fútbol Mundial</p>
+      <p>Antes vista con ternura, como cuna y despedida, hoy la liga brasileña es bravura, es talento, es nueva vida. Ya no exporta solamente, ahora brilla imponente ante el mundo y su radar.</p>
+       <div class="click-ver-mas">Clic en las cartas para ver más</div>
+      <div class="cards">
+        <div class="card" onclick="mostrarCarta('Palmeiras')">
+          <div class="card-front">
+            <img src="palmeiraslogo.png" alt="Palmeiras" class="escudo-limpio" />
+            Palmeiras, firme en táctica, en bloque, en control,<br>
+            cierra espacios y clava el gol.<br>
+            Su juego es ajedrez con chispa encendida,<br>
+            una muralla que ataca con alma aguerrida.
+            
+          </div>
+        </div>
+       
+        <div class="card" onclick="mostrarCarta('Botafogo')">
+          <div class="card-front">
+            <img src="botafogologo.png" alt="Botafogo" class="escudo-limpio" />
+            Botafogo, valiente desde el primer silbido,<br>
+            no conoce el miedo, va siempre al frente erguido.<br>
+            Con coraje en cada cruce, presión como puñal,<br>
+            es el lobo que ruge sin miedo al rival.
+            
+          </div>
+        </div>
+        
+        <div class="card" onclick="mostrarCarta('Flamengo')">
+          <div class="card-front">
+            <img src="flamengologo.png" alt="Flamengo" class="escudo-limpio" />
+            Flamengo, pasión desbordada en rubro y negro,<br>
+            ataca como río que rompe el tiempo.<br>
+            Vertical, intenso, eléctrico en su andar,<br>
+            de sus botas nacen fuegos que saben incendiar.
+            
+          </div>
+        </div>
+      
+        <div class="card" onclick="mostrarCarta('Fluminense')">
+          <div class="card-front">
+            <img src="fluminenselogo.png" alt="Fluminense" class="escudo-limpio" />
+            Fluminense, el arte fino, el pase de seda,<br>
+            juega con alma, con temple, con entrega.<br>
+            Su toque es poesía, su fútbol es moral,<br>
+            una danza que hipnotiza en compás tricolor sin igual.
+            
+          </div>
+        </div>
+       
+      </div>
+    </section>
+
+    
+      
+
+    
+ 
+  </div>
+
+  <div id="overlay" class="overlay" style="display:none" onclick="cerrarCarta(event)">
+    <div class="big-card" id="bigCard" onclick="event.stopPropagation()"></div>
+  </div>
+
+  <script>
+  const datosEquipos = {
+    Palmeiras: {
+      escudo: 'palmeiraslogo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 4, GC: 2, DF: 2, PTS: 7 },
+      resultados: [
+        'vs Al Ahly: 2‑0',
+        'vs Porto: 0‑0',
+        'vs Inter Miami: 2‑2',
+        'Octavos: vs Botafogo: 1‑0 (prórroga)',
+        'Cuartos: vs Chelsea: 1‑2 (Eliminado)'
+      ]
+    },
+    Botafogo: {
+      escudo: 'botafogologo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 2, E: 0, P: 1, GF: 3, GC: 2, DF: 1, PTS: 6 },
+      resultados: [
+        'vs Seattle Sounders: 2‑1',
+        'vs PSG: 1‑0',
+        'vs Atlético Madrid: 0‑1',
+        'Octavos: vs Palmeiras: 0‑1 (prórroga, Eliminado)'
+      ]
+    },
+    Flamengo: {
+      escudo: 'flamengologo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 2, E: 1, P: 0, GF: 6, GC: 2, DF: 4, PTS: 7 },
+      resultados: [
+        'vs Espérance: 2‑0',
+        'vs Chelsea: 3‑1',
+        'vs LAFC: 1‑1',
+        'Octavos: vs Bayern Múnich: 2‑4 (Eliminado)'
+      ]
+    },
+    Fluminense: {
+      escudo: 'fluminenselogo.png',
+      proxPartido: { rival: 'Eliminado', fecha: '–' },
+      grupo: { PJ: 3, G: 1, E: 2, P: 0, GF: 2, GC: 0, DF: 2, PTS: 5 },
+      resultados: [
+        'vs Mamelodi Sundowns: 0‑0',
+        'vs Borussia Dortmund: 1‑0',
+        'vs Ulsan Hyundai: 1‑0',
+        'Octavos: vs Inter de Milán: 2‑0',
+        'Cuartos: vs Al‑Hilal: 1‑0',
+        'Semis: vs Chelsea: 0‑2 (Eliminado)'
+      ]
+    }
+  };
+
+  function mostrarCarta(equipo) {
+    const stats = datosEquipos[equipo];
+    const resultadosHtml = stats.resultados.map(r => `<p>${r}</p>`).join('');
+    const contenido = `
+      <img src="${stats.escudo}" alt="${equipo}" style="max-width:100px; margin-bottom: 10px;">
+      <h2>${equipo}</h2>
+      <h3>Próximo partido</h3>
+      <p><strong>Rival:</strong> ${stats.proxPartido.rival}</p>
+      <p><strong>Fecha:</strong> ${stats.proxPartido.fecha}</p>
+      <h3>Resultados</h3>
+      ${resultadosHtml}
+    `;
+    document.getElementById('bigCard').innerHTML = contenido;
+    document.getElementById('overlay').style.display = 'flex';
+  }
+
+  function cerrarCarta() {
+    document.getElementById('overlay').style.display = 'none';
+  }
+</script>
+ 
